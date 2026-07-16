@@ -1,0 +1,73 @@
+# Gradle
+.gradle/
+build/
+**/build/
+
+# Local config
+local.properties
+
+# IDE
+.idea/
+*.iml
+*.ipr
+*.iws
+
+# Android Studio specific
+.idea/caches/
+.idea/libraries/
+.idea/modules.xml
+.idea/workspace.xml
+.idea/navEditor.xml
+.idea/assetWizardSettings.xml
+
+# Keystore files
+*.jks
+*.keystore
+
+# Generated files
+captures/
+.externalNativeBuild/
+.cxx/
+
+# Kotlin / Java
+*.class
+*.log
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Firebase / Google Services
+google-services.json
+
+# NDK
+obj/
+libs/
+
+# APK / AAB
+*.apk
+*.aab
+
+# Proguard
+mapping/
+
+# Room
+schemas/
+
+# KSP / KAPT
+.ksp/
+.kapt/
+
+# Test results
+test-output/
+
+# Mac hidden
+.AppleDouble
+.LSOverride
+
+# Windows
+ehthumbs.db
+Desktop.ini
+
+# Linux
+*~

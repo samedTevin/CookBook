@@ -1,0 +1,44 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="240dp"
+    android:height="240dp"
+    android:viewportWidth="240"
+    android:viewportHeight="240">
+
+    <!-- background -->
+    <path
+        android:fillColor="#D85A30"
+        android:pathData="M0,0 H240 V240 H0 Z" />
+
+    <!-- hat, scaled + centered to fit inside the 160dp mask circle -->
+    <group
+        android:translateX="120"
+        android:translateY="120"
+        android:scaleX="0.485"
+        android:scaleY="0.485">
+
+        <group android:translateY="20">
+
+            <path
+                android:fillColor="#FCF6F2"
+                android:pathData="M -95,40
+                    Q -140,40 -140,-20
+                    Q -140,-70 -100,-78
+                    Q -95,-115 -55,-122
+                    Q -30,-140 0,-140
+                    Q 30,-140 55,-122
+                    Q 95,-115 100,-78
+                    Q 140,-70 140,-20
+                    Q 140,40 95,40
+                    Z" />
+
+            <path
+                android:fillColor="#FCF6F2"
+                android:pathData="M-85,30 H85 A10,10 0 0 1 95,40 V90 A10,10 0 0 1 85,100 H-85 A10,10 0 0 1 -95,90 V40 A10,10 0 0 1 -85,30 Z" />
+
+            <path
+                android:fillColor="#F0997B"
+                android:pathData="M-95,82 H95 V100 H-95 Z" />
+
+        </group>
+    </group>
+</vector>

@@ -1,0 +1,31 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Base.Theme.CookBook" parent="Theme.Material3.DayNight.NoActionBar">
+
+        <item name="colorPrimary">@color/primary</item>
+
+        <item name="colorPrimaryContainer">
+            @color/primary_container
+        </item>
+
+        <item name="android:colorBackground">
+            @color/background
+        </item>
+
+        <item name="colorOnPrimary">
+            @color/white
+        </item>
+    </style>
+
+    <style name="Theme.CookBook" parent="Base.Theme.CookBook" />
+
+
+    <!-- Theme for splash screen -->
+    <style name="Theme.MyApp.Splash" parent="Theme.SplashScreen">
+        <item name="windowSplashScreenBackground">#D37055</item>
+        <item name="windowSplashScreenAnimatedIcon">@drawable/outline_chef_hat_24</item>
+        <item name="postSplashScreenTheme">@style/Theme.CookBook</item>
+    </style>
+
+
+</resources>
