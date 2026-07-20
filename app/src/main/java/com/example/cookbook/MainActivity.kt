@@ -2,12 +2,21 @@ package com.example.cookbook
 
 import android.content.Context
 import android.os.Bundle
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
+import androidx.navigation.findNavController
 
 import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.ui.setupWithNavController
+import com.example.cookbook.data.Meal
+import com.example.cookbook.data.Meals
+import com.example.cookbook.databinding.ActivityMainBinding
+import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class MainActivity : AppCompatActivity() {
+    private lateinit var binding : ActivityMainBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
 
 
@@ -30,8 +39,9 @@ class MainActivity : AppCompatActivity() {
 
 
         super.onCreate(savedInstanceState)
-
-        setContentView(R.layout.activity_main)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        val view = binding.root
+        setContentView(view)
 
         supportActionBar?.hide()
 
@@ -41,13 +51,37 @@ class MainActivity : AppCompatActivity() {
 
         // Sets the destination based on sharedPreferences
         if(isFinishedOnBoarding()){
-            navGraph.setStartDestination(R.id.homeFragment)
+            navGraph.setStartDestination(R.id.welcomeFragment)
         }
         else{
             navGraph.setStartDestination(R.id.viewPagerFragment)
         }
 
         navController.graph = navGraph
+
+        val bottomNav = binding.bottomNav
+
+        bottomNav.setupWithNavController(navController)
+
+        navController.addOnDestinationChangedListener{_, destination, _ ->
+            if(destination.id == R.id.viewPagerFragment){
+                bottomNav.visibility = View.GONE
+            }
+            else if(destination.id == R.id.welcomeFragment){
+                bottomNav.visibility = View.GONE
+            }
+            else if(destination.id == R.id.loginFragment){
+                bottomNav.visibility = View.GONE
+            }
+            else if(destination.id == R.id.registerFragment){
+                bottomNav.visibility = View.GONE
+            }
+            else{
+                bottomNav.visibility = View.VISIBLE
+            }
+
+        }
+
 
     }
 

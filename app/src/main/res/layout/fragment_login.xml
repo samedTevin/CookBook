@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".ui.fragments.LoginFragment"
+    android:background="@color/background"
+    android:orientation="vertical"
+    android:gravity="center_horizontal"
+    android:layout_margin="20dp"
+    android:padding="10dp">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Login Here"
+        android:fontFamily="@font/poppins_semibold"
+        android:textColor="@color/primary"
+        android:textSize="40sp"
+        android:layout_marginTop="40dp"
+        android:layout_marginBottom="10dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Welcome back you've\nbeen missed!"
+        android:textAlignment="center"
+        android:textSize="20sp"
+        android:fontFamily="@font/plus_jakarta_sans_semibold"
+        android:layout_marginBottom="50dp"
+        android:lineHeight="25dp"/>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:boxStrokeColor="@color/primary"
+        app:boxStrokeWidth="3dp"
+        android:hint="Email"
+        app:boxBackgroundMode="outline"
+        android:gravity="center"
+        android:layout_marginBottom="20dp"
+        >
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/etMail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="text"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:boxStrokeColor="@color/primary"
+        app:boxStrokeWidth="3dp"
+        android:hint="Password"
+        app:boxBackgroundMode="outline"
+        app:endIconMode="password_toggle"
+        android:gravity="center"
+        android:layout_marginBottom="15dp">
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/etPassword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPassword"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <TextView
+        android:id="@+id/tvForgotPassword"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Forgot your password?"
+        android:textColor="@color/primary"
+        android:textSize="15sp"
+        android:fontFamily="@font/plus_jakarta_sans_semibold"
+        android:layout_gravity="end"/>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/buttonSignIn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/primary"
+        android:textSize="25sp"
+        app:cornerRadius="5dp"
+        android:text="Sign in"
+        android:fontFamily="@font/poppins_semibold"
+        android:layout_marginTop="25dp"
+        />
+
+    <TextView
+        android:id="@+id/tvCreateAccount"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAlignment="center"
+        android:text="Create a new account"
+        android:fontFamily="@font/inter"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        android:layout_marginTop="30dp"/>
+
+</LinearLayout>

@@ -53,11 +53,13 @@ class ViewPagerFragment : Fragment() {
             }
             else{
                 // Finishes the onboarding and navigates the home screen
-                findNavController().navigate(R.id.action_viewPagerFragment_to_homeFragment)
+                findNavController().navigate(R.id.action_viewPagerFragment_to_welcomeFragment)
                 onBoardingFinished()
             }
         }
 
+
+        // Controls the text of the button
         binding.viewPager2.registerOnPageChangeCallback(
             object : ViewPager2.OnPageChangeCallback() {
                 override fun onPageSelected(position: Int) {
@@ -71,6 +73,7 @@ class ViewPagerFragment : Fragment() {
         return view
     }
 
+    // Saves the status of onboarding process
     private fun onBoardingFinished() {
         val sharedPreferences = requireActivity().getSharedPreferences("onboarding", Context.MODE_PRIVATE)
         val editor = sharedPreferences.edit()

@@ -17,6 +17,17 @@
         </item>
     </style>
 
+    <!-- Indicator for bottom Navigation -->
+    <style name="App.Custom.Indicator" parent="Widget.Material3.BottomNavigationView.ActiveIndicator">
+        <item name="android:color">@color/primary_container</item>
+    </style>
+
+    <!-- Circle Profile Image -->
+    <style name="CircleImage">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">50%</item>
+    </style>
+
     <style name="Theme.CookBook" parent="Base.Theme.CookBook" />
 
 

@@ -10,4 +10,10 @@
 
     <color name="text_primary">#2D2D2D</color>
 
+    <color name="gray">#808080</color>
+
+    <color name="dark_gray">#1A1A1A</color>
+
+    <color name="primary_white">#F4A261</color>
+
 </resources>

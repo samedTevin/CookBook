@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".ui.fragments.WelcomeFragment"
+    android:orientation="vertical"
+    android:background="@color/background"
+    android:gravity="center">
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:layout_width="250dp"
+        android:layout_height="250dp"
+        app:lottie_rawRes="@raw/spoon"
+        app:lottie_autoPlay="true"
+        app:lottie_loop="true"
+        android:layout_marginTop="50dp"
+
+        />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Start Your"
+        android:textSize="30sp"
+        android:fontFamily="@font/poppins_semibold"
+        android:textColor="@color/primary"
+        android:layout_marginTop="50dp"
+        android:textAlignment="center"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Cooking  Journey"
+        android:fontFamily="@font/poppins_semibold"
+        android:textSize="30sp"
+        android:textColor="@color/primary"
+        android:layout_marginTop="10dp"
+        android:textAlignment="center"
+        />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Save, organize and access \nyour recipes anytime."
+        android:textAlignment="center"
+        android:textSize="20sp"
+        android:fontFamily="@font/inter"
+        android:layout_marginTop="20dp"
+        android:lineHeight="30dp"
+        android:textColor="@color/black"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_margin="30dp">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/buttonLogin"
+            android:layout_width="130dp"
+            android:layout_height="48dp"
+            android:text="Login"
+            android:textSize="19sp"
+            android:backgroundTint="@color/primary"
+            app:strokeColor="@color/black"
+            app:strokeWidth="1dp"
+            android:fontFamily="@font/poppins_semibold"
+            android:gravity="center"
+            android:layout_marginRight="20dp"
+            android:elevation="6dp"
+            app:cornerRadius="5dp"
+            />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/buttonRegister"
+            android:layout_width="130dp"
+            android:layout_height="48dp"
+            android:text="Register"
+            android:textColor="@color/black"
+            android:fontFamily="@font/poppins_semibold"
+            android:textSize="19sp"
+            android:backgroundTint="@color/white"
+            app:strokeColor="@color/black"
+            app:strokeWidth="1dp"
+            android:gravity="center"
+            android:layout_marginLeft="20dp"
+            android:elevation="6dp"
+            app:cornerRadius="5dp"/>
+
+    </LinearLayout>
+
+</LinearLayout>

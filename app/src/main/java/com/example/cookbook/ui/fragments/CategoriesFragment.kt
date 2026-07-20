@@ -1,0 +1,42 @@
+package com.example.cookbook.ui.fragments
+
+import android.os.Bundle
+import androidx.fragment.app.Fragment
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import com.example.cookbook.R
+import com.example.cookbook.adapter.recyclerviewadapter.CategoriesAdapter
+import com.example.cookbook.data.Category
+import com.example.cookbook.databinding.FragmentCategoriesBinding
+
+
+class CategoriesFragment : Fragment() {
+
+    private var _binding : FragmentCategoriesBinding? = null
+    val binding get() = _binding!!
+
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        _binding = FragmentCategoriesBinding.inflate(layoutInflater,container,false)
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        binding.favoriteRecyclerView.adapter = CategoriesAdapter(listOf(
+            Category("Beef","Protein",R.drawable.hamburger),
+            Category("Beef","Protein",R.drawable.hamburger),
+            Category("Beef","Protein",R.drawable.hamburger),
+            Category("Beef","Protein",R.drawable.hamburger),
+            Category("Beef","Protein",R.drawable.hamburger),
+            Category("Beef","Protein",R.drawable.hamburger),
+            Category("Beef","Protein",R.drawable.hamburger),
+            Category("Beef","Protein",R.drawable.hamburger),
+            Category("Beef","Protein",R.drawable.hamburger)
+        ))
+    }
+
+}

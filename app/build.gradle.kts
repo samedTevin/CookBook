@@ -13,7 +13,7 @@ android {
     defaultConfig {
         applicationId = "com.example.cookbook"
         minSdk = 24
-        targetSdk = 36
+        targetSdk = 37
         versionCode = 1
         versionName = "1.0"
 
@@ -59,6 +59,9 @@ dependencies {
 
     // Pager Dots Indicator
     implementation("com.tbuonomo:dotsindicator:4.3")
+
+    // Glide
+    implementation("com.github.bumptech.glide:glide:5.0.5")
 
 
 }
