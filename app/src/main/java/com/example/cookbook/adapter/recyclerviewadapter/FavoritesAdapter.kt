@@ -10,12 +10,19 @@ import com.example.cookbook.databinding.ItemFavoritesBinding
 
 class FavoritesAdapter(val list: Meals): RecyclerView.Adapter<FavoritesAdapter.ViewHolder>(){
 
-    class ViewHolder(val binding: ItemFavoritesBinding) : RecyclerView.ViewHolder(binding.root){
+    var onItemClick: ((id : String) -> Unit)? = null
+
+    inner class ViewHolder(val binding: ItemFavoritesBinding) : RecyclerView.ViewHolder(binding.root){
         fun bind(meal: Meal){
             binding.tvFoodName.text = meal.strMeal
             binding.tvCountry.text = meal.strCountry
             binding.tvCategory.text = meal.strCategory
             Glide.with(binding.root).load(meal.strMealThumb).into(binding.ivFoodPhoto)
+
+            binding.root.setOnClickListener {
+                onItemClick?.invoke(meal.idMeal)
+            }
+
         }
     }
 
@@ -26,10 +33,12 @@ class FavoritesAdapter(val list: Meals): RecyclerView.Adapter<FavoritesAdapter.V
     ): FavoritesAdapter.ViewHolder {
         val binding = ItemFavoritesBinding.inflate(LayoutInflater.from(parent.context),parent,false)
         return ViewHolder(binding)
+
     }
 
     override fun onBindViewHolder(holder: FavoritesAdapter.ViewHolder, position: Int) {
         holder.bind(list.mealList[position])
+
     }
 
     override fun getItemCount(): Int {

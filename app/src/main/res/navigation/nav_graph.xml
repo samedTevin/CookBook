@@ -125,6 +125,9 @@
         <action
             android:id="@+id/action_favoritesFragment_to_profileFragment"
             app:destination="@id/profileFragment" />
+        <action
+            android:id="@+id/action_favoritesFragment_to_detailFragment"
+            app:destination="@id/detailFragment" />
     </fragment>
     <fragment
         android:id="@+id/searchFragment"
@@ -143,5 +146,14 @@
         <action
             android:id="@+id/action_searchFragment_to_favoritesFragment"
             app:destination="@id/favoritesFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/detailFragment"
+        android:name="com.example.cookbook.ui.fragments.detailfragments.DetailFragment"
+        android:label="fragment_detail"
+        tools:layout="@layout/fragment_detail" >
+        <argument
+            android:name="mealId"
+            app:argType="string" />
     </fragment>
 </navigation>

@@ -2,6 +2,7 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="red">#F44336</color>
 
     <color name="primary">#D85A30</color>
     <color name="primary_container">#F4A261</color>
@@ -15,5 +16,11 @@
     <color name="dark_gray">#1A1A1A</color>
 
     <color name="primary_white">#F4A261</color>
+
+    <color name="chip_background_color">#FFF3E6</color>
+
+
+
+
 
 </resources>

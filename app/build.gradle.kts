@@ -1,5 +1,7 @@
 plugins {
     alias(libs.plugins.android.application)
+    id("androidx.navigation.safeargs.kotlin")
+
 }
 
 android {
@@ -62,6 +64,11 @@ dependencies {
 
     // Glide
     implementation("com.github.bumptech.glide:glide:5.0.5")
+
+    // Views/Fragments integration
+    val nav_version = "2.9.8"
+    implementation("androidx.navigation:navigation-fragment:${nav_version}")
+    implementation("androidx.navigation:navigation-ui:${nav_version}")
 
 
 }

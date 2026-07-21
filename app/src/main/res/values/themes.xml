@@ -28,6 +28,12 @@
         <item name="cornerSize">50%</item>
     </style>
 
+    <!-- Rounded Square -->
+    <style name="RoundedSquare" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">20dp</item>
+    </style>
+
     <style name="Theme.CookBook" parent="Base.Theme.CookBook" />
 
 
