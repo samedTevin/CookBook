@@ -1,10 +1,13 @@
 package com.example.cookbook.ui.fragments
 
 import android.os.Bundle
+import android.text.Layout
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.cookbook.R
 import com.example.cookbook.adapter.recyclerviewadapter.FavoritesAdapter
@@ -21,6 +24,7 @@ class FavoritesFragment : Fragment() {
 
     private var _binding : FragmentFavoritesBinding? = null
     private val binding get() = _binding!!
+    private lateinit  var adapter : FavoritesAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -35,7 +39,7 @@ class FavoritesFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.favoriteRecyclerView.adapter = FavoritesAdapter(Meals(listOf(
+        adapter = FavoritesAdapter(Meals(listOf(
             Meal(
                 idMeal = "1",
                 strMeal = "Teriyaki Chicken",
@@ -353,7 +357,17 @@ class FavoritesFragment : Fragment() {
             ),
         )))
 
+        binding.favoriteRecyclerView.adapter = adapter
+
         binding.favoriteRecyclerView.layoutManager = LinearLayoutManager(view.context)
+
+        adapter.onItemClick = { mealId ->
+            Toast.makeText(requireContext(),"The meal Id: $mealId",Toast.LENGTH_LONG).show()
+            val action = FavoritesFragmentDirections.actionFavoritesFragmentToDetailFragment(mealId)
+            findNavController().navigate(action)
+        }
+
+
     }
 
 
