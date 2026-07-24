@@ -1,14 +1,236 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.fragments.HomeFragment">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".ui.fragments.HomeFragment"
+    android:backgroundTint="@color/background">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_margin="20dp">
 
-</FrameLayout>
+        <Toolbar
+            android:id="@+id/toolBar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="CookBook"
+                android:fontFamily="@font/poppins_semibold"
+                android:textSize="50sp"
+                android:textColor="@color/primary"
+                android:layout_gravity="center" />
+        </Toolbar>
+
+        <TextView
+            android:id="@+id/tvWelcome"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Welcome to CookBook!"
+            android:textSize="30sp"
+            android:fontFamily="@font/poppins_semibold"
+            app:layout_constraintTop_toBottomOf="@id/toolBar"
+            app:layout_constraintStart_toStartOf="parent"
+            android:textColor="@color/black"
+            />
+
+        <TextView
+            android:id="@+id/tvDescription"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Find your next favorite recipe"
+            android:textSize="16sp"
+            android:fontFamily="@font/inter"
+            app:layout_constraintTop_toBottomOf="@id/tvWelcome"
+            app:layout_constraintStart_toStartOf="parent"
+            android:textColor="@color/dark_gray"
+            />
+
+        <SearchView
+            android:id="@+id/searchView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:queryHint="Search recipes..."
+            android:searchHintIcon="@null"
+            android:iconifiedByDefault="false"
+            android:closeIcon="@drawable/outline_close_24"
+            android:searchIcon="@drawable/baseline_search_24"
+            android:focusable="false"
+            android:background="@drawable/search_bkg"
+            android:layout_marginTop="15dp"
+            app:layout_constraintTop_toBottomOf="@id/tvDescription"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+
+        <TextView
+            android:id="@+id/tvDice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Roll the Dice🎲"
+            android:textSize="25sp"
+            android:fontFamily="@font/poppins_semibold"
+            android:textColor="@color/black"
+            android:layout_marginTop="30dp"
+            app:layout_constraintTop_toBottomOf="@id/searchView"
+            app:layout_constraintStart_toStartOf="parent"/>
+
+        <TextView
+            android:id="@+id/tvDiceDescription"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Find your next favorite recipe"
+            android:textSize="16sp"
+            android:fontFamily="@font/inter"
+            app:layout_constraintTop_toBottomOf="@id/tvDice"
+            app:layout_constraintStart_toStartOf="parent"
+            android:textColor="@color/dark_gray"
+            />
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/cardDice"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvDiceDescription"
+            android:backgroundTint="@color/white"
+            app:cardCornerRadius="18dp"
+            android:layout_marginTop="10dp"
+            >
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    >
+
+                    <com.airbnb.lottie.LottieAnimationView
+                        android:id="@+id/lottieAnimation"
+                        android:layout_width="match_parent"
+                        android:layout_height="300dp"
+                        app:lottie_autoPlay="true"
+                        app:lottie_loop="true"
+                        />
+
+
+                </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <TextView
+            android:id="@+id/tvMadeForYou"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Made for You"
+            android:textSize="25sp"
+            android:fontFamily="@font/poppins_semibold"
+            app:layout_constraintTop_toBottomOf="@id/cardDice"
+            app:layout_constraintStart_toStartOf="parent"
+            android:textColor="@color/black"
+            android:layout_marginTop="20dp"
+            />
+
+        <TextView
+            android:id="@+id/tvMadeDescription"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Based on your preferred cuisine"
+            android:textSize="16sp"
+            android:fontFamily="@font/inter"
+            app:layout_constraintTop_toBottomOf="@id/tvMadeForYou"
+            app:layout_constraintStart_toStartOf="parent"
+            android:textColor="@color/dark_gray"
+            />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvMadeForYou"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/tvMadeDescription"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            tools:listitem="@layout/item_ingredients"
+            android:layout_marginTop="20dp"
+            android:orientation="horizontal"
+            />
+
+        <TextView
+            android:id="@+id/tvFav"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Cook with Chicken"
+            android:textSize="25sp"
+            android:fontFamily="@font/poppins_semibold"
+            app:layout_constraintTop_toBottomOf="@id/rvMadeForYou"
+            app:layout_constraintStart_toStartOf="parent"
+            android:textColor="@color/black"
+            android:layout_marginTop="20dp"
+            />
+
+        <TextView
+            android:id="@+id/tvFavDescription"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Based on your favorite ingredient"
+            android:textSize="16sp"
+            android:fontFamily="@font/inter"
+            app:layout_constraintTop_toBottomOf="@id/tvFav"
+            app:layout_constraintStart_toStartOf="parent"
+            android:textColor="@color/dark_gray"
+            />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvFav"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/tvFavDescription"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            tools:listitem="@layout/item_favorites"
+            android:layout_marginTop="20dp"
+            android:orientation="horizontal"
+            />
+
+        <TextView
+            android:id="@+id/tvExplore"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Explore Cuisines"
+            android:textSize="25sp"
+            android:fontFamily="@font/poppins_semibold"
+            app:layout_constraintTop_toBottomOf="@id/rvFav"
+            app:layout_constraintStart_toStartOf="parent"
+            android:textColor="@color/black"
+            android:layout_marginTop="20dp"
+            />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvExplore"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/tvExplore"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            tools:listitem="@layout/item_cuisines"
+            android:layout_marginTop="20dp"
+            android:orientation="horizontal"
+            />
+
+
+
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+</ScrollView>

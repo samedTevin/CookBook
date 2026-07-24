@@ -4,44 +4,40 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.example.cookbook.databinding.ItemFavoritesBinding
 import com.example.cookbook.model.Meal
 import com.example.cookbook.model.MealResponse
-import com.example.cookbook.databinding.ItemFavoritesBinding
 
-class FavoritesAdapter(val favoriteList: MutableList<Meal>): RecyclerView.Adapter<FavoritesAdapter.ViewHolder>(){
+class SearchAdapter(private var meals: MutableList<Meal>): RecyclerView.Adapter<SearchAdapter.SearchViewHolder>() {
 
-    var onItemClick: ((id : String) -> Unit)? = null
-
-    inner class ViewHolder(val binding: ItemFavoritesBinding) : RecyclerView.ViewHolder(binding.root){
+    class SearchViewHolder(val binding: ItemFavoritesBinding): RecyclerView.ViewHolder(binding.root){
         fun bind(meal: Meal){
             binding.tvFoodName.text = meal.strMeal
             binding.tvCountry.text = meal.strCountry
             binding.tvCategory.text = meal.strCategory
             Glide.with(binding.root).load(meal.strMealThumb).into(binding.ivFoodPhoto)
-
-            binding.root.setOnClickListener {
-                onItemClick?.invoke(meal.idMeal)
-            }
-
         }
     }
-
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
-    ): FavoritesAdapter.ViewHolder {
+    ): SearchAdapter.SearchViewHolder {
         val binding = ItemFavoritesBinding.inflate(LayoutInflater.from(parent.context),parent,false)
-        return ViewHolder(binding)
-
+        return SearchViewHolder(binding)
     }
 
-    override fun onBindViewHolder(holder: FavoritesAdapter.ViewHolder, position: Int) {
-        holder.bind(favoriteList[position])
-
+    override fun onBindViewHolder(holder: SearchAdapter.SearchViewHolder, position: Int) {
+        holder.bind(meals[position])
     }
 
     override fun getItemCount(): Int {
-        return favoriteList.size
+        return meals.size
+    }
+
+    fun updateList(newList: List<Meal>){
+        meals.clear()
+        meals.addAll(newList)
+        notifyDataSetChanged()
     }
 }
