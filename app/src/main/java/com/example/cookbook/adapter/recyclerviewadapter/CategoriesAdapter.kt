@@ -2,19 +2,18 @@ package com.example.cookbook.adapter.recyclerviewadapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.appcompat.resources.R
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.example.cookbook.data.Category
+import com.example.cookbook.model.Category
 import com.example.cookbook.databinding.ItemCategoriesBinding
 
-class CategoriesAdapter(private val categoryList: List<Category>): RecyclerView.Adapter< CategoriesAdapter.CategoriesViewHolder>() {
+class CategoriesAdapter(private val categoryList: MutableList<Category>): RecyclerView.Adapter< CategoriesAdapter.CategoriesViewHolder>() {
 
     class CategoriesViewHolder(val binding: ItemCategoriesBinding) : RecyclerView.ViewHolder(binding.root){
         fun bind(category : Category){
-            binding.tvCategory.text = category.name
-            binding.chipInfo.text = category.chip
-            Glide.with(binding.root).load(category.image).into(binding.ivFoodPhoto)
+            binding.tvCategory.text = category.strCategory
+            binding.chipInfo.text = category.idCategory
+            Glide.with(binding.root).load(category.strCategoryThumb).into(binding.ivFoodPhoto)
         }
     }
 
@@ -36,5 +35,11 @@ class CategoriesAdapter(private val categoryList: List<Category>): RecyclerView.
 
     override fun getItemCount(): Int {
         return categoryList.size
+    }
+
+    fun updateList(newList: List<Category>){
+        categoryList.clear()
+        categoryList.addAll(newList)
+        notifyDataSetChanged()
     }
 }

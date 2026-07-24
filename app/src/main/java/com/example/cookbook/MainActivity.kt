@@ -5,14 +5,10 @@ import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
-import androidx.navigation.findNavController
 
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
-import com.example.cookbook.data.Meal
-import com.example.cookbook.data.Meals
 import com.example.cookbook.databinding.ActivityMainBinding
-import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding : ActivityMainBinding
@@ -60,6 +56,7 @@ class MainActivity : AppCompatActivity() {
         navController.graph = navGraph
 
         val bottomNav = binding.bottomNav
+
 
         bottomNav.setupWithNavController(navController)
 

@@ -1,4 +1,4 @@
-package com.example.cookbook.data
+package com.example.cookbook.model
 
 data class Meal(
     val idMeal: String,
@@ -8,7 +8,7 @@ data class Meal(
     val strArea: String,
     val strCountry: String,
     val strInstructions: String,
-    val strMealThumb: Int,
+    val strMealThumb: String,
     val strTags: String,
     val strYoutube: String,
     val strIngredient1: String,
