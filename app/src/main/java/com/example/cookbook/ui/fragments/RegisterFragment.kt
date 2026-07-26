@@ -23,7 +23,7 @@ class RegisterFragment : Fragment() {
 
 
     private var _binding : FragmentRegisterBinding? = null
-    private val binding get() = _binding!!
+    val binding get() = _binding!!
     private lateinit var viewModel: RegisterViewModel
     private lateinit var userRepository: UserRepository
 

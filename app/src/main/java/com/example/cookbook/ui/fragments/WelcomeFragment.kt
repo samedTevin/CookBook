@@ -13,7 +13,7 @@ import com.example.cookbook.databinding.FragmentWelcomeBinding
 class WelcomeFragment : Fragment() {
 
     private var _binding : FragmentWelcomeBinding? = null
-    private val binding get() = _binding!!
+    val binding get() = _binding!!
 
 
     override fun onCreateView(

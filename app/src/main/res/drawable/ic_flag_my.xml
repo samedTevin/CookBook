@@ -1,0 +1,54 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="512dp"
+    android:height="512dp"
+    android:viewportWidth="512"
+    android:viewportHeight="512">
+    <path
+        android:fillColor="#FFCC0000"
+        android:pathData="M0 0L512 0 512 36.6 0 36.6Z"/>
+    <path
+        android:fillColor="#FFFFFFFF"
+        android:pathData="M0 36.6L512 36.6 512 73 0 73Z"/>
+    <path
+        android:fillColor="#FFCC0000"
+        android:pathData="M0 73.1L512 73.1 512 109.7 0 109.7Z"/>
+    <path
+        android:fillColor="#FFFFFFFF"
+        android:pathData="M0 109.7L512 109.7 512 146.3 0 146.3Z"/>
+    <path
+        android:fillColor="#FFCC0000"
+        android:pathData="M0 146.3L512 146.3 512 182.9 0 182.9Z"/>
+    <path
+        android:fillColor="#FFFFFFFF"
+        android:pathData="M0 182.9L512 182.9 512 219.4 0 219.4Z"/>
+    <path
+        android:fillColor="#FFCC0000"
+        android:pathData="M0 219.4L512 219.4 512 256 0 256Z"/>
+    <path
+        android:fillColor="#FFFFFFFF"
+        android:pathData="M0 256L512 256 512 292.6 0 292.6Z"/>
+    <path
+        android:fillColor="#FFCC0000"
+        android:pathData="M0 292.6L512 292.6 512 329 0 329Z"/>
+    <path
+        android:fillColor="#FFFFFFFF"
+        android:pathData="M0 329.1L512 329.1 512 365.7 0 365.7Z"/>
+    <path
+        android:fillColor="#FFCC0000"
+        android:pathData="M0 365.7L512 365.7 512 402.3 0 402.3Z"/>
+    <path
+        android:fillColor="#FFFFFFFF"
+        android:pathData="M0 402.3L512 402.3 512 438.9 0 438.9Z"/>
+    <path
+        android:fillColor="#FFCC0000"
+        android:pathData="M0 438.9L512 438.9 512 475.4 0 475.4Z"/>
+    <path
+        android:fillColor="#FFFFFFFF"
+        android:pathData="M0 475.4L512 475.4 512 512 0 512Z"/>
+    <path
+        android:fillColor="#FF000066"
+        android:pathData="M0 0L256 0 256 292.6 0 292.6Z"/>
+    <path
+        android:fillColor="#FFFFCC00"
+        android:pathData="M166 93L170.8 125.5 189.2 98.3 179.2 129.6 207.7 113 185.2 137 218 134.4 187.3 146.3 218 158 185.2 155.5 207.7 179.5 179.3 162.8 189.1 194.3 170.7 167 165.9 199.5 161.2 167 142.8 194.2 152.7 162.8 124.3 179.5 146.7 155.5 113.9 158 144.6 146.2 114 134.3 146.8 136.9 124.3 112.9 152.7 129.5 142.7 98.1 161.2 125.4 166 92.8ZM139.3 94.3A57 57 0 0 0 66.3 119.2 57 57 0 0 0 111.8 203 57 57 0 0 0 139.3 198.3 64 64 0 1 1 139.3 94.3"/>
+</vector>

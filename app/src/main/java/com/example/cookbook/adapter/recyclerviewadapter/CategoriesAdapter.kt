@@ -9,11 +9,16 @@ import com.example.cookbook.databinding.ItemCategoriesBinding
 
 class CategoriesAdapter(private val categoryList: MutableList<Category>): RecyclerView.Adapter< CategoriesAdapter.CategoriesViewHolder>() {
 
-    class CategoriesViewHolder(val binding: ItemCategoriesBinding) : RecyclerView.ViewHolder(binding.root){
+    var onItemClick : ((id: String)-> Unit )? = null
+    inner class CategoriesViewHolder(val binding: ItemCategoriesBinding) : RecyclerView.ViewHolder(binding.root){
         fun bind(category : Category){
             binding.tvCategory.text = category.strCategory
             binding.chipInfo.text = category.idCategory
             Glide.with(binding.root).load(category.strCategoryThumb).into(binding.ivFoodPhoto)
+
+            binding.root.setOnClickListener {
+                onItemClick?.invoke(category.idCategory)
+            }
         }
     }
 

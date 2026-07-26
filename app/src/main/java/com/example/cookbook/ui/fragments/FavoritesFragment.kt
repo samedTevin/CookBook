@@ -22,7 +22,7 @@ import com.example.cookbook.databinding.FragmentFavoritesBinding
 class FavoritesFragment : Fragment() {
 
     private var _binding : FragmentFavoritesBinding? = null
-    private val binding get() = _binding!!
+    val binding get() = _binding!!
     private lateinit  var adapter : FavoritesAdapter
 
     override fun onCreateView(

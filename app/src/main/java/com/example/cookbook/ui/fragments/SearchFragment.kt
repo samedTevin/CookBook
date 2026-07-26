@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import android.widget.SearchView
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.cookbook.R
 import com.example.cookbook.adapter.recyclerviewadapter.SearchAdapter
@@ -72,6 +73,13 @@ class SearchFragment : Fragment() {
                 return false
             }
         })
+
+        searchAdapter.onItemClick = {item ->
+            val action = SearchFragmentDirections.actionSearchFragmentToDetailFragment(item)
+            findNavController().navigate(action)
+        }
+
+
 
         viewLifecycleOwner.lifecycleScope.launch {
             searchViewModel.searchStateFlow.collect { state ->
