@@ -10,12 +10,17 @@ import com.example.cookbook.model.MealResponse
 
 class SearchAdapter(private var meals: MutableList<Meal>): RecyclerView.Adapter<SearchAdapter.SearchViewHolder>() {
 
-    class SearchViewHolder(val binding: ItemFavoritesBinding): RecyclerView.ViewHolder(binding.root){
+    var onItemClick: ((id: String) -> Unit)? = null
+    inner class SearchViewHolder(val binding: ItemFavoritesBinding): RecyclerView.ViewHolder(binding.root){
         fun bind(meal: Meal){
             binding.tvFoodName.text = meal.strMeal
             binding.tvCountry.text = meal.strCountry
             binding.tvCategory.text = meal.strCategory
             Glide.with(binding.root).load(meal.strMealThumb).into(binding.ivFoodPhoto)
+
+            binding.root.setOnClickListener {
+                onItemClick?.invoke(meal.idMeal)
+            }
         }
     }
 

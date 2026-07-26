@@ -118,8 +118,9 @@
                         android:id="@+id/lottieAnimation"
                         android:layout_width="match_parent"
                         android:layout_height="300dp"
-                        app:lottie_autoPlay="true"
-                        app:lottie_loop="true"
+                        app:lottie_autoPlay="false"
+                        app:lottie_loop="false"
+                        app:lottie_rawRes="@raw/dice_flip"
                         />
 
 
@@ -220,8 +221,10 @@
             app:layout_constraintTop_toBottomOf="@id/tvExplore"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
             tools:listitem="@layout/item_cuisines"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="20dp"
             android:orientation="horizontal"
             />
 

@@ -5,7 +5,6 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.cookbook.model.Meal
-import com.example.cookbook.model.MealResponse
 import com.example.cookbook.databinding.ItemFavoritesBinding
 
 class FavoritesAdapter(val favoriteList: MutableList<Meal>): RecyclerView.Adapter<FavoritesAdapter.ViewHolder>(){
@@ -43,5 +42,11 @@ class FavoritesAdapter(val favoriteList: MutableList<Meal>): RecyclerView.Adapte
 
     override fun getItemCount(): Int {
         return favoriteList.size
+    }
+
+    fun updateList(newList: List<Meal>){
+        favoriteList.clear()
+        favoriteList.addAll(newList)
+        notifyDataSetChanged()
     }
 }

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -10,13 +10,10 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@+id/toolBar"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
         android:orientation="vertical"
         android:gravity="center">
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
             android:gravity="center">
@@ -25,9 +22,6 @@
                 android:id="@+id/toolBar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
                 android:layout_marginTop="20dp"
                 >
                 <TextView
@@ -42,6 +36,7 @@
 
 
             <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/ivDetailPhoto"
                 android:layout_width="350dp"
                 android:layout_height="350dp"
                 android:scaleType="centerCrop"
@@ -80,7 +75,7 @@
                     android:layout_height="wrap_content"
                     android:text="Japanese"
                     android:textColor="@color/black"
-                    app:chipIcon="@drawable/outline_restaurant_24"
+                    app:chipIcon="@drawable/language"
                     app:chipBackgroundColor="@color/chip_background_color"/>
 
                 <com.google.android.material.chip.Chip
@@ -89,9 +84,10 @@
                     android:layout_height="wrap_content"
                     android:text="Japan"
                     android:textColor="@color/black"
-                    app:chipIcon="@drawable/outline_restaurant_24"
+                    app:chipIcon="@drawable/outline_globe_location_pin_24"
                     app:chipBackgroundColor="@color/chip_background_color"/>
             </com.google.android.material.chip.ChipGroup>
+
 
             <TextView
                 android:layout_width="wrap_content"
@@ -115,18 +111,20 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Chicken"
-                    android:textColor="@color/black"
-                    app:chipBackgroundColor="@color/chip_background_color"/>
+                    android:textColor="@color/white"
+                    app:chipBackgroundColor="@color/primary"/>
 
                 <com.google.android.material.chip.Chip
                     android:id="@+id/chipTag2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Japanese"
-                    android:textColor="@color/black"
-                    app:chipBackgroundColor="@color/chip_background_color"/>
-               
+                    android:textColor="@color/white"
+                    app:chipBackgroundColor="@color/primary"/>
+
             </com.google.android.material.chip.ChipGroup>
+
+
 
             <TextView
                 android:layout_width="wrap_content"
@@ -142,12 +140,13 @@
 
 
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/ivIngredients"
+                android:id="@+id/rvIngredients"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="10dp"
                 tools:listitem="@layout/item_ingredients"
+                android:clipToPadding="false"
                 />
 
             <TextView
@@ -166,29 +165,18 @@
                 android:id="@+id/tvInstructions"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
                 android:layout_marginTop="12dp"
-                android:layout_marginStart="10dp"
-
-                android:text="Size özellikle bu muhteşem ve pratik lezzeti denemenizi tavsiye ediyorum.
-Her yiyen tarif alıyor mudavimi oluyor, artık hazır çiğköfteye son. Bu lezzete bağımlı olacaksınız emin olun. Sevdikleriniz de tabi. Yapımının çok hızlı  ve kolay olması sebebiyle de sizi ayrı bir memnun edecek. Salata yapar gibi çok kısa surede çiğ köfte yapmanın zevkine varacaksınız. Mutlaka deneyin.
-
-Bulguru tuz atarak sıcak suyla ıslatıp bir 5 dakika demlendirelim.
-Sonra soğanı ve sarımsağı rendeleyelim ayrı bir kaba. Ben makinede çekiyorum.Siz rendeleyebilirsiniz fark etmez. Soğanı yıkayıp süzüyoruz ve suyunu sıkıp atıyoruz bulgurun içine.
-Daha sonra diğer malzemelerin hepsini atıp kaşıkla bir güzel karıştırıyoruz. Rengi ve baharatları iyice bulgura dağılana kadar.
-Sonra alıyoruz çorba çektiğimiz blendırı elimize yukarıdan aşağı doğru bastırarak gezdire gezdire çekiyoruz köfteyi.Büyük robot varsa onda da yapabilirsiniz çok koymayıp ama blendır daha temiz ve pratik oluyor.Çok da yormadan ara ara dinlendirebilirsiniz blendırı. Kaşıkla arada karıştırın ki alt üst eşit çekilmiş olsun.
-Ve hazır çiğ köfte elimizle bir iki karıştırırsak daha iyi kıvama geliyor.
-Sonrada servise koyup ikram ediyoruz marulla. Ve afiyetle yiyoruz.
-Yapımı yazmaktan daha kolaydı :) detaylarıyla yazmak istedim iyice anlaşılsın diye. Yorum ve resimlerini bekliyorum deneyeceklerin."
-                android:textSize="15sp"
+                android:textSize="16sp"
                 android:textColor="@color/black"
-                android:lineSpacingExtra="6dp"
-                android:letterSpacing="0.01"
-
+                android:lineSpacingExtra="8dp"
+                android:letterSpacing="0"
                 android:fontFamily="@font/inter"
                 android:textAlignment="viewStart"
-
-                android:hyphenationFrequency="full"
-                android:breakStrategy="high_quality"/>
+                android:gravity="start"
+                android:breakStrategy="high_quality"
+                android:hyphenationFrequency="normal"
+                android:layout_marginBottom="10dp"/>
 
 
             <com.google.android.material.button.MaterialButton
@@ -202,7 +190,10 @@ Yapımı yazmaktan daha kolaydı :) detaylarıyla yazmak istedim iyice anlaşıl
                 android:backgroundTint="@color/primary"
                 app:iconGravity="textStart"
                 app:iconSize="30dp"
-                android:layout_marginTop="10dp"
+                android:layout_marginBottom="30dp"
+                android:layout_marginStart="15dp"
+                android:layout_marginEnd="15dp"
+
                 />
 
 
@@ -214,4 +205,4 @@ Yapımı yazmaktan daha kolaydı :) detaylarıyla yazmak istedim iyice anlaşıl
 
 
 
-</ScrollView>
+</androidx.core.widget.NestedScrollView>

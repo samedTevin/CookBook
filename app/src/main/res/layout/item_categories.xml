@@ -5,7 +5,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     app:cardElevation="4dp"
     app:cardCornerRadius="20dp"
-    android:layout_margin="20dp"
+    android:layout_margin="10dp"
     android:clickable="true"
     android:focusable="true">
 
@@ -36,16 +36,26 @@
 
         <TextView
             android:id="@+id/tvCategory"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="Hamburger"
+            android:text="Beef"
+            android:gravity="center"
+            android:maxLines="1"
+            android:ellipsize="end"
+
+
+            android:autoSizeTextType="uniform"
+            android:autoSizeMinTextSize="12sp"
+            android:autoSizeMaxTextSize="18sp"
+            android:autoSizeStepGranularity="1sp"
+
+            android:paddingHorizontal="10dp"
+            android:paddingVertical="4dp"
+            android:background="@drawable/bg_flag"
+            android:textColor="@android:color/white"
             android:fontFamily="@font/poppins_semibold"
-            android:textColor="@color/white"
-            android:textSize="20sp"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp"
-            android:layout_marginStart="10dp"
             app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>

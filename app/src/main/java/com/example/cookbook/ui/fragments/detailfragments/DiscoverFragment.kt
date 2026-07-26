@@ -1,0 +1,83 @@
+package com.example.cookbook.ui.fragments.detailfragments
+
+import android.os.Bundle
+import androidx.fragment.app.Fragment
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
+import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.cookbook.adapter.recyclerviewadapter.FavoritesAdapter
+import com.example.cookbook.api.RetrofitInstance
+import com.example.cookbook.databinding.FragmentDiscoverBinding
+import com.example.cookbook.repository.MealRepository
+import com.example.cookbook.viewmodel.DiscoverViewModel
+import com.example.cookbook.viewmodelfactory.DiscoverViewModelFactory
+import kotlinx.coroutines.launch
+
+
+class DiscoverFragment : Fragment() {
+
+    private var _binding : FragmentDiscoverBinding? = null
+    val binding get() = _binding!!
+    private lateinit var discoverViewModel: DiscoverViewModel
+    private lateinit var mealRepository: MealRepository
+    private lateinit var favoritesAdapter: FavoritesAdapter
+    private val args: DiscoverFragmentArgs by navArgs()
+
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        _binding = FragmentDiscoverBinding.inflate(inflater, container, false)
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        val api = RetrofitInstance.api
+        mealRepository = MealRepository(api)
+        discoverViewModel = ViewModelProvider(this, DiscoverViewModelFactory(mealRepository))[DiscoverViewModel::class.java]
+        favoritesAdapter = FavoritesAdapter(mutableListOf())
+
+        binding.apply {
+            rvFilter.layoutManager = LinearLayoutManager(requireContext())
+            rvFilter.adapter = favoritesAdapter
+            rvFilter.clipToPadding = false
+            rvFilter.isNestedScrollingEnabled = false
+            tvTitle.text = "Discover\n${args.countryName}"
+            chipTag1.text = args.countryName
+        }
+
+
+
+        val countryName = args.countryName.replace(" ","_")
+
+        discoverViewModel.filterByArea(countryName)
+
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                discoverViewModel.filter.collect { filter ->
+                    filter?.meals?.let { meals ->
+                        favoritesAdapter.updateList(meals)
+                        binding.chipTag2.text = "${meals.size} recipes"
+                    }
+                }
+            }
+        }
+
+        favoritesAdapter.onItemClick = {it ->
+            val action = DiscoverFragmentDirections.actionDiscoverFragmentToDetailFragment(it)
+            findNavController().navigate(action)
+        }
+
+    }
+
+
+}
