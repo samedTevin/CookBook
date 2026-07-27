@@ -1,48 +1,113 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <androidx.constraintlayout.widget.ConstraintLayout
+
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+
     android:background="@color/background">
 
+
     <com.airbnb.lottie.LottieAnimationView
+
         android:id="@+id/lottieAnimation"
+
         android:layout_width="300dp"
+
         android:layout_height="300dp"
+
+
         app:lottie_rawRes="@raw/prepare_food"
+
         app:lottie_autoPlay="true"
+
         app:lottie_loop="true"
+
+
+        android:layout_marginTop="100dp"
+
+
         app:layout_constraintTop_toTopOf="parent"
+
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="100dp"/>
+
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+
+
 
     <TextView
+
         android:id="@+id/discoverTitle"
+
         android:layout_width="wrap_content"
+
         android:layout_height="wrap_content"
+
+
         android:text="Cook Like a Pro"
+
+
         android:textSize="40sp"
+
+
+        android:textColor="@color/text_primary"
+
+
         android:fontFamily="@font/plus_jakarta_sans_semibold"
+
+
         android:layout_marginTop="8dp"
+
+
         app:layout_constraintTop_toBottomOf="@id/lottieAnimation"
+
         app:layout_constraintStart_toStartOf="parent"
+
         app:layout_constraintEnd_toEndOf="parent"/>
 
+
+
+
     <TextView
+
         android:id="@+id/discoverDescription"
+
         android:layout_width="0dp"
+
         android:layout_height="wrap_content"
+
+
         android:text="Follow step-by-step instructions and create amazing meals."
+
+
         android:textAlignment="center"
+
+
         android:textSize="18sp"
-        android:textColor="#6B6B6B"
+
+
+        android:textColor="@color/text_secondary"
+
+
+        android:fontFamily="@font/inter"
+
+
         android:layout_marginTop="20dp"
+
+
         android:layout_marginHorizontal="40dp"
+
+
         app:layout_constraintTop_toBottomOf="@id/discoverTitle"
+
         app:layout_constraintStart_toStartOf="parent"
+
         app:layout_constraintEnd_toEndOf="parent"/>
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

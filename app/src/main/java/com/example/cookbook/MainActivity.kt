@@ -4,14 +4,17 @@ import android.content.Context
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
 import com.example.cookbook.databinding.ActivityMainBinding
+import com.example.cookbook.preferences.SessionManager
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding : ActivityMainBinding
+    private lateinit var sessionManager: SessionManager
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
@@ -33,6 +36,10 @@ class MainActivity : AppCompatActivity() {
             }.start()
         }
 
+        val sharedPreferences = getSharedPreferences("session", Context.MODE_PRIVATE)
+        sessionManager = SessionManager(sharedPreferences)
+        loadUserSession()
+
 
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
@@ -41,22 +48,23 @@ class MainActivity : AppCompatActivity() {
 
         supportActionBar?.hide()
 
+
         val navHostFragment = supportFragmentManager.findFragmentById(R.id.fragmentContainerView) as NavHostFragment
         val navController = navHostFragment.navController
         val navGraph = navController.navInflater.inflate(R.navigation.nav_graph)
 
         // Sets the destination based on sharedPreferences
-        if(isFinishedOnBoarding()){
-            navGraph.setStartDestination(R.id.welcomeFragment)
-        }
-        else{
+        if (!isFinishedOnBoarding()) {
             navGraph.setStartDestination(R.id.viewPagerFragment)
+        } else if (sessionManager.isLoggedIn()) {
+            navGraph.setStartDestination(R.id.homeFragment)
+        } else {
+            navGraph.setStartDestination(R.id.welcomeFragment)
         }
 
         navController.graph = navGraph
 
         val bottomNav = binding.bottomNav
-
 
         bottomNav.setupWithNavController(navController)
 
@@ -90,5 +98,20 @@ class MainActivity : AppCompatActivity() {
         val isFinished = sharedPreferences.getBoolean("Finished", false)
 
         return isFinished
+    }
+
+    private fun loadUserSession(){
+        val isDarkModeEnabled = sessionManager.getDarkMode()
+
+        if(isDarkModeEnabled){
+            AppCompatDelegate.setDefaultNightMode(
+                AppCompatDelegate.MODE_NIGHT_YES
+            )
+        }
+        else{
+            AppCompatDelegate.setDefaultNightMode(
+                AppCompatDelegate.MODE_NIGHT_NO
+            )
+        }
     }
 }

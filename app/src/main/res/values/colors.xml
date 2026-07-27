@@ -1,26 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="black">#FF000000</color>
-    <color name="white">#FFFFFFFF</color>
-    <color name="red">#F44336</color>
 
     <color name="primary">#D85A30</color>
     <color name="primary_container">#F4A261</color>
 
     <color name="background">#FFF8F3</color>
 
+    <color name="surface">#FFFFFF</color>
+
+    <color name="white">#FFFFFF</color>
+
+    <color name="card_background">#FFFFFF</color>
+
     <color name="text_primary">#2D2D2D</color>
-
-    <color name="gray">#808080</color>
-
-    <color name="dark_gray">#1A1A1A</color>
-
-    <color name="primary_white">#F4A261</color>
+    <color name="text_secondary">#808080</color>
 
     <color name="chip_background_color">#FFF3E6</color>
 
-
-
-
+    <color name="error">#F44336</color>
 
 </resources>

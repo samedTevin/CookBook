@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="primary">#D85A30</color>
+    <color name="primary_container">#F4A261</color>
+
+    <color name="background">#121212</color>
+
+    <color name="surface">#1E1E1E</color>
+
+    <color name="white">#FFFFFF</color>
+
+    <color name="card_background">#1E1E1E</color>
+
+    <color name="text_primary">#FFFFFF</color>
+    <color name="text_secondary">#B0B0B0</color>
+
+    <color name="chip_background_color">#2A2A2A</color>
+
+    <color name="error">#F44336</color>
+
+</resources>

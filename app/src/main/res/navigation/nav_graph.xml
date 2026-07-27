@@ -54,6 +54,9 @@
             app:destination="@id/loginFragment"
             app:popUpTo="@id/welcomeFragment"
             app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_welcomeFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
     </fragment>
     <fragment
         android:id="@+id/registerFragment"
@@ -95,6 +98,9 @@
         <action
             android:id="@+id/action_profileFragment_to_searchFragment"
             app:destination="@id/searchFragment" />
+        <action
+            android:id="@+id/action_profileFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
     </fragment>
     <fragment
         android:id="@+id/categoriesFragment"
@@ -113,6 +119,9 @@
         <action
             android:id="@+id/action_categoriesFragment_to_searchFragment"
             app:destination="@id/searchFragment" />
+        <action
+            android:id="@+id/action_categoriesFragment_to_discoverFragment"
+            app:destination="@id/discoverFragment" />
     </fragment>
     <fragment
         android:id="@+id/favoritesFragment"
@@ -170,11 +179,14 @@
         android:name="com.example.cookbook.ui.fragments.detailfragments.DiscoverFragment"
         android:label="fragment_discover"
         tools:layout="@layout/fragment_discover" >
-        <argument
-            android:name="countryName"
-            app:argType="string" />
         <action
             android:id="@+id/action_discoverFragment_to_detailFragment"
             app:destination="@id/detailFragment" />
+        <argument
+            android:name="name"
+            app:argType="string" />
+        <argument
+            android:name="type"
+            app:argType="com.example.cookbook.util.DiscoverType" />
     </fragment>
 </navigation>

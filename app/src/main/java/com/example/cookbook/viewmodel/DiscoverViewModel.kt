@@ -18,4 +18,10 @@ class DiscoverViewModel(private val mealRepository: MealRepository): ViewModel()
             _filter.value = mealRepository.filterByArea(name)
         }
     }
+
+    fun filterByCategory(categoryName: String){
+        viewModelScope.launch {
+            _filter.value = mealRepository.filterByCategory(categoryName)
+        }
+    }
 }

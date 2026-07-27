@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+    android:background="@color/background"
+
+    android:orientation="vertical"
+    android:gravity="center"
+
+    android:padding="30dp">
+
+
+    <com.google.android.material.imageview.ShapeableImageView
+
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+
+        android:src="@drawable/baseline_logout_24"
+
+        android:scaleType="centerInside"
+
+        android:tint="@color/primary"/>
+
+
+
+    <TextView
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:text="Logout"
+
+        android:textSize="36sp"
+
+        android:textColor="@color/text_primary"
+
+        android:fontFamily="@font/poppins_semibold"
+
+        android:layout_marginTop="25dp"/>
+
+
+
+
+    <TextView
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:text="Are you sure you want to log out\nfrom your account?"
+
+        android:textAlignment="center"
+
+        android:textSize="18sp"
+
+        android:textColor="@color/text_secondary"
+
+        android:fontFamily="@font/inter"
+
+        android:layout_marginTop="12dp"/>
+
+
+
+
+    <com.google.android.material.button.MaterialButton
+
+        android:id="@+id/buttonLogout"
+
+        android:layout_width="250dp"
+        android:layout_height="55dp"
+
+        android:text="Log out"
+
+        android:textSize="18sp"
+
+        android:textColor="@color/surface"
+
+        android:fontFamily="@font/poppins_semibold"
+
+        android:backgroundTint="@color/primary"
+
+        android:layout_marginTop="40dp"
+
+        app:cornerRadius="14dp"/>
+
+
+
+
+    <com.google.android.material.button.MaterialButton
+
+        android:id="@+id/buttonCancel"
+
+        android:layout_width="250dp"
+        android:layout_height="55dp"
+
+        android:text="Cancel"
+
+        android:textSize="18sp"
+
+        android:textColor="@color/primary"
+
+        android:fontFamily="@font/poppins_semibold"
+
+        android:backgroundTint="@color/surface"
+
+        app:strokeColor="@color/primary"
+
+        app:strokeWidth="1dp"
+
+        android:layout_marginTop="20dp"
+
+        app:cornerRadius="14dp"/>
+
+
+
+</LinearLayout>
