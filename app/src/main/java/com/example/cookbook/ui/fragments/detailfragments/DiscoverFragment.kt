@@ -16,6 +16,7 @@ import com.example.cookbook.adapter.recyclerviewadapter.FavoritesAdapter
 import com.example.cookbook.api.RetrofitInstance
 import com.example.cookbook.databinding.FragmentDiscoverBinding
 import com.example.cookbook.repository.MealRepository
+import com.example.cookbook.util.DiscoverType
 import com.example.cookbook.viewmodel.DiscoverViewModel
 import com.example.cookbook.viewmodelfactory.DiscoverViewModelFactory
 import kotlinx.coroutines.launch
@@ -51,15 +52,21 @@ class DiscoverFragment : Fragment() {
             rvFilter.adapter = favoritesAdapter
             rvFilter.clipToPadding = false
             rvFilter.isNestedScrollingEnabled = false
-            tvTitle.text = "Discover\n${args.countryName}"
-            chipTag1.text = args.countryName
+            tvTitle.text = "Discover\n${args.name}"
+            chipTag1.text = args.name
         }
 
 
 
-        val countryName = args.countryName.replace(" ","_")
+        val name = args.name.replace(" ","_")
 
-        discoverViewModel.filterByArea(countryName)
+        when(args.type){
+            DiscoverType.CATEGORY -> {discoverViewModel.filterByCategory(name)}
+            DiscoverType.AREA -> {discoverViewModel.filterByArea(name)}
+        }
+        
+
+
 
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {

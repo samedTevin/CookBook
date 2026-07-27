@@ -1,47 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <!-- Base application theme. -->
+
     <style name="Base.Theme.CookBook" parent="Theme.Material3.DayNight.NoActionBar">
 
         <item name="colorPrimary">@color/primary</item>
+        <item name="colorPrimaryContainer">@color/primary_container</item>
+        <item name="colorOnPrimary">@color/surface</item>
 
-        <item name="colorPrimaryContainer">
-            @color/primary_container
-        </item>
+        <item name="android:colorBackground">@color/background</item>
 
-        <item name="android:colorBackground">
-            @color/background
-        </item>
+        <item name="colorSurface">@color/surface</item>
+        <item name="colorOnSurface">@color/text_primary</item>
 
-        <item name="colorOnPrimary">
-            @color/white
-        </item>
+        <item name="android:textColorPrimary">@color/text_primary</item>
+
+        <item name="colorError">@color/error</item>
+
+        <item name="android:statusBarColor">@color/background</item>
+        <item name="android:navigationBarColor">@color/background</item>
+
     </style>
 
-    <!-- Indicator for bottom Navigation -->
-    <style name="App.Custom.Indicator" parent="Widget.Material3.BottomNavigationView.ActiveIndicator">
+
+    <style name="App.Custom.Indicator"
+        parent="Widget.Material3.BottomNavigationView.ActiveIndicator">
+
         <item name="android:color">@color/primary_container</item>
+
     </style>
 
-    <!-- Circle Profile Image -->
+
     <style name="CircleImage">
+
         <item name="cornerFamily">rounded</item>
         <item name="cornerSize">50%</item>
+
     </style>
 
-    <!-- Rounded Square -->
-    <style name="RoundedSquare" parent="">
+
+    <style name="RoundedSquare">
+
         <item name="cornerFamily">rounded</item>
         <item name="cornerSize">20dp</item>
+
     </style>
 
-    <style name="Theme.CookBook" parent="Base.Theme.CookBook" />
+
+    <style name="Theme.CookBook"
+        parent="Base.Theme.CookBook" />
 
 
-    <!-- Theme for splash screen -->
-    <style name="Theme.MyApp.Splash" parent="Theme.SplashScreen">
-        <item name="windowSplashScreenBackground">#D37055</item>
+    <style name="Theme.MyApp.Splash"
+        parent="Theme.SplashScreen">
+
+        <item name="windowSplashScreenBackground">@color/primary</item>
+
         <item name="windowSplashScreenAnimatedIcon">@drawable/outline_chef_hat_24</item>
+
         <item name="postSplashScreenTheme">@style/Theme.CookBook</item>
+
     </style>
 
 

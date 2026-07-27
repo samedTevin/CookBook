@@ -7,18 +7,15 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import com.example.cookbook.R
 import com.example.cookbook.adapter.recyclerviewadapter.CategoriesAdapter
 import com.example.cookbook.api.RetrofitInstance
-import com.example.cookbook.model.Category
 import com.example.cookbook.databinding.FragmentCategoriesBinding
 import com.example.cookbook.repository.CategoryRepository
+import com.example.cookbook.util.DiscoverType
 import com.example.cookbook.viewmodel.CategoryViewModel
 import com.example.cookbook.viewmodelfactory.CategoryViewModelFactory
-import com.example.cookbook.viewmodelfactory.SearchViewModelFactory
 import kotlinx.coroutines.launch
 
 
@@ -34,7 +31,7 @@ class CategoriesFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _binding = FragmentCategoriesBinding.inflate(layoutInflater,container,false)
+        _binding = FragmentCategoriesBinding.inflate(inflater,container,false)
         return binding.root
     }
 
@@ -56,6 +53,12 @@ class CategoriesFragment : Fragment() {
                     adapter.updateList(it.categories)
                 }
             }
+        }
+
+        adapter.onItemClick = { name ->
+            val action = CategoriesFragmentDirections.actionCategoriesFragmentToDiscoverFragment(name,
+                DiscoverType.CATEGORY)
+            findNavController().navigate(action)
         }
     }
 

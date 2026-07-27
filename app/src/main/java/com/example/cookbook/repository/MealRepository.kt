@@ -18,4 +18,8 @@ class MealRepository(private val api: ApiService) {
     suspend fun filterByArea(name: String): MealResponse{
         return api.filterByArea(name)
     }
+
+    suspend fun filterByCategory(categoryName: String): MealResponse{
+        return api.filterByCategory(categoryName)
+    }
 }

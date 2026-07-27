@@ -1,51 +1,72 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+
     android:layout_width="130dp"
     android:layout_height="150dp"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    app:cardElevation="4dp"
-    app:cardCornerRadius="20dp"
+
     android:layout_margin="10dp"
     android:clickable="true"
-    android:focusable="true">
+    android:focusable="true"
+    android:foreground="?attr/selectableItemBackground"
+
+    app:cardCornerRadius="20dp"
+    app:cardElevation="4dp"
+    app:cardBackgroundColor="@color/card_background">
+
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
+
         <ImageView
             android:id="@+id/ivFlagPhoto"
+
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+
             android:scaleType="centerCrop"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
+
+            app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toTopOf="parent"/>
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
 
         <TextView
             android:id="@+id/tvFlagName"
+
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+
             android:text="United Kingdom"
+
             android:gravity="center"
+
             android:maxLines="1"
             android:ellipsize="end"
 
-
             android:autoSizeTextType="uniform"
             android:autoSizeMinTextSize="12sp"
-            android:autoSizeMaxTextSize="18sp"
+            android:autoSizeMaxTextSize="16sp"
             android:autoSizeStepGranularity="1sp"
 
             android:paddingHorizontal="10dp"
-            android:paddingVertical="4dp"
+            android:paddingVertical="6dp"
+
             android:background="@drawable/bg_flag"
-            android:textColor="@android:color/white"
+
+            android:textColor="@color/white"
+
             android:fontFamily="@font/poppins_semibold"
+
 
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+
             app:layout_constraintBottom_toBottomOf="parent"/>
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

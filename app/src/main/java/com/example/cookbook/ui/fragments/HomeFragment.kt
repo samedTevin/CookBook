@@ -1,6 +1,7 @@
 package com.example.cookbook.ui.fragments
 
 import android.animation.Animator
+import android.app.Activity
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -13,12 +14,15 @@ import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.cookbook.R
+import com.example.cookbook.adapter.recyclerviewadapter.SearchAdapter
 import com.example.cookbook.adapter.recyclerviewadapter.WorldAdapter
 import com.example.cookbook.api.RetrofitInstance
 import com.example.cookbook.databinding.FragmentHomeBinding
 import com.example.cookbook.model.Country
 import com.example.cookbook.model.Meal
+import com.example.cookbook.preferences.SessionManager
 import com.example.cookbook.repository.MealRepository
+import com.example.cookbook.util.DiscoverType
 import com.example.cookbook.viewmodel.HomeViewModel
 import com.example.cookbook.viewmodelfactory.HomeViewModelFactory
 import kotlinx.coroutines.launch
@@ -29,7 +33,9 @@ class HomeFragment : Fragment() {
     val binding get() = _binding!!
     private lateinit var homeViewModel: HomeViewModel
     private lateinit var mealRepository: MealRepository
+    private lateinit var sessionManager: SessionManager
     private lateinit var worldAdapter: WorldAdapter
+    private lateinit var searchAdapter: SearchAdapter
     private var selectedMeal: Meal? = null
     private var isFinished = false
 
@@ -45,14 +51,23 @@ class HomeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         val api = RetrofitInstance.api
         mealRepository = MealRepository(api)
+        val sharedPreferences = requireContext().getSharedPreferences("session", Activity.MODE_PRIVATE)
+        sessionManager = SessionManager(sharedPreferences)
 
         homeViewModel = ViewModelProvider(requireActivity(), HomeViewModelFactory(mealRepository))[HomeViewModel::class.java]
 
         loadCuisineCards()
+
+        searchAdapter = SearchAdapter(mutableListOf())
+        binding.rvMadeForYou.adapter = searchAdapter
+        binding.rvMadeForYou.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+        binding.rvMadeForYou.clipToPadding = false
+
         binding.rvExplore.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
         binding.rvExplore.clipToPadding = false
         worldAdapter.onItemClick = { item ->
-            val action = HomeFragmentDirections.actionHomeFragmentToDiscoverFragment(item)
+            val action = HomeFragmentDirections.actionHomeFragmentToDiscoverFragment(
+                item, DiscoverType.AREA)
             findNavController().navigate(action)
         }
 
@@ -81,6 +96,24 @@ class HomeFragment : Fragment() {
             override fun onAnimationStart(p0: Animator) {
             }
         })
+
+        val selectedCuisine = sessionManager.getCuisine()
+        homeViewModel.filterBySelectedCuisine(selectedCuisine!!)
+
+        viewLifecycleOwner.lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.STARTED){
+                homeViewModel.filter.collect { selectedCuisine ->
+                   selectedCuisine?.meals?.let { meals ->
+                       searchAdapter.updateList(meals)
+                   }
+                }
+            }
+        }
+
+        searchAdapter.onItemClick = { id ->
+            val action = HomeFragmentDirections.actionHomeFragmentToDetailFragment(id)
+            findNavController().navigate(action)
+        }
 
 
         viewLifecycleOwner.lifecycleScope.launch {
@@ -131,4 +164,5 @@ class HomeFragment : Fragment() {
 
 
 }
+
 

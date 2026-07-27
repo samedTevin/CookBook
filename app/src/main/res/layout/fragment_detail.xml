@@ -1,208 +1,377 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+
+<androidx.core.widget.NestedScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".ui.fragments.detailfragments.DetailFragment"
-    android:background="@color/background">
+
+    android:background="@color/background"
+
+    tools:context=".ui.fragments.detailfragments.DetailFragment">
+
 
     <LinearLayout
+
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+
         android:orientation="vertical"
         android:gravity="center">
-        <LinearLayout
+
+
+        <androidx.appcompat.widget.Toolbar
+
+            android:id="@+id/toolBar"
+
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:gravity="center">
+            android:layout_height="wrap_content"
 
-            <Toolbar
-                android:id="@+id/toolBar"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                >
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="CookBook"
-                    android:fontFamily="@font/poppins_semibold"
-                    android:textSize="50sp"
-                    android:textColor="@color/primary"
-                    android:layout_gravity="center" />
-            </Toolbar>
-
-
-            <com.google.android.material.imageview.ShapeableImageView
-                android:id="@+id/ivDetailPhoto"
-                android:layout_width="350dp"
-                android:layout_height="350dp"
-                android:scaleType="centerCrop"
-                android:src="@drawable/hamburger"
-                app:shapeAppearance="@style/RoundedSquare" />
-
-            <TextView
-                android:id="@+id/tvTitle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="American Hamburger"
-                android:textSize="30sp"
-                android:fontFamily="@font/plus_jakarta_sans_semibold"
-                android:textColor="@color/black"
-                android:layout_gravity="start"
-                android:layout_marginStart="15dp"/>
-
-            <com.google.android.material.chip.ChipGroup
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:chipSpacing="8dp"
-                android:layout_marginStart="10dp"
-                app:singleLine="true">
-                <com.google.android.material.chip.Chip
-                    android:id="@+id/chipCategory"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Chicken"
-                    android:textColor="@color/black"
-                    app:chipIcon="@drawable/outline_restaurant_24"
-                    app:chipBackgroundColor="@color/chip_background_color"/>
-
-                <com.google.android.material.chip.Chip
-                    android:id="@+id/chipArea"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Japanese"
-                    android:textColor="@color/black"
-                    app:chipIcon="@drawable/language"
-                    app:chipBackgroundColor="@color/chip_background_color"/>
-
-                <com.google.android.material.chip.Chip
-                    android:id="@+id/chipCountry"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Japan"
-                    android:textColor="@color/black"
-                    app:chipIcon="@drawable/outline_globe_location_pin_24"
-                    app:chipBackgroundColor="@color/chip_background_color"/>
-            </com.google.android.material.chip.ChipGroup>
+            android:layout_marginTop="20dp">
 
 
             <TextView
+
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Tags"
-                android:textSize="18sp"
+
+                android:text="CookBook"
+
+                android:textSize="50sp"
+
+                android:textColor="@color/primary"
+
                 android:fontFamily="@font/poppins_semibold"
-                android:textColor="@color/black"
-                android:layout_gravity="start"
-                android:layout_marginStart="15dp"
-                android:layout_marginTop="10dp"/>
 
-            <com.google.android.material.chip.ChipGroup
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:chipSpacing="8dp"
-                android:layout_marginStart="10dp"
-                app:singleLine="true">
-                <com.google.android.material.chip.Chip
-                    android:id="@+id/chipTag1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Chicken"
-                    android:textColor="@color/white"
-                    app:chipBackgroundColor="@color/primary"/>
+                android:layout_gravity="center"/>
 
-                <com.google.android.material.chip.Chip
-                    android:id="@+id/chipTag2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Japanese"
-                    android:textColor="@color/white"
-                    app:chipBackgroundColor="@color/primary"/>
 
-            </com.google.android.material.chip.ChipGroup>
+        </androidx.appcompat.widget.Toolbar>
 
 
 
-            <TextView
+
+        <com.google.android.material.imageview.ShapeableImageView
+
+            android:id="@+id/ivDetailPhoto"
+
+            android:layout_width="350dp"
+            android:layout_height="350dp"
+
+            android:layout_marginTop="10dp"
+
+            android:scaleType="centerCrop"
+
+            android:src="@drawable/hamburger"
+
+            app:shapeAppearance="@style/RoundedSquare"/>
+
+
+
+
+        <TextView
+
+            android:id="@+id/tvTitle"
+
+            android:layout_width="wrap_content"
+
+            android:layout_height="wrap_content"
+
+            android:text="American Hamburger"
+
+            android:textSize="30sp"
+
+            android:textColor="@color/text_primary"
+
+            android:fontFamily="@font/plus_jakarta_sans_semibold"
+
+            android:layout_gravity="start"
+
+            android:layout_marginStart="15dp"/>
+
+
+
+
+        <com.google.android.material.chip.ChipGroup
+
+            android:layout_width="match_parent"
+
+            android:layout_height="wrap_content"
+
+            android:layout_marginStart="10dp"
+
+            app:chipSpacing="8dp"
+
+            app:singleLine="true">
+
+
+            <com.google.android.material.chip.Chip
+
+                android:id="@+id/chipCategory"
+
                 android:layout_width="wrap_content"
+
                 android:layout_height="wrap_content"
-                android:text="Ingredients"
-                android:textSize="20sp"
-                android:fontFamily="@font/plus_jakarta_sans_semibold"
-                android:textColor="@color/black"
-                android:layout_gravity="start"
-                android:layout_marginStart="15dp"
-                android:layout_marginTop="10dp"/>
+
+                android:text="Chicken"
+
+                android:textColor="@color/text_primary"
+
+                app:chipIcon="@drawable/outline_restaurant_24"
+
+                app:chipBackgroundColor="@color/chip_background_color"/>
 
 
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rvIngredients"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="10dp"
-                tools:listitem="@layout/item_ingredients"
-                android:clipToPadding="false"
-                />
+            <com.google.android.material.chip.Chip
 
-            <TextView
+                android:id="@+id/chipArea"
+
                 android:layout_width="wrap_content"
+
                 android:layout_height="wrap_content"
-                android:text="Instructions"
-                android:textSize="20sp"
-                android:fontFamily="@font/plus_jakarta_sans_semibold"
-                android:textColor="@color/black"
-                android:layout_gravity="start"
-                android:layout_marginStart="15dp"
-                android:layout_marginTop="10dp"/>
+
+                android:text="Japanese"
+
+                android:textColor="@color/text_primary"
+
+                app:chipIcon="@drawable/language"
+
+                app:chipBackgroundColor="@color/chip_background_color"/>
 
 
-            <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/tvInstructions"
-                android:layout_width="match_parent"
+
+            <com.google.android.material.chip.Chip
+
+                android:id="@+id/chipCountry"
+
+                android:layout_width="wrap_content"
+
                 android:layout_height="wrap_content"
-                android:layout_marginHorizontal="16dp"
-                android:layout_marginTop="12dp"
-                android:textSize="16sp"
-                android:textColor="@color/black"
-                android:lineSpacingExtra="8dp"
-                android:letterSpacing="0"
-                android:fontFamily="@font/inter"
-                android:textAlignment="viewStart"
-                android:gravity="start"
-                android:breakStrategy="high_quality"
-                android:hyphenationFrequency="normal"
-                android:layout_marginBottom="10dp"/>
+
+                android:text="Japan"
+
+                android:textColor="@color/text_primary"
+
+                app:chipIcon="@drawable/outline_globe_location_pin_24"
+
+                app:chipBackgroundColor="@color/chip_background_color"/>
 
 
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/buttonYoutube"
-                android:layout_width="match_parent"
-                android:layout_height="60dp"
-                app:cornerRadius="6dp"
-                android:text="Watch On YouTube"
-                app:icon="@drawable/youtube"
-                app:iconTint="@null"
-                android:backgroundTint="@color/primary"
-                app:iconGravity="textStart"
-                app:iconSize="30dp"
-                android:layout_marginBottom="30dp"
-                android:layout_marginStart="15dp"
-                android:layout_marginEnd="15dp"
+        </com.google.android.material.chip.ChipGroup>
+        <TextView
 
-                />
+            android:layout_width="wrap_content"
+
+            android:layout_height="wrap_content"
+
+            android:text="Tags"
+
+            android:textSize="18sp"
+
+            android:textColor="@color/text_primary"
+
+            android:fontFamily="@font/poppins_semibold"
+
+            android:layout_gravity="start"
+
+            android:layout_marginStart="15dp"
+
+            android:layout_marginTop="10dp"/>
 
 
-        </LinearLayout>
+
+
+        <com.google.android.material.chip.ChipGroup
+
+            android:layout_width="match_parent"
+
+            android:layout_height="wrap_content"
+
+            android:layout_marginStart="10dp"
+
+            app:chipSpacing="8dp"
+
+            app:singleLine="true">
+
+
+            <com.google.android.material.chip.Chip
+
+                android:id="@+id/chipTag1"
+
+                android:layout_width="wrap_content"
+
+                android:layout_height="wrap_content"
+
+                android:text="Chicken"
+
+                android:textColor="@color/background"
+
+                app:chipBackgroundColor="@color/primary"/>
+
+
+
+            <com.google.android.material.chip.Chip
+
+                android:id="@+id/chipTag2"
+
+                android:layout_width="wrap_content"
+
+                android:layout_height="wrap_content"
+
+                android:text="Japanese"
+
+                android:textColor="@color/background"
+
+                app:chipBackgroundColor="@color/primary"/>
+
+
+        </com.google.android.material.chip.ChipGroup>
+
+
+
+
+
+        <TextView
+
+            android:layout_width="wrap_content"
+
+            android:layout_height="wrap_content"
+
+            android:text="Ingredients"
+
+            android:textSize="20sp"
+
+            android:textColor="@color/text_primary"
+
+            android:fontFamily="@font/plus_jakarta_sans_semibold"
+
+            android:layout_gravity="start"
+
+            android:layout_marginStart="15dp"
+
+            android:layout_marginTop="10dp"/>
+
+
+
+
+
+        <androidx.recyclerview.widget.RecyclerView
+
+            android:id="@+id/rvIngredients"
+
+            android:layout_width="match_parent"
+
+            android:layout_height="wrap_content"
+
+            android:layout_marginStart="10dp"
+
+            android:layout_marginTop="10dp"
+
+            android:clipToPadding="false"
+
+            tools:listitem="@layout/item_ingredients"/>
+
+
+
+
+
+        <TextView
+
+            android:layout_width="wrap_content"
+
+            android:layout_height="wrap_content"
+
+            android:text="Instructions"
+
+            android:textSize="20sp"
+
+            android:textColor="@color/text_primary"
+
+            android:fontFamily="@font/plus_jakarta_sans_semibold"
+
+            android:layout_gravity="start"
+
+            android:layout_marginStart="15dp"
+
+            android:layout_marginTop="10dp"/>
+
+
+
+
+
+        <com.google.android.material.textview.MaterialTextView
+
+            android:id="@+id/tvInstructions"
+
+            android:layout_width="match_parent"
+
+            android:layout_height="wrap_content"
+
+            android:layout_marginHorizontal="16dp"
+
+            android:layout_marginTop="12dp"
+
+            android:layout_marginBottom="10dp"
+
+            android:textSize="16sp"
+
+            android:textColor="@color/text_primary"
+
+            android:lineSpacingExtra="8dp"
+
+            android:letterSpacing="0"
+
+            android:fontFamily="@font/inter"
+
+            android:textAlignment="viewStart"
+
+            android:gravity="start"
+
+            android:breakStrategy="high_quality"
+
+            android:hyphenationFrequency="normal"/>
+
+
+
+
+
+        <com.google.android.material.button.MaterialButton
+
+            android:id="@+id/buttonYoutube"
+
+            android:layout_width="match_parent"
+
+            android:layout_height="60dp"
+
+            android:layout_marginStart="15dp"
+
+            android:layout_marginEnd="15dp"
+
+            android:layout_marginBottom="30dp"
+
+            android:text="Watch On YouTube"
+
+            android:textColor="@color/background"
+
+            android:fontFamily="@font/plus_jakarta_sans_semibold"
+
+            android:backgroundTint="@color/primary"
+
+            app:cornerRadius="6dp"
+
+            app:icon="@drawable/youtube"
+
+            app:iconTint="@null"
+
+            app:iconGravity="textStart"
+
+            app:iconSize="30dp"/>
+
+
     </LinearLayout>
-
-
-
-
 
 
 </androidx.core.widget.NestedScrollView>

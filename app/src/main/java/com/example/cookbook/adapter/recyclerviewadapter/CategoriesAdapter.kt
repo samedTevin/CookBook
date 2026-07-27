@@ -17,7 +17,7 @@ class CategoriesAdapter(private val categoryList: MutableList<Category>): Recycl
             Glide.with(binding.root).load(category.strCategoryThumb).into(binding.ivFoodPhoto)
 
             binding.root.setOnClickListener {
-                onItemClick?.invoke(category.idCategory)
+                onItemClick?.invoke(category.strCategory)
             }
         }
     }

@@ -13,6 +13,7 @@ import com.example.cookbook.R
 import com.example.cookbook.model.User
 import com.example.cookbook.database.CookDatabase
 import com.example.cookbook.databinding.FragmentRegisterBinding
+import com.example.cookbook.preferences.SessionManager
 import com.example.cookbook.repository.UserRepository
 import com.example.cookbook.state.RegisterState
 import com.example.cookbook.viewmodel.RegisterViewModel
