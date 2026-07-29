@@ -12,8 +12,8 @@ class MealRepository(private val api: ApiService) {
     suspend fun getDetails(id: String): Meal? {
         return api.getDetails(id).meals?.firstOrNull()
     }
-    suspend fun getRandomMeal(): Meal?{
-        return api.getRandomMeal().meals?.firstOrNull()
+    suspend fun getRandomMeal(): Meal{
+        return api.getRandomMeal().meals?.firstOrNull() ?: throw Exception("Meal not found!")
     }
     suspend fun filterByArea(name: String): MealResponse{
         return api.filterByArea(name)

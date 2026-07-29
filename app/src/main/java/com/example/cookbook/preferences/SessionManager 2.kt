@@ -21,7 +21,7 @@ class SessionManager(private val sharedPreferences: SharedPreferences) {
     }
 
     fun getLanguage(): String?{
-        return sharedPreferences.getString("language", null)
+        return sharedPreferences.getString("language", "")
     }
 
     fun saveCuisine(cuisine: String){
@@ -29,7 +29,7 @@ class SessionManager(private val sharedPreferences: SharedPreferences) {
     }
 
     fun getCuisine(): String?{
-        return sharedPreferences.getString("selectedCuisine",null)
+        return sharedPreferences.getString("selectedCuisine","")
     }
 
     fun saveDarkMode(isEnabled: Boolean){
@@ -38,13 +38,5 @@ class SessionManager(private val sharedPreferences: SharedPreferences) {
 
     fun getDarkMode(): Boolean{
         return sharedPreferences.getBoolean("isDarkModeEnabled", false)
-    }
-
-    fun saveIngredient(ingredient: String){
-        sharedPreferences.edit().putString("selectedIngredient", ingredient).apply()
-    }
-
-    fun getIngredient(): String? {
-        return sharedPreferences.getString("selectedIngredient", null)
     }
 }

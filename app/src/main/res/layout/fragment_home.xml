@@ -283,31 +283,96 @@
 
 
 
-
-
-        <androidx.recyclerview.widget.RecyclerView
-
-            android:id="@+id/rvMadeForYou"
-
-            android:layout_width="0dp"
-
+        <FrameLayout
+            android:id="@+id/cuisineContainer"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-
-            android:layout_marginTop="20dp"
-
-            android:nestedScrollingEnabled="false"
-
             app:layout_constraintTop_toBottomOf="@id/tvMadeDescription"
-
             app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
 
-            app:layout_constraintEnd_toEndOf="parent"
+            <androidx.recyclerview.widget.RecyclerView
 
-            tools:listitem="@layout/item_ingredients"/>
+                android:id="@+id/rvMadeForYou"
+
+                android:layout_width="match_parent"
+
+                android:layout_height="wrap_content"
+
+                android:layout_marginTop="20dp"
+
+                android:nestedScrollingEnabled="false"
+
+                tools:listitem="@layout/item_ingredients"
+                android:visibility="gone"/>
+
+            <com.google.android.material.card.MaterialCardView
+
+                android:id="@+id/emptyCuisineCard"
+
+                android:layout_width="match_parent"
+
+                android:layout_height="wrap_content"
+
+                android:layout_marginTop="20dp"
+
+                app:cardCornerRadius="18dp"
+                android:backgroundTint="@color/card_background"
+                >
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:gravity="center"
+                    >
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="🗺️"
+                        android:textSize="60sp"
+                        android:textColor="@color/text_primary"
+                        android:fontFamily="@font/inter"
+                        />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="No cuisine selected"
+                        android:textSize="20sp"
+                        android:textColor="@color/text_primary"
+                        android:fontFamily="@font/poppins_semibold"
+                        />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Pick your favorite cuisines to get personalized recipe recommendations."
+                        android:textSize="16sp"
+                        android:textColor="@color/text_primary"
+                        android:textAlignment="center"
+                        android:fontFamily="@font/inter"
+                        android:layout_marginBottom="10dp"
+                        />
+                    <TextView
+                        android:id="@+id/selectedCuisine"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Tap to choose cuisines"
+                        android:textSize="20sp"
+                        android:textColor="@color/primary"
+                        android:fontFamily="@font/poppins_semibold"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="30dp"
+                        />
+
+                </LinearLayout>
+
+
+            </com.google.android.material.card.MaterialCardView>
 
 
 
-
+        </FrameLayout>
 
         <TextView
 
@@ -327,7 +392,7 @@
 
             android:layout_marginTop="20dp"
 
-            app:layout_constraintTop_toBottomOf="@id/rvMadeForYou"
+            app:layout_constraintTop_toBottomOf="@id/cuisineContainer"
 
             app:layout_constraintStart_toStartOf="parent"/>
 

@@ -59,6 +59,9 @@ class ProfileFragment : Fragment() {
         }
 
         binding.switchDarkMode.isChecked = sessionManager.getDarkMode()
+        binding.selectedCuisine.text = sessionManager.getCuisine()
+        binding.selectedLanguage.text = sessionManager.getLanguage()
+        binding.selectedIngredient.text = sessionManager.getIngredient()
         
 
         binding.switchDarkMode.setOnCheckedChangeListener { _, isChecked ->
@@ -73,8 +76,9 @@ class ProfileFragment : Fragment() {
         }
 
 
+        val currentCuisine = sessionManager.getCuisine() ?: ""
         binding.cuisineCard.setOnClickListener {
-            DialogUtil.showCuisineDialog(requireContext(),layoutInflater) { cuisine ->
+            DialogUtil.showCuisineDialog(requireContext(),layoutInflater,currentCuisine) { cuisine ->
                 sessionManager.saveCuisine(cuisine)
                 Toast.makeText(context,"Selected cuisine: $cuisine",Toast.LENGTH_LONG).show()
                 binding.selectedCuisine.text = cuisine

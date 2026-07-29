@@ -17,7 +17,7 @@
             android:id="@+id/tvTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Preferred Cuisine"
+            android:text="Favorite Ingredient"
             android:textSize="30sp"
             android:fontFamily="@font/poppins_semibold"
             android:textColor="@color/text_primary"
@@ -37,10 +37,10 @@
             app:layout_constraintBottom_toTopOf="@id/buttonCancel">
 
             <RadioButton
-                android:id="@+id/rbItalian"
+                android:id="@+id/rbEgg"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Italian"
+                android:text="Egg"
                 android:textSize="18sp"
                 android:textColor="@color/text_primary"
                 android:buttonTint="@color/primary"
@@ -48,10 +48,10 @@
                 android:textDirection="ltr"/>
 
             <RadioButton
-                android:id="@+id/rbTurkish"
+                android:id="@+id/rbBeef"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Turkish"
+                android:text="Beef"
                 android:textSize="18sp"
                 android:textColor="@color/text_primary"
                 android:buttonTint="@color/primary"
@@ -59,10 +59,10 @@
                 android:textDirection="ltr"/>
 
             <RadioButton
-                android:id="@+id/rbJapanese"
+                android:id="@+id/rbBread"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Japanese"
+                android:text="Bread"
                 android:textSize="18sp"
                 android:textColor="@color/text_primary"
                 android:buttonTint="@color/primary"
@@ -70,10 +70,10 @@
                 android:textDirection="ltr"/>
 
             <RadioButton
-                android:id="@+id/rbMoroccan"
+                android:id="@+id/rbSugar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Moroccan"
+                android:text="Sugar"
                 android:textSize="18sp"
                 android:textColor="@color/text_primary"
                 android:buttonTint="@color/primary"
@@ -81,10 +81,10 @@
                 android:textDirection="ltr"/>
 
             <RadioButton
-                android:id="@+id/rbChinese"
+                android:id="@+id/rbCheese"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Chinese"
+                android:text="Cheese"
                 android:textSize="18sp"
                 android:textColor="@color/text_primary"
                 android:buttonTint="@color/primary"
@@ -92,10 +92,10 @@
                 android:textDirection="ltr"/>
 
             <RadioButton
-                android:id="@+id/rbRussian"
+                android:id="@+id/rbCocoa"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Russian"
+                android:text="Cocoa"
                 android:textSize="18sp"
                 android:textColor="@color/text_primary"
                 android:buttonTint="@color/primary"
@@ -103,10 +103,10 @@
                 android:textDirection="ltr"/>
 
             <RadioButton
-                android:id="@+id/rbThai"
+                android:id="@+id/rbMilk"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Thai"
+                android:text="Milk"
                 android:textSize="18sp"
                 android:textColor="@color/text_primary"
                 android:buttonTint="@color/primary"
@@ -114,10 +114,10 @@
                 android:textDirection="ltr"/>
 
             <RadioButton
-                android:id="@+id/rbIrish"
+                android:id="@+id/rbHoney"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Irish"
+                android:text="Honey"
                 android:textSize="18sp"
                 android:textColor="@color/text_primary"
                 android:buttonTint="@color/primary"
@@ -125,10 +125,10 @@
                 android:textDirection="ltr"/>
 
             <RadioButton
-                android:id="@+id/rbGreek"
+                android:id="@+id/rbCarrots"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Greek"
+                android:text="Carrots"
                 android:textSize="18sp"
                 android:textColor="@color/text_primary"
                 android:buttonTint="@color/primary"
@@ -136,10 +136,10 @@
                 android:textDirection="ltr"/>
 
             <RadioButton
-                android:id="@+id/rbVietnamese"
+                android:id="@+id/rbCucumber"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Vietnamese"
+                android:text="Cucumber"
                 android:textSize="18sp"
                 android:textColor="@color/text_primary"
                 android:buttonTint="@color/primary"

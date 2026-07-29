@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
@@ -18,10 +19,12 @@ import com.example.cookbook.adapter.recyclerviewadapter.SearchAdapter
 import com.example.cookbook.adapter.recyclerviewadapter.WorldAdapter
 import com.example.cookbook.api.RetrofitInstance
 import com.example.cookbook.databinding.FragmentHomeBinding
+import com.example.cookbook.event.HomeEvent
 import com.example.cookbook.model.Country
 import com.example.cookbook.model.Meal
 import com.example.cookbook.preferences.SessionManager
 import com.example.cookbook.repository.MealRepository
+import com.example.cookbook.state.HomeState
 import com.example.cookbook.util.DiscoverType
 import com.example.cookbook.viewmodel.HomeViewModel
 import com.example.cookbook.viewmodelfactory.HomeViewModelFactory
@@ -97,8 +100,17 @@ class HomeFragment : Fragment() {
             }
         })
 
+
         val selectedCuisine = sessionManager.getCuisine()
-        homeViewModel.filterBySelectedCuisine(selectedCuisine!!)
+        if(selectedCuisine != null){
+            homeViewModel.filterBySelectedCuisine(selectedCuisine)
+            binding.rvMadeForYou.visibility = View.VISIBLE
+            binding.emptyCuisineCard.visibility = View.GONE
+        }
+        else{
+            binding.rvMadeForYou.visibility = View.GONE
+            binding.emptyCuisineCard.visibility = View.VISIBLE
+        }
 
         viewLifecycleOwner.lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED){
@@ -118,10 +130,27 @@ class HomeFragment : Fragment() {
 
         viewLifecycleOwner.lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED){
-                homeViewModel.randomMeal.collect { random ->
-                    random?.let {
-                        selectedMeal = it
-                        navigateIfReady()
+                homeViewModel.homeState.collect{ state ->
+                    when(state){
+                        is HomeState.Loading -> {}
+                        is HomeState.Success -> {
+                            selectedMeal = state.meal
+                        }
+                        is HomeState.Error -> {Toast.makeText(requireContext(),"Meal not found!", Toast.LENGTH_SHORT).show()}
+                        is HomeState.Idle -> Unit
+                    }
+                }
+            }
+
+        }
+
+        viewLifecycleOwner.lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.STARTED){
+                homeViewModel.homeEvent.collect { event ->
+                    when(event){
+                        is HomeEvent.NavigateToDetail -> {
+                            findNavController()
+                        }
                     }
                 }
             }
