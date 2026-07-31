@@ -69,7 +69,8 @@ object DialogUtil {
             "Irish" -> binding.rbIrish.isChecked = true
             "Greek" -> binding.rbGreek.isChecked = true
             "Vietnamese" -> binding.rbVietnamese.isChecked = true
-            else -> return
+            "" -> {} // It is a normal behavior for new  users. No need to take action for that situation.
+
         }
 
         binding.buttonSave.setOnClickListener {
@@ -91,6 +92,7 @@ object DialogUtil {
     fun showIngredientsDialog(
         context: Context,
         layoutInflater: LayoutInflater,
+        currentIngredient: String,
         onSave: (String) -> Unit
     ) {
         val binding = IngredientAlertDialogBinding.inflate(layoutInflater)
@@ -99,12 +101,25 @@ object DialogUtil {
         dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         dialog.show()
 
+        when(currentIngredient){
+            "Egg" -> binding.rbEgg.isChecked = true
+            "Beef" -> binding.rbBeef.isChecked = true
+            "Bread" -> binding.rbBread.isChecked = true
+            "Sugar" -> binding.rbSugar.isChecked = true
+            "Cheese" -> binding.rbCheese.isChecked = true
+            "Cocoa" -> binding.rbCocoa.isChecked = true
+            "Milk" -> binding.rbMilk.isChecked = true
+            "Honey" -> binding.rbHoney.isChecked = true
+            "Carrots" -> binding.rbCarrots.isChecked = true
+            "Cucumber" -> binding.rbCucumber.isChecked = true
+            "" -> {} // It is a normal behavior for new  users. No need to take action for that situation.
+        }
+
         binding.buttonSave.setOnClickListener {
             val checkedId = binding.radioGroup.checkedRadioButtonId
 
-            if (checkedId != 1) {
+            if (checkedId != -1) {
                 val radioButton = binding.root.findViewById<RadioButton>(checkedId)
-                binding.rbBeef.isChecked
                 onSave(radioButton.text.toString())
             }
             dialog.dismiss()

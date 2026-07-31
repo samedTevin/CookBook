@@ -76,7 +76,7 @@
 
         android:textSize="18sp"
 
-        android:textColor="@color/surface"
+        android:textColor="@color/white"
 
         android:fontFamily="@font/poppins_semibold"
 

@@ -6,11 +6,13 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.cookbook.databinding.ItemCuisinesBinding
 import com.example.cookbook.model.Country
+import com.example.cookbook.model.Meal
 
 class WorldAdapter(private val countries: List<Country>): RecyclerView.Adapter<WorldAdapter.WorldViewHolder>() {
 
 
     var onItemClick: ((country: String) -> Unit)? = null
+
     inner class WorldViewHolder(val binding: ItemCuisinesBinding) : RecyclerView.ViewHolder(binding.root){
         fun bind(country: Country){
             binding.apply {
@@ -20,6 +22,7 @@ class WorldAdapter(private val countries: List<Country>): RecyclerView.Adapter<W
                 root.setOnClickListener {
                     onItemClick?.invoke(country.name)
                 }
+
             }
         }
     }

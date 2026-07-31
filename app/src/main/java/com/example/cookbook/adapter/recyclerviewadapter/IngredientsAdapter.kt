@@ -42,4 +42,5 @@ class IngredientsAdapter(private val ingredients: MutableList<Ingredient>): Recy
         ingredients.addAll(newList)
         notifyDataSetChanged()
     }
+
 }

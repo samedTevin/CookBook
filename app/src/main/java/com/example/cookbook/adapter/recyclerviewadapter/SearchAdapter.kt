@@ -11,8 +11,21 @@ import com.example.cookbook.model.MealResponse
 class SearchAdapter(private var meals: MutableList<Meal>): RecyclerView.Adapter<SearchAdapter.SearchViewHolder>() {
 
     var onItemClick: ((id: String) -> Unit)? = null
+    var onFavClick: ((meal: Meal) -> Unit)? = null
+
+    private var favoriteIds = emptySet<String>()
+
+
     inner class SearchViewHolder(val binding: ItemFavoritesBinding): RecyclerView.ViewHolder(binding.root){
         fun bind(meal: Meal){
+
+            if(favoriteIds.contains(meal.idMeal)){
+                binding.ibHeart.frame = 50
+            }
+            else{
+                binding.ibHeart.frame = 0
+            }
+
             binding.tvFoodName.text = meal.strMeal
             binding.tvCountry.text = meal.strCountry
             binding.tvCategory.text = meal.strCategory
@@ -21,6 +34,21 @@ class SearchAdapter(private var meals: MutableList<Meal>): RecyclerView.Adapter<
             binding.root.setOnClickListener {
                 onItemClick?.invoke(meal.idMeal)
             }
+
+            binding.ibHeart.setOnClickListener {
+
+                val isFav = favoriteIds.contains(meal.idMeal)
+
+                if (isFav) {
+                    binding.ibHeart.setMinAndMaxFrame(50,71)
+                } else {
+                    binding.ibHeart.setMinAndMaxFrame(18,49)
+                }
+
+                binding.ibHeart.playAnimation()
+                onFavClick?.invoke(meal)
+            }
+
         }
     }
 
@@ -43,6 +71,11 @@ class SearchAdapter(private var meals: MutableList<Meal>): RecyclerView.Adapter<
     fun updateList(newList: List<Meal>){
         meals.clear()
         meals.addAll(newList)
+        notifyDataSetChanged()
+    }
+
+    fun updateFavorites(favIds: Set<String>){
+        favoriteIds = favIds
         notifyDataSetChanged()
     }
 }

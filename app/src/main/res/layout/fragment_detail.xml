@@ -354,7 +354,7 @@
 
             android:text="Watch On YouTube"
 
-            android:textColor="@color/background"
+            android:textColor="@android:color/white"
 
             android:fontFamily="@font/plus_jakarta_sans_semibold"
 

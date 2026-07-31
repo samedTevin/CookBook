@@ -1,5 +1,6 @@
 package com.example.cookbook.mapper
 
+import com.example.cookbook.model.FavoriteMeal
 import com.example.cookbook.model.Ingredient
 import com.example.cookbook.model.Meal
 
@@ -69,4 +70,9 @@ fun Meal.toIngredients(): List<Ingredient>{
     }
 
     return list
+}
+
+fun Meal.toFavoriteMeal(): FavoriteMeal{
+
+    return FavoriteMeal(idMeal, strMeal, strCategory, strCountry, strMealThumb)
 }

@@ -23,6 +23,9 @@ class HomeViewModel(private val mealRepository: MealRepository): ViewModel() {
     private val _filter = MutableStateFlow<MealResponse?>(null)
     val filter = _filter.asStateFlow()
 
+    private val _ingredient = MutableStateFlow<MealResponse?>(null)
+    val ingredient = _ingredient.asStateFlow()
+
     fun getRandomMeal(){
         viewModelScope.launch {
             _homeState.value = HomeState.Loading
@@ -41,6 +44,12 @@ class HomeViewModel(private val mealRepository: MealRepository): ViewModel() {
     fun filterBySelectedCuisine(selectedCuisine: String){
         viewModelScope.launch {
             _filter.value = mealRepository.filterByArea(selectedCuisine)
+        }
+    }
+
+    fun filterBySelectedIngredient(selectedIngredient: String){
+        viewModelScope.launch {
+            _ingredient.value = mealRepository.filterByIngredient(selectedIngredient)
         }
     }
 }

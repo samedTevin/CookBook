@@ -50,6 +50,15 @@ class ProfileFragment : Fragment() {
         sessionManager = SessionManager(sharedPreferences)
         profileViewModel = ViewModelProvider(this, ProfileViewModelFactory(userRepository,sessionManager))[ProfileViewModel::class.java]
 
+        binding.switchDarkMode.isChecked = sessionManager.getDarkMode()
+        binding.selectedCuisine.text = sessionManager.getCuisine()
+        binding.selectedLanguage.text = sessionManager.getLanguage()
+        binding.selectedIngredient.text = sessionManager.getIngredient()
+
+        binding.editProfileCard.setOnClickListener {
+            findNavController().navigate(R.id.action_profileFragment_to_editProfile)
+        }
+
         binding.languageCard.setOnClickListener {
             DialogUtil.showLanguageDialog(requireContext(),layoutInflater) { language ->
                 sessionManager.saveLanguage(language)
@@ -57,12 +66,6 @@ class ProfileFragment : Fragment() {
                 binding.selectedLanguage.text = language
             }
         }
-
-        binding.switchDarkMode.isChecked = sessionManager.getDarkMode()
-        binding.selectedCuisine.text = sessionManager.getCuisine()
-        binding.selectedLanguage.text = sessionManager.getLanguage()
-        binding.selectedIngredient.text = sessionManager.getIngredient()
-        
 
         binding.switchDarkMode.setOnCheckedChangeListener { _, isChecked ->
             sessionManager.saveDarkMode(isChecked)
@@ -76,14 +79,23 @@ class ProfileFragment : Fragment() {
         }
 
 
-        val currentCuisine = sessionManager.getCuisine() ?: ""
+
         binding.cuisineCard.setOnClickListener {
-            DialogUtil.showCuisineDialog(requireContext(),layoutInflater,currentCuisine) { cuisine ->
+            DialogUtil.showCuisineDialog(requireContext(),layoutInflater,sessionManager.getCuisine() ?: "") { cuisine ->
                 sessionManager.saveCuisine(cuisine)
                 Toast.makeText(context,"Selected cuisine: $cuisine",Toast.LENGTH_LONG).show()
                 binding.selectedCuisine.text = cuisine
             }
         }
+
+        binding.ingredientCard.setOnClickListener {
+            DialogUtil.showIngredientsDialog(requireContext(),layoutInflater,sessionManager.getIngredient() ?: ""){ ingredient ->
+                sessionManager.saveIngredient(ingredient)
+                Toast.makeText(context,"Selected ingredient: $ingredient", Toast.LENGTH_SHORT).show()
+                binding.selectedIngredient.text = ingredient
+            }
+        }
+
 
         binding.aboutCard.setOnClickListener {
             DialogUtil.showAboutDialog(requireContext(),layoutInflater)

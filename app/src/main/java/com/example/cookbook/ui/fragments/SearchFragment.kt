@@ -7,19 +7,25 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.SearchView
+import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.cookbook.R
 import com.example.cookbook.adapter.recyclerviewadapter.SearchAdapter
 import com.example.cookbook.api.ApiService
 import com.example.cookbook.api.RetrofitInstance
+import com.example.cookbook.database.CookDatabase
 import com.example.cookbook.databinding.FragmentSearchBinding
 import com.example.cookbook.model.MealResponse
+import com.example.cookbook.repository.FavoriteMealRepository
 import com.example.cookbook.repository.MealRepository
 import com.example.cookbook.state.SearchState
+import com.example.cookbook.viewmodel.FavoriteViewModel
 import com.example.cookbook.viewmodel.SearchViewModel
+import com.example.cookbook.viewmodelfactory.FavoriteViewModelFactory
 import com.example.cookbook.viewmodelfactory.SearchViewModelFactory
 import kotlinx.coroutines.launch
 
@@ -29,8 +35,10 @@ class SearchFragment : Fragment() {
     private var _binding: FragmentSearchBinding? = null
     val binding get() = _binding!!
 
+    private lateinit var favoriteViewModel: FavoriteViewModel
     private lateinit var searchViewModel: SearchViewModel
     private lateinit var mealRepository: MealRepository
+    private lateinit var favoriteMealRepository: FavoriteMealRepository
     private lateinit var searchAdapter: SearchAdapter
 
     override fun onCreateView(
@@ -47,6 +55,9 @@ class SearchFragment : Fragment() {
 
         val api = RetrofitInstance.api
         mealRepository = MealRepository(api)
+        val favoriteDao = CookDatabase.createDatabase(requireContext()).favoriteMealDao()
+        favoriteMealRepository = FavoriteMealRepository(favoriteDao)
+        favoriteViewModel = ViewModelProvider(this, FavoriteViewModelFactory(favoriteMealRepository))[FavoriteViewModel::class.java]
         searchViewModel = ViewModelProvider(requireActivity(), SearchViewModelFactory(mealRepository))[SearchViewModel::class.java]
         searchAdapter = SearchAdapter(mutableListOf())
         binding.rvSearchResult.layoutManager = LinearLayoutManager(requireContext())
@@ -77,6 +88,19 @@ class SearchFragment : Fragment() {
         searchAdapter.onItemClick = {item ->
             val action = SearchFragmentDirections.actionSearchFragmentToDetailFragment(item)
             findNavController().navigate(action)
+        }
+
+        searchAdapter.onFavClick = { meal ->
+            favoriteViewModel.toggleFavorite(meal)
+        }
+
+        viewLifecycleOwner.lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.STARTED){
+                favoriteViewModel.favorites.collect { favoriteMeals ->
+                    val favIds = favoriteMeals.map{it.idMeal}.toSet()
+                    searchAdapter.updateFavorites(favIds)
+                }
+            }
         }
 
 

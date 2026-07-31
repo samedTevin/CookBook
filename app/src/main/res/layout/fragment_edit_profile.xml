@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:gravity="top"
+    android:padding="20dp">
+
+    <androidx.appcompat.widget.Toolbar
+
+        android:id="@+id/toolBar"
+
+        android:layout_width="match_parent"
+
+        android:layout_height="wrap_content">
+
+        <TextView
+
+            android:layout_width="wrap_content"
+
+            android:layout_height="wrap_content"
+
+            android:text="CookBook"
+
+            android:textSize="50sp"
+
+            android:textColor="@color/primary"
+
+            android:fontFamily="@font/poppins_semibold"
+
+            android:layout_gravity="center"/>
+
+    </androidx.appcompat.widget.Toolbar>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Edit your profile"
+        android:textSize="30sp"
+        android:fontFamily="@font/poppins_semibold"
+        android:textColor="@color/text_primary"/>
+
+
+    <TextView
+
+        android:id="@+id/tvDescription"
+
+        android:layout_width="wrap_content"
+
+        android:layout_height="wrap_content"
+
+        android:text="Keep your information up to date"
+
+        android:textSize="16sp"
+
+        android:textColor="@color/text_secondary"
+
+        android:fontFamily="@font/inter"/>
+
+    <FrameLayout
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="20dp"
+        android:layout_gravity="center"
+        >
+        <com.google.android.material.imageview.ShapeableImageView
+
+            android:id="@+id/imgProfilePhoto"
+
+            android:layout_width="match_parent"
+
+            android:layout_height="match_parent"
+            android:padding="5dp"
+
+            android:src="@drawable/baseline_person_24"
+
+            android:scaleType="centerCrop"
+
+            android:foreground="?attr/selectableItemBackgroundBorderless"
+
+            app:shapeAppearance="@style/CircleImage"
+
+            app:strokeWidth="3dp"
+
+
+            app:strokeColor="@color/primary"/>
+
+        <ImageView
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:src="@drawable/outline_edit_24"
+            android:background="@color/primary_container"
+            android:layout_margin="8dp"
+            android:layout_gravity="end|bottom"/>
+
+    </FrameLayout>
+
+
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Full Name"
+        app:boxBackgroundMode="outline"
+        app:boxStrokeColor="@color/text_input_color"
+        app:boxStrokeWidth="3dp"
+        app:hintTextColor="@color/text_secondary"
+        app:startIconDrawable="@drawable/outline_account_circle_24"
+        android:layout_marginTop="20dp"
+        >
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/etFullName"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:textColor="@color/text_primary"
+            android:inputType="text"
+            />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Username"
+        app:boxBackgroundMode="outline"
+        app:boxStrokeColor="@color/text_input_color"
+        app:boxStrokeWidth="3dp"
+        app:hintTextColor="@color/text_secondary"
+        app:startIconDrawable="@drawable/outline_alternate_email_24"
+        android:layout_marginTop="20dp"
+        >
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/etUsername"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:textColor="@color/text_primary"
+            android:inputType="text"
+            />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Email"
+        app:boxBackgroundMode="outline"
+        app:boxStrokeColor="@color/text_input_color"
+        app:boxStrokeWidth="3dp"
+        app:hintTextColor="@color/text_secondary"
+        app:startIconDrawable="@drawable/outline_mail_24"
+        android:layout_marginTop="20dp"
+        >
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/etEmail"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:textColor="@color/text_primary"
+            android:inputType="textEmailAddress"
+            />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Password"
+        app:boxBackgroundMode="outline"
+        app:boxStrokeColor="@color/text_input_color"
+        app:boxStrokeWidth="3dp"
+        app:hintTextColor="@color/text_secondary"
+        android:layout_marginTop="20dp"
+        app:startIconDrawable="@drawable/outline_lock_24"
+        app:endIconMode="password_toggle"
+        >
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/etPassword"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:textColor="@color/text_primary"
+            android:inputType="textPassword"
+            />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Password Confirmation"
+        app:boxBackgroundMode="outline"
+        app:boxStrokeColor="@color/text_input_color"
+        app:boxStrokeWidth="3dp"
+        app:hintTextColor="@color/text_secondary"
+        android:layout_marginTop="20dp"
+        app:startIconDrawable="@drawable/outline_lock_24"
+        app:endIconMode="password_toggle"
+        >
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/etConfirmPassword"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:textColor="@color/text_primary"
+            android:inputType="textPassword"
+            />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/buttonEdit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@android:color/white"
+        android:backgroundTint="@color/primary"
+        android:text="Edit your changes"
+        android:fontFamily="@font/poppins_semibold"
+        android:textSize="25sp"
+        app:cornerRadius="5dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="25dp" />
+</LinearLayout>

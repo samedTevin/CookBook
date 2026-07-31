@@ -6,13 +6,20 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.cookbook.model.Meal
 import com.example.cookbook.databinding.ItemFavoritesBinding
+import com.example.cookbook.model.FavoriteMeal
+import com.example.cookbook.repository.FavoriteMealRepository
+import kotlinx.coroutines.delay
 
-class FavoritesAdapter(val favoriteList: MutableList<Meal>): RecyclerView.Adapter<FavoritesAdapter.ViewHolder>(){
+class FavoritesAdapter(val favoriteList: MutableList<FavoriteMeal>): RecyclerView.Adapter<FavoritesAdapter.ViewHolder>(){
 
+    // Callbacks
     var onItemClick: ((id : String) -> Unit)? = null
 
+    var onFavClick: ((meal: FavoriteMeal) -> Unit)? = null
+
     inner class ViewHolder(val binding: ItemFavoritesBinding) : RecyclerView.ViewHolder(binding.root){
-        fun bind(meal: Meal){
+        fun bind(meal: FavoriteMeal){
+            binding.ibHeart.frame = 50
             binding.tvFoodName.text = meal.strMeal
             binding.tvCountry.text = meal.strCountry
             binding.tvCategory.text = meal.strCategory
@@ -20,6 +27,12 @@ class FavoritesAdapter(val favoriteList: MutableList<Meal>): RecyclerView.Adapte
 
             binding.root.setOnClickListener {
                 onItemClick?.invoke(meal.idMeal)
+            }
+
+            binding.ibHeart.setOnClickListener {
+                binding.ibHeart.setMinAndMaxFrame(50,71)
+                binding.ibHeart.playAnimation()
+                onFavClick?.invoke(meal)
             }
 
         }
@@ -44,9 +57,10 @@ class FavoritesAdapter(val favoriteList: MutableList<Meal>): RecyclerView.Adapte
         return favoriteList.size
     }
 
-    fun updateList(newList: List<Meal>){
+    fun updateList(newList: List<FavoriteMeal>) {
         favoriteList.clear()
         favoriteList.addAll(newList)
         notifyDataSetChanged()
     }
+
 }

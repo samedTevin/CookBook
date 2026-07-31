@@ -18,15 +18,19 @@ import com.example.cookbook.R
 import com.example.cookbook.adapter.recyclerviewadapter.SearchAdapter
 import com.example.cookbook.adapter.recyclerviewadapter.WorldAdapter
 import com.example.cookbook.api.RetrofitInstance
+import com.example.cookbook.database.CookDatabase
 import com.example.cookbook.databinding.FragmentHomeBinding
 import com.example.cookbook.event.HomeEvent
 import com.example.cookbook.model.Country
 import com.example.cookbook.model.Meal
 import com.example.cookbook.preferences.SessionManager
+import com.example.cookbook.repository.FavoriteMealRepository
 import com.example.cookbook.repository.MealRepository
 import com.example.cookbook.state.HomeState
 import com.example.cookbook.util.DiscoverType
+import com.example.cookbook.viewmodel.FavoriteViewModel
 import com.example.cookbook.viewmodel.HomeViewModel
+import com.example.cookbook.viewmodelfactory.FavoriteViewModelFactory
 import com.example.cookbook.viewmodelfactory.HomeViewModelFactory
 import kotlinx.coroutines.launch
 
@@ -35,10 +39,14 @@ class HomeFragment : Fragment() {
     private var _binding : FragmentHomeBinding? = null
     val binding get() = _binding!!
     private lateinit var homeViewModel: HomeViewModel
+    private lateinit var favoriteViewModel: FavoriteViewModel
     private lateinit var mealRepository: MealRepository
+    private lateinit var favoriteMealRepository: FavoriteMealRepository
     private lateinit var sessionManager: SessionManager
     private lateinit var worldAdapter: WorldAdapter
-    private lateinit var searchAdapter: SearchAdapter
+    private lateinit var cuisineAdapter: SearchAdapter
+    private lateinit var ingredientAdapter: SearchAdapter
+
     private var selectedMeal: Meal? = null
     private var isFinished = false
 
@@ -52,19 +60,28 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
         val api = RetrofitInstance.api
         mealRepository = MealRepository(api)
+        val favDao = CookDatabase.createDatabase(requireContext()).favoriteMealDao()
+        favoriteMealRepository = FavoriteMealRepository(favDao)
         val sharedPreferences = requireContext().getSharedPreferences("session", Activity.MODE_PRIVATE)
         sessionManager = SessionManager(sharedPreferences)
 
         homeViewModel = ViewModelProvider(requireActivity(), HomeViewModelFactory(mealRepository))[HomeViewModel::class.java]
+        favoriteViewModel = ViewModelProvider(requireActivity(), FavoriteViewModelFactory(favoriteMealRepository))[FavoriteViewModel::class.java]
 
         loadCuisineCards()
 
-        searchAdapter = SearchAdapter(mutableListOf())
-        binding.rvMadeForYou.adapter = searchAdapter
+        cuisineAdapter = SearchAdapter(mutableListOf())
+        binding.rvMadeForYou.adapter = cuisineAdapter
         binding.rvMadeForYou.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
         binding.rvMadeForYou.clipToPadding = false
+
+        ingredientAdapter = SearchAdapter(mutableListOf())
+        binding.rvFav.adapter = ingredientAdapter
+        binding.rvFav.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+        binding.rvFav.clipToPadding = false
 
         binding.rvExplore.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
         binding.rvExplore.clipToPadding = false
@@ -116,18 +133,68 @@ class HomeFragment : Fragment() {
             repeatOnLifecycle(Lifecycle.State.STARTED){
                 homeViewModel.filter.collect { selectedCuisine ->
                    selectedCuisine?.meals?.let { meals ->
-                       searchAdapter.updateList(meals)
+                       cuisineAdapter.updateList(meals)
                    }
                 }
             }
         }
 
-        searchAdapter.onItemClick = { id ->
+        val selectedIngredient = sessionManager.getIngredient()
+        if(selectedIngredient != null){
+            homeViewModel.filterBySelectedIngredient(selectedIngredient)
+            binding.tvFav.text = "Recipes with $selectedIngredient"
+            binding.rvFav.visibility = View.VISIBLE
+            binding.emptyIngredientCard.visibility = View.GONE
+        }
+        else{
+            binding.rvFav.visibility = View.GONE
+            binding.emptyIngredientCard.visibility = View.VISIBLE
+        }
+
+        viewLifecycleOwner.lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.STARTED){
+                homeViewModel.ingredient.collect { selectedIngredient ->
+                    selectedIngredient?.meals?.let{ meals ->
+                        ingredientAdapter.updateList(meals)
+                    }
+                }
+            }
+        }
+
+        cuisineAdapter.onItemClick = { id ->
             val action = HomeFragmentDirections.actionHomeFragmentToDetailFragment(id)
             findNavController().navigate(action)
         }
 
+        cuisineAdapter.onFavClick = { meal ->
+            favoriteViewModel.toggleFavorite(meal)
+        }
 
+        ingredientAdapter.onItemClick = { id ->
+            val action = HomeFragmentDirections.actionHomeFragmentToDetailFragment(id)
+            findNavController().navigate(action)
+        }
+
+        ingredientAdapter.onFavClick = { meal ->
+            favoriteViewModel.toggleFavorite(meal)
+        }
+
+        // Favorite
+
+        viewLifecycleOwner.lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.STARTED){
+                favoriteViewModel.favorites.collect { favorites ->
+                    val ids = favorites.map { it.idMeal }.toSet()
+
+                    cuisineAdapter.updateFavorites(ids)
+                    ingredientAdapter.updateFavorites(ids)
+                }
+            }
+        }
+
+
+
+        // Random Recipe
         viewLifecycleOwner.lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED){
                 homeViewModel.homeState.collect{ state ->
@@ -149,7 +216,7 @@ class HomeFragment : Fragment() {
                 homeViewModel.homeEvent.collect { event ->
                     when(event){
                         is HomeEvent.NavigateToDetail -> {
-                            findNavController()
+                            navigateIfReady()
                         }
                     }
                 }
@@ -184,7 +251,6 @@ class HomeFragment : Fragment() {
             Country("Morocco",R.drawable.ic_flag_ma),
             Country("Vietnam",R.drawable.ic_flag_vn),
             Country("Bulgaria", R.drawable.ic_flag_bg),
-            Country("Malesia",R.drawable.ic_flag_my)
         )
 
         worldAdapter = WorldAdapter(list)

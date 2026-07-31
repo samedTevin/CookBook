@@ -16,6 +16,7 @@
     <color name="text_secondary">#808080</color>
 
     <color name="chip_background_color">#FFF3E6</color>
+    <color name="text_input_stroke">#8A8A8A</color>
 
     <color name="error">#F44336</color>
 

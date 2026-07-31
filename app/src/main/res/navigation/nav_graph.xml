@@ -101,6 +101,9 @@
         <action
             android:id="@+id/action_profileFragment_to_loginFragment"
             app:destination="@id/loginFragment" />
+        <action
+            android:id="@+id/action_profileFragment_to_editProfile"
+            app:destination="@id/editProfile" />
     </fragment>
     <fragment
         android:id="@+id/categoriesFragment"
@@ -189,4 +192,8 @@
             android:name="type"
             app:argType="com.example.cookbook.util.DiscoverType" />
     </fragment>
+    <fragment
+        android:id="@+id/editProfile"
+        android:name="com.example.cookbook.ui.fragments.detailfragments.EditProfile"
+        android:label="EditProfile" />
 </navigation>
