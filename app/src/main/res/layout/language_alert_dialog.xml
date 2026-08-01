@@ -29,7 +29,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
 
-            android:text="Select Language"
+            android:text="@string/select_language"
 
             android:textSize="30sp"
 
@@ -70,7 +70,8 @@
 
                 android:layout_height="wrap_content"
 
-                android:text="English 🇬🇧"
+                android:text="@string/english"
+                android:tag="en"
 
                 android:textColor="@color/text_primary"
 
@@ -85,7 +86,8 @@
 
                 android:layout_height="wrap_content"
 
-                android:text="German 🇩🇪"
+                android:text="@string/german"
+                android:tag="de"
 
                 android:textColor="@color/text_primary"
 
@@ -100,7 +102,8 @@
 
                 android:layout_height="wrap_content"
 
-                android:text="Turkish 🇹🇷"
+                android:text="@string/turkish_lang"
+                android:tag="tr"
 
                 android:textColor="@color/text_primary"
 
@@ -115,7 +118,8 @@
 
                 android:layout_height="wrap_content"
 
-                android:text="French 🇫🇷"
+                android:text="@string/french"
+                android:tag="fr"
 
                 android:textColor="@color/text_primary"
 
@@ -130,7 +134,8 @@
 
                 android:layout_height="wrap_content"
 
-                android:text="Chinese 🇨🇳"
+                android:text="@string/chinese_lang"
+                android:tag="zh"
 
                 android:textColor="@color/text_primary"
 
@@ -145,7 +150,8 @@
 
                 android:layout_height="wrap_content"
 
-                android:text="Russian 🇷🇺"
+                android:text="@string/russian_lang"
+                android:tag="ru"
 
                 android:textColor="@color/text_primary"
 
@@ -162,7 +168,7 @@
 
             android:layout_height="wrap_content"
 
-            android:text="Cancel"
+            android:text="@string/cancel"
             android:fontFamily="@font/poppins_semibold"
             android:textColor="@color/primary"
             android:backgroundTint="@color/surface"
@@ -190,7 +196,7 @@
             android:layout_height="wrap_content"
 
 
-            android:text="Save"
+            android:text="@string/save"
 
             android:textColor="@color/background"
 

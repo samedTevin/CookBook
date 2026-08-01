@@ -36,7 +36,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
 
-                android:text="CookBook"
+                android:text="@string/app_name"
                 android:textSize="50sp"
 
                 android:textColor="@color/primary"
@@ -57,7 +57,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
 
-            android:text="Search Recipes"
+            android:text="@string/search_recipes"
 
             android:textSize="30sp"
 
@@ -78,7 +78,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
 
-            android:text="Find your favorite meal by name"
+            android:text="@string/find_your_favorite_meal_by_name"
 
             android:textSize="16sp"
 
@@ -100,7 +100,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
 
-            android:queryHint="Search recipes..."
+            android:queryHint="@string/home_page_query_hint"
 
             android:searchHintIcon="@null"
 
@@ -124,62 +124,6 @@
 
             app:layout_constraintEnd_toEndOf="parent"/>
 
-
-
-
-
-        <TextView
-
-            android:id="@+id/tvRecent"
-
-            android:layout_width="wrap_content"
-
-            android:layout_height="wrap_content"
-
-
-            android:text="Recent Searches"
-
-            android:textSize="15sp"
-
-            android:textColor="@color/text_primary"
-
-            android:fontFamily="@font/poppins_semibold"
-
-
-            android:layout_marginTop="15dp"
-
-
-            app:layout_constraintTop_toBottomOf="@id/searchView"
-
-            app:layout_constraintStart_toStartOf="parent"/>
-
-
-
-
-        <androidx.recyclerview.widget.RecyclerView
-
-
-            android:id="@+id/rvRecentSearch"
-
-            android:layout_width="0dp"
-
-            android:layout_height="wrap_content"
-
-
-            android:layout_marginTop="10dp"
-
-
-            app:layout_constraintTop_toBottomOf="@id/tvRecent"
-
-            app:layout_constraintStart_toStartOf="parent"
-
-            app:layout_constraintEnd_toEndOf="parent"
-
-            android:clipToPadding="false"/>
-
-
-
-
         <LinearLayout
 
 
@@ -199,7 +143,7 @@
             android:layout_marginTop="30dp"
 
 
-            app:layout_constraintTop_toBottomOf="@id/rvRecentSearch"
+            app:layout_constraintTop_toBottomOf="@id/searchView"
 
             app:layout_constraintStart_toStartOf="parent"
 
@@ -227,7 +171,7 @@
                 android:layout_height="wrap_content"
 
 
-                android:text="Ready to cook?"
+                android:text="@string/ready_to_cook"
 
                 android:textSize="30sp"
 
@@ -250,7 +194,7 @@
                 android:layout_height="wrap_content"
 
 
-                android:text="Start typing to search recipes&#10;from our global kitchen."
+                android:text="@string/ready_to_cook_description"
 
 
                 android:textSize="18sp"
@@ -290,7 +234,7 @@
             android:layout_marginTop="30dp"
 
 
-            app:layout_constraintTop_toBottomOf="@id/rvRecentSearch"
+            app:layout_constraintTop_toBottomOf="@id/searchView"
 
             app:layout_constraintStart_toStartOf="parent"
 
@@ -318,7 +262,7 @@
                 android:layout_height="wrap_content"
 
 
-                android:text="No recipes found..."
+                android:text="@string/no_recipes_found"
 
                 android:textSize="30sp"
 
@@ -339,7 +283,7 @@
                 android:layout_height="wrap_content"
 
 
-                android:text="Try searching with another keyword."
+                android:text="@string/try_searching_with_another_keyword"
 
                 android:textSize="18sp"
 
@@ -377,7 +321,7 @@
             android:layout_marginTop="30dp"
 
 
-            app:layout_constraintTop_toBottomOf="@id/rvRecentSearch"
+            app:layout_constraintTop_toBottomOf="@id/searchView"
 
             app:layout_constraintStart_toStartOf="parent"
 
@@ -394,7 +338,7 @@
                 android:layout_height="wrap_content"
 
 
-                android:text="Search Results"
+                android:text="@string/search_results"
 
                 android:textSize="25sp"
 

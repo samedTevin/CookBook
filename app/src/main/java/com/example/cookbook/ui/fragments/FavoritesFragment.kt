@@ -51,7 +51,7 @@ class FavoritesFragment : Fragment() {
         viewLifecycleOwner.lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED){
                 favoriteViewModel.favorites.collect { favoriteMeals ->
-                    binding.tvDescription.text = "You have ${favoriteMeals.size} favorite meals in your list."
+                    binding.tvCount.text = favoriteMeals.size.toString()
                     adapter.updateList(favoriteMeals)
                 }
             }

@@ -51,19 +51,61 @@ class ProfileFragment : Fragment() {
         profileViewModel = ViewModelProvider(this, ProfileViewModelFactory(userRepository,sessionManager))[ProfileViewModel::class.java]
 
         binding.switchDarkMode.isChecked = sessionManager.getDarkMode()
-        binding.selectedCuisine.text = sessionManager.getCuisine()
-        binding.selectedLanguage.text = sessionManager.getLanguage()
-        binding.selectedIngredient.text = sessionManager.getIngredient()
+        binding.selectedCuisine.text = when(sessionManager.getCuisine()){
+            "Italian" -> getString(R.string.italian)
+            "Turkish" -> getString(R.string.turkish)
+            "Japanese" -> getString(R.string.japanese)
+            "Moroccan" -> getString(R.string.moroccan)
+            "Chinese" -> getString(R.string.chinese)
+            "Russian" -> getString(R.string.russian)
+            "Thai" -> getString(R.string.thai)
+            "Irish" -> getString(R.string.irish)
+            "Greek" -> getString(R.string.greek)
+            "Vietnamese" -> getString(R.string.vietnamese)
+            else -> ""
+        }
+        binding.selectedLanguage.text = when(sessionManager.getLanguage()){
+            "en" -> getString(R.string.english)
+            "de" -> getString(R.string.german)
+            "tr" -> getString(R.string.turkish_lang)
+            "fr" -> getString(R.string.french)
+            "zh" -> getString(R.string.chinese_lang)
+            "ru" -> getString(R.string.russian_lang)
+            else -> ""
+        }
+        binding.selectedIngredient.text = when(sessionManager.getIngredient()){
+            "Egg" -> getString(R.string.egg)
+            "Beef" -> getString(R.string.beef)
+            "Bread" -> getString(R.string.bread)
+            "Sugar" -> getString(R.string.sugar)
+            "Cheese" -> getString(R.string.cheese)
+            "Cocoa" -> getString(R.string.cocoa)
+            "Milk" -> getString(R.string.milk)
+            "Honey" -> getString(R.string.honey)
+            "Carrots" -> getString(R.string.carrots)
+            "Cucumber" -> getString(R.string.cucumber)
+            else -> ""
+        }
+
 
         binding.editProfileCard.setOnClickListener {
             findNavController().navigate(R.id.action_profileFragment_to_editProfile)
         }
 
         binding.languageCard.setOnClickListener {
-            DialogUtil.showLanguageDialog(requireContext(),layoutInflater) { language ->
-                sessionManager.saveLanguage(language)
-                Toast.makeText(context, "Selected language: $language", Toast.LENGTH_LONG).show()
-                binding.selectedLanguage.text = language
+            DialogUtil.showLanguageDialog(requireContext(),layoutInflater, sessionManager.getLanguage() ?: "") { tag->
+                sessionManager.saveLanguage(tag)
+                profileViewModel.setLanguage(tag)
+                findNavController().navigate(R.id.action_profileFragment_to_homeFragment)
+                binding.selectedLanguage.text = when(tag){
+                    "en" -> getString(R.string.english)
+                    "de" -> getString(R.string.german)
+                    "tr" -> getString(R.string.turkish_lang)
+                    "fr" -> getString(R.string.french)
+                    "zh" -> getString(R.string.chinese_lang)
+                    "ru" -> getString(R.string.russian_lang)
+                    else -> ""
+                }
             }
         }
 
@@ -81,18 +123,39 @@ class ProfileFragment : Fragment() {
 
 
         binding.cuisineCard.setOnClickListener {
-            DialogUtil.showCuisineDialog(requireContext(),layoutInflater,sessionManager.getCuisine() ?: "") { cuisine ->
-                sessionManager.saveCuisine(cuisine)
-                Toast.makeText(context,"Selected cuisine: $cuisine",Toast.LENGTH_LONG).show()
-                binding.selectedCuisine.text = cuisine
+            DialogUtil.showCuisineDialog(requireContext(),layoutInflater,sessionManager.getCuisine() ?: "") { tag ->
+                sessionManager.saveCuisine(tag)
+                binding.selectedCuisine.text = when(tag){
+                    "Italian" -> getString(R.string.italian)
+                    "Turkish" -> getString(R.string.turkish)
+                    "Japanese" -> getString(R.string.japanese)
+                    "Moroccan" -> getString(R.string.moroccan)
+                    "Chinese" -> getString(R.string.chinese)
+                    "Russian" -> getString(R.string.russian)
+                    "Thai" -> getString(R.string.thai)
+                    "Irish" -> getString(R.string.irish)
+                    "Greek" -> getString(R.string.greek)
+                    "Vietnamese" -> getString(R.string.vietnamese)
+                    else -> ""
+                }
             }
         }
 
         binding.ingredientCard.setOnClickListener {
-            DialogUtil.showIngredientsDialog(requireContext(),layoutInflater,sessionManager.getIngredient() ?: ""){ ingredient ->
-                sessionManager.saveIngredient(ingredient)
-                Toast.makeText(context,"Selected ingredient: $ingredient", Toast.LENGTH_SHORT).show()
-                binding.selectedIngredient.text = ingredient
+            DialogUtil.showIngredientsDialog(requireContext(),layoutInflater,sessionManager.getIngredient() ?: ""){ tag ->
+                sessionManager.saveIngredient(tag)
+                binding.selectedIngredient.text = when(tag){
+                    "Egg" -> getString(R.string.egg)
+                    "Beef" -> getString(R.string.beef)
+                    "Bread" -> getString(R.string.bread)
+                    "Sugar" -> getString(R.string.sugar)
+                    "Cheese" -> getString(R.string.cheese)
+                    "Cocoa" -> getString(R.string.cocoa)
+                    "Milk" -> getString(R.string.milk)
+                    "Honey" -> getString(R.string.honey)
+                    "Carrots" -> getString(R.string.carrots)
+                    "Cucumber" -> getString(R.string.cucumber)
+                    else -> ""}
             }
         }
 

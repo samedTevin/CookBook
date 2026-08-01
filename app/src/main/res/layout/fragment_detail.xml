@@ -37,7 +37,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
 
-                android:text="CookBook"
+                android:text="@string/app_name"
 
                 android:textSize="50sp"
 
@@ -167,7 +167,7 @@
 
             android:layout_height="wrap_content"
 
-            android:text="Tags"
+            android:text="@string/tags"
 
             android:textSize="18sp"
 
@@ -240,7 +240,7 @@
 
             android:layout_height="wrap_content"
 
-            android:text="Ingredients"
+            android:text="@string/ingredients"
 
             android:textSize="20sp"
 
@@ -284,7 +284,7 @@
 
             android:layout_height="wrap_content"
 
-            android:text="Instructions"
+            android:text="@string/instructions"
 
             android:textSize="20sp"
 
@@ -352,7 +352,7 @@
 
             android:layout_marginBottom="30dp"
 
-            android:text="Watch On YouTube"
+            android:text="@string/watch_on_youtube"
 
             android:textColor="@android:color/white"
 

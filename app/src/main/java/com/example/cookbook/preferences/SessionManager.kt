@@ -47,4 +47,7 @@ class SessionManager(private val sharedPreferences: SharedPreferences) {
     fun getIngredient(): String? {
         return sharedPreferences.getString("selectedIngredient", null)
     }
+
+
+
 }

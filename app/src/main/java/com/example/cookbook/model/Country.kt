@@ -1,3 +1,6 @@
 package com.example.cookbook.model
 
-data class Country(val name: String, val imageId: Int)
+import androidx.annotation.DrawableRes
+import androidx.annotation.StringRes
+
+data class Country(val apiName: String, @StringRes val nameRes: Int, @DrawableRes val imgRes: Int)

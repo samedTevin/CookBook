@@ -24,7 +24,7 @@
 
         android:layout_height="wrap_content"
 
-        android:text="Profile"
+        android:text="@string/profile"
 
         android:textColor="@color/primary"
 
@@ -124,7 +124,7 @@
 
             android:layout_height="wrap_content"
 
-            android:text="Samed Tevin"
+            android:text=""
 
             android:textColor="@color/text_primary"
 
@@ -140,7 +140,7 @@
 
             android:layout_height="wrap_content"
 
-            android:text="\@username"
+            android:text=""
 
             android:textColor="@color/text_secondary"
 
@@ -156,7 +156,7 @@
 
             android:layout_height="wrap_content"
 
-            android:text="samedtevin57@gmail.com"
+            android:text=""
 
             android:textColor="@color/text_secondary"
 
@@ -179,7 +179,7 @@
 
         android:layout_height="wrap_content"
 
-        android:text="Account Options"
+        android:text="@string/account_options"
 
         android:textColor="@color/text_primary"
 
@@ -270,7 +270,7 @@
 
                     android:layout_marginStart="16dp"
 
-                    android:text="Edit Profile"
+                    android:text="@string/edit_profile"
 
                     android:textColor="@color/text_primary"
 
@@ -352,7 +352,7 @@
 
                     android:layout_marginStart="16dp"
 
-                    android:text="Language"
+                    android:text="@string/language"
 
                     android:textColor="@color/text_primary"
 
@@ -368,7 +368,7 @@
 
                     android:layout_height="wrap_content"
 
-                    android:text="English"
+                    android:text=""
 
                     android:textColor="@color/text_secondary"/>
 
@@ -439,7 +439,7 @@
 
                     android:layout_marginStart="16dp"
 
-                    android:text="Dark Mode"
+                    android:text="@string/dark_mode"
 
                     android:textColor="@color/text_primary"
 
@@ -521,7 +521,7 @@
 
                     android:layout_marginStart="16dp"
 
-                    android:text="Preferred Cuisine"
+                    android:text="@string/preferred_cuisine"
 
                     android:textColor="@color/text_primary"
 
@@ -537,7 +537,7 @@
 
                     android:layout_height="wrap_content"
 
-                    android:text="Turkish"
+                    android:text=""
 
                     android:textColor="@color/text_secondary"/>
 
@@ -617,7 +617,7 @@
 
                     android:layout_marginStart="16dp"
 
-                    android:text="Favorite Ingredient"
+                    android:text="@string/favorite_ingredient"
 
                     android:textColor="@color/text_primary"
 
@@ -631,7 +631,7 @@
 
                     android:layout_height="wrap_content"
 
-                    android:text="Chicken"
+                    android:text=""
 
                     android:textColor="@color/text_secondary"/>
 
@@ -720,7 +720,7 @@
 
                         android:layout_marginStart="16dp"
 
-                        android:text="About"
+                        android:text="@string/about"
 
                         android:textColor="@color/text_primary"
 
@@ -736,7 +736,7 @@
 
                         android:layout_marginStart="16dp"
 
-                        android:text="Version 2.4.0"
+                        android:text="@string/version_1_0"
 
                         android:textColor="@color/text_secondary"
 

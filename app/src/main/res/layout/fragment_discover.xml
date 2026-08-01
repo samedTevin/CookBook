@@ -50,7 +50,7 @@
 
                 android:fontFamily="@font/poppins_semibold"
 
-                android:text="CookBook"
+                android:text="@string/app_name"
 
                 android:textColor="@color/primary"
 
@@ -73,7 +73,7 @@
 
             android:fontFamily="@font/poppins_semibold"
 
-            android:text="Discover\nGermany"
+            android:text="@string/discover_recipes_fragment"
 
             android:textColor="@color/text_primary"
 
@@ -82,6 +82,27 @@
             app:layout_constraintStart_toStartOf="parent"
 
             app:layout_constraintTop_toBottomOf="@id/toolBar" />
+
+
+        <TextView
+
+            android:id="@+id/tvSubTitle"
+
+            android:layout_width="wrap_content"
+
+            android:layout_height="wrap_content"
+
+            android:fontFamily="@font/poppins_semibold"
+
+            android:text=""
+
+            android:textColor="@color/text_primary"
+
+            android:textSize="25sp"
+
+            app:layout_constraintStart_toStartOf="parent"
+
+            app:layout_constraintTop_toBottomOf="@id/tvTitle" />
 
 
 
@@ -100,7 +121,7 @@
 
             app:layout_constraintStart_toStartOf="parent"
 
-            app:layout_constraintTop_toBottomOf="@id/tvTitle"
+            app:layout_constraintTop_toBottomOf="@id/tvSubTitle"
 
             app:singleLine="true">
 
@@ -113,7 +134,7 @@
 
                 android:layout_height="wrap_content"
 
-                android:text="Japanese"
+                android:text=""
 
                 android:textColor="@color/background"
 
@@ -130,7 +151,7 @@
 
                 android:layout_height="wrap_content"
 
-                android:text="22 Recipes"
+                android:text=""
 
                 android:textColor="@color/background"
 

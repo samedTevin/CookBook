@@ -16,11 +16,10 @@ class WorldAdapter(private val countries: List<Country>): RecyclerView.Adapter<W
     inner class WorldViewHolder(val binding: ItemCuisinesBinding) : RecyclerView.ViewHolder(binding.root){
         fun bind(country: Country){
             binding.apply {
-                Glide.with(root).load(country.imageId).into(ivFlagPhoto)
-                tvFlagName.text = country.name
-
+                Glide.with(root).load(country.imgRes).into(ivFlagPhoto)
+                tvFlagName.text = itemView.context.getString(country.nameRes)
                 root.setOnClickListener {
-                    onItemClick?.invoke(country.name)
+                    onItemClick?.invoke(country.apiName)
                 }
 
             }

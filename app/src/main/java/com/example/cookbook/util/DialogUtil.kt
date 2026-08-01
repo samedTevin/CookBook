@@ -19,6 +19,7 @@ object DialogUtil {
     fun showLanguageDialog(
         context: Context,
         layoutInflater: LayoutInflater,
+        currentLanguage: String,
         onSave: (String) -> Unit
     ) {
         val binding = LanguageAlertDialogBinding.inflate(layoutInflater)
@@ -28,12 +29,23 @@ object DialogUtil {
         dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         dialog.show()
 
+        binding.rbEnglish.isChecked = true
+
+        when(currentLanguage){
+            "en" -> binding.rbEnglish.isChecked = true
+            "de" -> binding.rbGerman.isChecked = true
+            "tr" -> binding.rbTurkish.isChecked = true
+            "fr" -> binding.rbFrench.isChecked = true
+            "zh" -> binding.rbChinese.isChecked = true
+            "ru" -> binding.rbRussian.isChecked = true
+        }
+
         binding.buttonSave.setOnClickListener {
             val checkedId = binding.radioGroup.checkedRadioButtonId
 
             if (checkedId != -1) {
                 val radioButton = binding.root.findViewById<RadioButton>(checkedId)
-                onSave(radioButton.text.toString())
+                onSave(radioButton.tag.toString())
             }
 
             dialog.dismiss()
@@ -78,7 +90,7 @@ object DialogUtil {
 
             if (checkedId != -1) {
                 val radioButton = binding.root.findViewById<RadioButton>(checkedId)
-                onSave(radioButton.text.toString())
+                onSave(radioButton.tag.toString())
             }
 
             dialog.dismiss()
@@ -120,7 +132,7 @@ object DialogUtil {
 
             if (checkedId != -1) {
                 val radioButton = binding.root.findViewById<RadioButton>(checkedId)
-                onSave(radioButton.text.toString())
+                onSave(radioButton.tag.toString())
             }
             dialog.dismiss()
         }

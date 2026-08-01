@@ -44,7 +44,7 @@
 
                 android:layout_height="wrap_content"
 
-                android:text="CookBook"
+                android:text="@string/app_name"
 
                 android:textSize="50sp"
 
@@ -69,7 +69,7 @@
 
             android:layout_height="wrap_content"
 
-            android:text="Welcome to CookBook!"
+            android:text="@string/welcome"
 
             android:textSize="30sp"
 
@@ -93,7 +93,7 @@
 
             android:layout_height="wrap_content"
 
-            android:text="Find your next favorite recipe"
+            android:text="@string/find_your_next_favorite_recipe"
 
             android:textSize="16sp"
 
@@ -117,7 +117,7 @@
 
             android:layout_height="wrap_content"
 
-            android:queryHint="Search recipes..."
+            android:queryHint="@string/home_page_query_hint"
 
             android:searchHintIcon="@null"
 
@@ -151,7 +151,7 @@
 
             android:layout_height="wrap_content"
 
-            android:text="Roll the Dice🎲"
+            android:text="@string/roll_the_dice"
 
             android:textSize="25sp"
 
@@ -177,7 +177,7 @@
 
             android:layout_height="wrap_content"
 
-            android:text="Find your next favorite recipe"
+            android:text="@string/can_t_decide_roll_for_a_surprise_recipe"
 
             android:textSize="16sp"
 
@@ -243,7 +243,7 @@
 
             android:layout_height="wrap_content"
 
-            android:text="Made for You"
+            android:text="@string/made_for_you"
 
             android:textSize="25sp"
 
@@ -269,7 +269,7 @@
 
             android:layout_height="wrap_content"
 
-            android:text="Based on your preferred cuisine"
+            android:text="@string/based_on_your_preferred_cuisine"
 
             android:textSize="16sp"
 
@@ -329,7 +329,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="🗺️"
+                        android:text="@string/no_cuisine_logo"
                         android:textSize="60sp"
                         android:textColor="@color/text_primary"
                         android:fontFamily="@font/inter"
@@ -338,7 +338,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="No cuisine selected"
+                        android:text="@string/no_cuisine_selected"
                         android:textSize="20sp"
                         android:textColor="@color/text_primary"
                         android:fontFamily="@font/poppins_semibold"
@@ -346,7 +346,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Pick your favorite cuisine to get personalized recipe recommendations."
+                        android:text="@string/no_cuisine_selected_description"
                         android:textSize="16sp"
                         android:textColor="@color/text_primary"
                         android:textAlignment="center"
@@ -357,7 +357,7 @@
                         android:id="@+id/tvSelectCuisine"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Tap to choose cuisine"
+                        android:text="@string/tap_to_choose_cuisine"
                         android:textSize="20sp"
                         android:textColor="@color/primary"
                         android:fontFamily="@font/poppins_semibold"
@@ -382,7 +382,7 @@
 
             android:layout_height="wrap_content"
 
-            android:text="Explore by Ingredient"
+            android:text="@string/explore_by_ingredient"
 
             android:textSize="25sp"
 
@@ -408,7 +408,7 @@
 
             android:layout_height="wrap_content"
 
-            android:text="Based on your favorite ingredient"
+            android:text="@string/based_on_your_favorite_ingredient"
 
             android:textSize="16sp"
 
@@ -466,7 +466,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="🥬"
+                        android:text="@string/no_ingredient_logo"
                         android:textSize="60sp"
                         android:textColor="@color/text_primary"
                         android:fontFamily="@font/inter"
@@ -475,7 +475,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="No ingredient selected"
+                        android:text="@string/no_ingredient_selected"
                         android:textSize="20sp"
                         android:textColor="@color/text_primary"
                         android:fontFamily="@font/poppins_semibold"
@@ -483,7 +483,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Choose your favorite ingredient to discover recipes made with them."
+                        android:text="@string/no_ingredient_description"
                         android:textSize="16sp"
                         android:textColor="@color/text_primary"
                         android:textAlignment="center"
@@ -494,7 +494,7 @@
                         android:id="@+id/tvSelectIngredient"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Tap to choose ingredient"
+                        android:text="@string/tap_to_choose_ingredient"
                         android:textSize="20sp"
                         android:textColor="@color/primary"
                         android:fontFamily="@font/poppins_semibold"
@@ -521,7 +521,7 @@
 
             android:layout_height="wrap_content"
 
-            android:text="Explore Cuisines"
+            android:text="@string/explore_cuisines"
 
             android:textSize="25sp"
 

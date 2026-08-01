@@ -22,7 +22,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
 
-        android:text="Create Account"
+        android:text="@string/create_account"
 
         android:fontFamily="@font/poppins_semibold"
 
@@ -42,7 +42,7 @@
 
         android:layout_height="wrap_content"
 
-        android:text="Sign up to discover, save, and \ncook delicious recipes."
+        android:text="@string/create_account_description"
 
         android:textAlignment="center"
 
@@ -66,7 +66,7 @@
 
         android:layout_height="wrap_content"
 
-        android:hint="Email"
+        android:hint="@string/email"
 
         android:layout_marginBottom="20dp"
 
@@ -106,7 +106,7 @@
 
         android:layout_height="wrap_content"
 
-        android:hint="Username"
+        android:hint="@string/username_register"
 
         android:layout_marginBottom="15dp"
 
@@ -147,7 +147,7 @@
 
         android:layout_height="wrap_content"
 
-        android:hint="Password"
+        android:hint="@string/password"
 
         android:layout_marginBottom="15dp"
 
@@ -190,7 +190,7 @@
 
         android:layout_height="wrap_content"
 
-        android:hint="Password Confirmation"
+        android:hint="@string/password_confirmation"
 
         android:layout_marginBottom="15dp"
 
@@ -241,7 +241,7 @@
 
         android:textSize="25sp"
 
-        android:text="Sign up"
+        android:text="@string/sign_up"
 
         android:fontFamily="@font/poppins_semibold"
 
@@ -264,7 +264,7 @@
 
         android:textAlignment="center"
 
-        android:text="Already have an account"
+        android:text="@string/already_have_an_account"
 
         android:textColor="@color/text_primary"
 

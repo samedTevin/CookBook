@@ -53,7 +53,7 @@
         android:layout_height="wrap_content"
 
 
-        android:text="Start Your"
+        android:text="@string/start_your"
 
 
         android:textSize="30sp"
@@ -81,7 +81,7 @@
         android:layout_height="wrap_content"
 
 
-        android:text="Cooking Journey"
+        android:text="@string/cooking_journey"
 
 
         android:textSize="30sp"
@@ -109,7 +109,7 @@
         android:layout_height="wrap_content"
 
 
-        android:text="Save, organize and access&#10;your recipes anytime."
+        android:text="@string/save_organize_and_access_10_your_recipes_anytime"
 
 
         android:textAlignment="center"
@@ -165,7 +165,7 @@
             android:layout_height="48dp"
 
 
-            android:text="Login"
+            android:text="@string/login"
 
 
             android:textSize="19sp"
@@ -210,7 +210,7 @@
             android:layout_height="48dp"
 
 
-            android:text="Register"
+            android:text="@string/register"
 
 
             android:textSize="19sp"

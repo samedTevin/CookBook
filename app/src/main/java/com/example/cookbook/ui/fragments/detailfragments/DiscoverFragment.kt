@@ -62,7 +62,7 @@ class DiscoverFragment : Fragment() {
             rvFilter.adapter = searchAdapter
             rvFilter.clipToPadding = false
             rvFilter.isNestedScrollingEnabled = false
-            tvTitle.text = "Discover\n${args.name}"
+            tvSubTitle.text = args.name
             chipTag1.text = args.name
         }
 

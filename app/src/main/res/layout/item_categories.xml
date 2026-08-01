@@ -76,7 +76,7 @@
             android:layout_height="wrap_content"
 
 
-            android:text="High Protein"
+            android:text=""
 
 
             android:textColor="@color/text_primary"
@@ -114,7 +114,7 @@
             android:layout_height="wrap_content"
 
 
-            android:text="Beef"
+            android:text=""
 
 
             android:gravity="center"

@@ -45,7 +45,7 @@
 
                 android:layout_height="wrap_content"
 
-                android:text="CookBook"
+                android:text="@string/app_name"
 
                 android:textSize="50sp"
 
@@ -70,7 +70,7 @@
 
             android:layout_height="wrap_content"
 
-            android:text="Favorite Recipes"
+            android:text="@string/favorite_recipes"
 
             android:textSize="30sp"
 
@@ -94,7 +94,7 @@
 
             android:layout_height="wrap_content"
 
-            android:text="You have saved 2 collections"
+            android:text="@string/number_of_recipes"
 
             android:textSize="16sp"
 
@@ -105,6 +105,26 @@
             app:layout_constraintTop_toBottomOf="@id/tvTitle"
 
             app:layout_constraintStart_toStartOf="parent"/>
+
+        <TextView
+
+            android:id="@+id/tvCount"
+
+            android:layout_width="wrap_content"
+
+            android:layout_height="wrap_content"
+
+            android:text=""
+
+            android:textSize="16sp"
+
+            android:textColor="@color/text_secondary"
+
+            android:fontFamily="@font/inter"
+
+            app:layout_constraintTop_toBottomOf="@id/tvTitle"
+
+            app:layout_constraintStart_toEndOf="@id/tvDescription"/>
 
 
 

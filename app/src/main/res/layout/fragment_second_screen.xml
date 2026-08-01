@@ -47,7 +47,7 @@
         android:layout_height="wrap_content"
 
 
-        android:text="Discover Recipes"
+        android:text="@string/save_your_favorites"
 
 
         android:textSize="40sp"
@@ -81,7 +81,7 @@
         android:layout_height="wrap_content"
 
 
-        android:text="Explore thousands of delicious recipes&#10;from cuisines around the world and&#10;find your next favorite meal."
+        android:text="@string/save_your_favorites_description"
 
 
         android:textAlignment="center"

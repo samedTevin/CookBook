@@ -30,7 +30,7 @@
 
         android:layout_height="wrap_content"
 
-        android:text="Login Here"
+        android:text="@string/login_here"
 
         android:textColor="@color/primary"
 
@@ -52,7 +52,7 @@
 
         android:layout_height="wrap_content"
 
-        android:text="Welcome back you've\nbeen missed!"
+        android:text="@string/login_description"
 
         android:textAlignment="center"
 
@@ -76,7 +76,7 @@
 
         android:layout_height="wrap_content"
 
-        android:hint="Email"
+        android:hint="@string/email"
 
         app:boxBackgroundMode="outline"
 
@@ -116,7 +116,7 @@
 
         android:layout_height="wrap_content"
 
-        android:hint="Password"
+        android:hint="@string/password"
 
         app:boxBackgroundMode="outline"
 
@@ -158,7 +158,7 @@
 
         android:layout_height="wrap_content"
 
-        android:text="Forgot your password?"
+        android:text="@string/forgot_your_password"
 
         android:textColor="@color/primary"
 
@@ -180,7 +180,7 @@
 
         android:layout_height="wrap_content"
 
-        android:text="Sign in"
+        android:text="@string/sign_in"
 
         android:textColor="@color/white"
 
@@ -206,7 +206,7 @@
 
         android:layout_height="wrap_content"
 
-        android:text="Create a new account"
+        android:text="@string/create_a_new_account"
 
         android:textAlignment="center"
 

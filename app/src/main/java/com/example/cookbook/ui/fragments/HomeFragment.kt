@@ -142,7 +142,6 @@ class HomeFragment : Fragment() {
         val selectedIngredient = sessionManager.getIngredient()
         if(selectedIngredient != null){
             homeViewModel.filterBySelectedIngredient(selectedIngredient)
-            binding.tvFav.text = "Recipes with $selectedIngredient"
             binding.rvFav.visibility = View.VISIBLE
             binding.emptyIngredientCard.visibility = View.GONE
         }
@@ -232,25 +231,25 @@ class HomeFragment : Fragment() {
 
     fun loadCuisineCards(){
 
-        val list = listOf<Country>(Country("Spain",R.drawable.ic_flag_es),
-            Country("Brazil",R.drawable.ic_flag_br),
-            Country("China",R.drawable.ic_flag_cn),
-            Country("France",R.drawable.ic_flag_fr),
-            Country("Turkey",R.drawable.ic_flag_tr),
-            Country("Netherlands", R.drawable.ic_flag_nl),
-            Country("India",R.drawable.ic_flag_in),
-            Country("Greece",R.drawable.ic_flag_gr),
-            Country("Italy",R.drawable.ic_flag_it),
-            Country("United States",R.drawable.ic_flag_us),
-            Country("Japan",R.drawable.ic_flag_jp),
-            Country("Ukraine",R.drawable.ic_flag_ua),
-            Country("United Kingdom",R.drawable.ic_flag_gb),
-            Country("Ireland",R.drawable.ic_flag_ie),
-            Country("Russia",R.drawable.ic_flag_ru),
-            Country("Thailand",R.drawable.ic_flag_th),
-            Country("Morocco",R.drawable.ic_flag_ma),
-            Country("Vietnam",R.drawable.ic_flag_vn),
-            Country("Bulgaria", R.drawable.ic_flag_bg),
+        val list = listOf<Country>(Country("Spain",R.string.spain,R.drawable.ic_flag_es),
+            Country("Brazil",R.string.brazil,R.drawable.ic_flag_br),
+            Country("China",R.string.china,R.drawable.ic_flag_cn),
+            Country("France",R.string.france,R.drawable.ic_flag_fr),
+            Country("Turkey",R.string.turkey,R.drawable.ic_flag_tr),
+            Country("Netherlands", R.string.netherlands,R.drawable.ic_flag_nl),
+            Country("India",R.string.india,R.drawable.ic_flag_in),
+            Country("Greece",R.string.greece,R.drawable.ic_flag_gr),
+            Country("Italy",R.string.italy, R.drawable.ic_flag_it),
+            Country("United States",R.string.united_states, R.drawable.ic_flag_us),
+            Country("Japan",R.string.japan, R.drawable.ic_flag_jp),
+            Country("Ukraine",R.string.ukraine, R.drawable.ic_flag_ua),
+            Country("United Kingdom",R.string.united_kingdom, R.drawable.ic_flag_gb),
+            Country("Ireland",R.string.ireland, R.drawable.ic_flag_ie),
+            Country("Russia",R.string.russia, R.drawable.ic_flag_ru),
+            Country("Thailand",R.string.thailand, R.drawable.ic_flag_th),
+            Country("Morocco",R.string.morocco, R.drawable.ic_flag_ma),
+            Country("Vietnam",R.string.vietnam, R.drawable.ic_flag_vn),
+            Country("Bulgaria", R.string.brazil, R.drawable.ic_flag_bg),
         )
 
         worldAdapter = WorldAdapter(list)
