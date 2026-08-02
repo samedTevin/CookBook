@@ -16,6 +16,14 @@ class SessionManager(private val sharedPreferences: SharedPreferences) {
         return sharedPreferences.getBoolean("isLoggedIn",false)
     }
 
+    fun saveCurrentUserEmail(userEmail: String){
+        sharedPreferences.edit().putString("currentUserEmail", userEmail).apply()
+    }
+
+    fun getCurrentUserEmail(): String?{
+        return sharedPreferences.getString("currentUserEmail", null)
+    }
+
     fun saveLanguage(language: String){
         sharedPreferences.edit().putString("language", language).apply()
     }

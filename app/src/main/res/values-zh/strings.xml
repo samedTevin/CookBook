@@ -127,4 +127,17 @@
     <string name="search">搜索</string>
     <string name="favorites">收藏</string>
     <string name="categories">分类</string>
+    <string name="breakfast">早餐</string>
+    <string name="chicken">鸡肉</string>
+    <string name="dessert">甜点</string>
+    <string name="goat">山羊肉</string>
+    <string name="lamb">羊肉</string>
+    <string name="miscellaneous">其他</string>
+    <string name="pasta">意大利面</string>
+    <string name="pork">猪肉</string>
+    <string name="seafood">海鲜</string>
+    <string name="side">配菜</string>
+    <string name="starter">开胃菜</string>
+    <string name="vegan">纯素食</string>
+    <string name="vegetarian">素食</string>
 </resources>

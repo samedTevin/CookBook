@@ -134,4 +134,17 @@
     <string name="search">Search</string>
     <string name="favorites">Favorites</string>
     <string name="categories">Categories</string>
+    <string name="breakfast">Breakfast</string>
+    <string name="chicken">Chicken</string>
+    <string name="dessert">Dessert</string>
+    <string name="goat">Goat</string>
+    <string name="lamb">Lamb</string>
+    <string name="miscellaneous">Miscellaneous</string>
+    <string name="pasta">Pasta</string>
+    <string name="pork">Pork</string>
+    <string name="seafood">Seafood</string>
+    <string name="side">Side</string>
+    <string name="starter">Starter</string>
+    <string name="vegan">Vegan</string>
+    <string name="vegetarian">Vegetarian</string>
 </resources>

@@ -9,9 +9,11 @@ data class User(
     @PrimaryKey
     val email: String,
     @ColumnInfo("full_name")
-    val fullName: String,
+    val fullName: String? = null,
     @ColumnInfo("username")
-    val username: String,
+    val username: String?,
     @ColumnInfo("password")
-    val password: String,
+    val password: String?,
+    @ColumnInfo("image_path")
+    val imagePath: String? = null,
     )

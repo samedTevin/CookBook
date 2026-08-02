@@ -52,6 +52,7 @@ class LoginFragment : Fragment() {
 
         binding.buttonSignIn.setOnClickListener {
             viewModel.login(binding.etMail.text.toString())
+            sessionManager.saveCurrentUserEmail(binding.etMail.text.toString())
         }
 
         viewLifecycleOwner.lifecycleScope.launch {

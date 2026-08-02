@@ -67,8 +67,8 @@
             android:fontFamily="@font/inter"/>
 
         <FrameLayout
-            android:layout_width="100dp"
-            android:layout_height="100dp"
+            android:layout_width="130dp"
+            android:layout_height="130dp"
             android:layout_marginTop="20dp"
             android:layout_gravity="center"
             >
@@ -95,14 +95,23 @@
                 app:strokeColor="@color/primary"/>
 
             <ImageView
-                android:layout_width="25dp"
-                android:layout_height="25dp"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
                 android:src="@drawable/outline_edit_24"
                 android:background="@color/primary_container"
                 android:layout_margin="8dp"
                 android:layout_gravity="end|bottom"/>
 
         </FrameLayout>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/resetButton"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:text="Reset"
+            android:layout_gravity="center"
+            android:layout_marginTop="15dp"
+           />
 
 
 

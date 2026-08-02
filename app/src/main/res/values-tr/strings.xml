@@ -127,4 +127,17 @@
     <string name="search">Ara</string>
     <string name="favorites">Favoriler</string>
     <string name="categories">Kategoriler</string>
+    <string name="breakfast">Kahvaltı</string>
+    <string name="chicken">Tavuk</string>
+    <string name="dessert">Tatlı</string>
+    <string name="goat">Keçi Eti</string>
+    <string name="lamb">Kuzu Eti</string>
+    <string name="miscellaneous">Diğer</string>
+    <string name="pasta">Makarna</string>
+    <string name="pork">Domuz Eti</string>
+    <string name="seafood">Deniz Ürünleri</string>
+    <string name="side">Ara Sıcak</string>
+    <string name="starter">Başlangıç</string>
+    <string name="vegan">Vegan</string>
+    <string name="vegetarian">Vejetaryen</string>
 </resources>

@@ -127,4 +127,17 @@
     <string name="search">Recherche</string>
     <string name="favorites">Favoris</string>
     <string name="categories">Catégories</string>
+    <string name="breakfast">Petit-déjeuner</string>
+    <string name="chicken">Poulet</string>
+    <string name="dessert">Dessert</string>
+    <string name="goat">Chèvre</string>
+    <string name="lamb">Agneau</string>
+    <string name="miscellaneous">Divers</string>
+    <string name="pasta">Pâtes</string>
+    <string name="pork">Porc</string>
+    <string name="seafood">Fruits de Mer</string>
+    <string name="side">Accompagnement</string>
+    <string name="starter">Entrée</string>
+    <string name="vegan">Végétalien</string>
+    <string name="vegetarian">Végétarien</string>
 </resources>

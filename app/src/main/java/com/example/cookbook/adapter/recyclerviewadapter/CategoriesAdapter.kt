@@ -4,6 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.example.cookbook.R
 import com.example.cookbook.model.Category
 import com.example.cookbook.databinding.ItemCategoriesBinding
 
@@ -12,7 +13,23 @@ class CategoriesAdapter(private val categoryList: MutableList<Category>): Recycl
     var onItemClick : ((id: String)-> Unit )? = null
     inner class CategoriesViewHolder(val binding: ItemCategoriesBinding) : RecyclerView.ViewHolder(binding.root){
         fun bind(category : Category){
-            binding.tvCategory.text = category.strCategory
+            binding.tvCategory.text = when(category.strCategory){
+                "Beef" -> itemView.context.getString(R.string.beef)
+                "Breakfast" -> itemView.context.getString(R.string.breakfast)
+                "Chicken" -> itemView.context.getString(R.string.chicken)
+                "Dessert" -> itemView.context.getString(R.string.dessert)
+                "Goat" ->  itemView.context.getString(R.string.goat)
+                "Lamb" -> itemView.context.getString(R.string.lamb)
+                "Miscellaneous" -> itemView.context.getString(R.string.miscellaneous)
+                "Pasta" -> itemView.context.getString(R.string.pasta)
+                "Pork" -> itemView.context.getString(R.string.pork)
+                "Seafood" -> itemView.context.getString(R.string.seafood)
+                "Side" -> itemView.context.getString(R.string.side)
+                "Starter" -> itemView.context.getString(R.string.starter)
+                "Vegan" -> itemView.context.getString(R.string.vegan)
+                "Vegetarian" -> itemView.context.getString(R.string.vegetarian)
+                else -> ""
+            }
             binding.chipInfo.text = category.idCategory
             Glide.with(binding.root).load(category.strCategoryThumb).into(binding.ivFoodPhoto)
 

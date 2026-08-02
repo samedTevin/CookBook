@@ -6,12 +6,13 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import com.bumptech.glide.Glide
+import com.bumptech.glide.signature.ObjectKey
 import com.example.cookbook.R
-import com.example.cookbook.dao.UserDao
 import com.example.cookbook.database.CookDatabase
 import com.example.cookbook.databinding.FragmentProfileBinding
 import com.example.cookbook.model.User
@@ -21,6 +22,7 @@ import com.example.cookbook.util.DialogUtil
 import com.example.cookbook.util.LogoutBottomSheet
 import com.example.cookbook.viewmodel.ProfileViewModel
 import com.example.cookbook.viewmodelfactory.ProfileViewModelFactory
+import java.io.File
 
 
 class ProfileFragment : Fragment() {
@@ -30,7 +32,6 @@ class ProfileFragment : Fragment() {
     private lateinit var profileViewModel: ProfileViewModel
     private lateinit var sessionManager: SessionManager
     private lateinit var userRepository: UserRepository
-
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -49,6 +50,8 @@ class ProfileFragment : Fragment() {
         val sharedPreferences = requireActivity().getSharedPreferences("session", Activity.MODE_PRIVATE)
         sessionManager = SessionManager(sharedPreferences)
         profileViewModel = ViewModelProvider(this, ProfileViewModelFactory(userRepository,sessionManager))[ProfileViewModel::class.java]
+
+        observeUser()
 
         binding.switchDarkMode.isChecked = sessionManager.getDarkMode()
         binding.selectedCuisine.text = when(sessionManager.getCuisine()){
@@ -170,6 +173,31 @@ class ProfileFragment : Fragment() {
                 profileViewModel.logOut()
             }.show(parentFragmentManager,"logout")
         }
+    }
+
+
+    private fun observeUser(){
+        val currentEmail = sessionManager.getCurrentUserEmail()
+
+        currentEmail?.let{
+            profileViewModel.getUserByEmail(currentEmail).observe(viewLifecycleOwner){ user ->
+                user?.let{
+                    displayUserPhoto(user)
+                }
+            }
+        }
+    }
+
+    private fun displayUserPhoto(user: User){
+        val savedPath = user.imagePath
+        if(savedPath != null){
+            val file = File (savedPath)
+            if(file.exists()){
+                Glide.with(this).load(file).signature(ObjectKey(file.lastModified().toString())).placeholder(R.drawable.baseline_person_24).into(binding.imgProfilePhoto)
+                return
+            }
+        }
+        Glide.with(this).load(R.drawable.baseline_person_24).into(binding.imgProfilePhoto)
     }
 
 

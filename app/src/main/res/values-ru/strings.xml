@@ -127,4 +127,17 @@
     <string name="search">Поиск</string>
     <string name="favorites">Избранное</string>
     <string name="categories">Категории</string>
+    <string name="breakfast">Завтрак</string>
+    <string name="chicken">Курица</string>
+    <string name="dessert">Десерт</string>
+    <string name="goat">Козлятина</string>
+    <string name="lamb">Баранина</string>
+    <string name="miscellaneous">Разное</string>
+    <string name="pasta">Паста</string>
+    <string name="pork">Свинина</string>
+    <string name="seafood">Морепродукты</string>
+    <string name="side">Гарнир</string>
+    <string name="starter">Закуска</string>
+    <string name="vegan">Веганское</string>
+    <string name="vegetarian">Вегетарианское</string>
 </resources>

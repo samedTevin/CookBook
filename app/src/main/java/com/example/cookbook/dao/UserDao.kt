@@ -1,5 +1,6 @@
 package com.example.cookbook.dao
 
+import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Delete
 import androidx.room.Insert
@@ -18,6 +19,12 @@ interface UserDao {
     @Query("SELECT * FROM user WHERE email = :email")
     suspend fun findUser(email: String) : User?
 
+    @Query("SELECT * FROM User WHERE email = :email")
+    fun findUserForProfile(email: String): LiveData<User?>
+
     @Delete
     suspend fun deleteUser(user: User)
+
+    @Query("UPDATE user SET image_path = :imagePath WHERE email = :userEmail ")
+    suspend fun updateProfilePhoto(userEmail: String, imagePath: String?)
 }

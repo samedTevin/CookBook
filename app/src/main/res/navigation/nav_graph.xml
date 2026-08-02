@@ -194,6 +194,6 @@
     </fragment>
     <fragment
         android:id="@+id/editProfile"
-        android:name="com.example.cookbook.ui.fragments.detailfragments.EditProfile"
+        android:name="com.example.cookbook.ui.fragments.detailfragments.EditProfileFragment"
         android:label="EditProfile" />
 </navigation>
