@@ -29,4 +29,7 @@ interface ApiService {
 
     @GET("filter.php")
     suspend fun filterByIngredient(@Query("i") ingredient: String): MealResponse
+
+    @GET("search.php")
+    suspend fun listByFirstLetter(@Query("f") letter: String): MealResponse
 }

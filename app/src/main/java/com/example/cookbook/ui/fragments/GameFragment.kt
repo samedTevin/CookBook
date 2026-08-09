@@ -6,18 +6,54 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
+import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.cookbook.R
+import com.example.cookbook.adapter.recyclerviewadapter.FavoritesAdapter
+import com.example.cookbook.adapter.recyclerviewadapter.SearchAdapter
+import com.example.cookbook.api.ApiService
+import com.example.cookbook.api.RetrofitInstance
+import com.example.cookbook.dao.FavoriteMealDao
+import com.example.cookbook.database.CookDatabase
 import com.example.cookbook.databinding.FragmentGameBinding
+import com.example.cookbook.repository.FavoriteMealRepository
+import com.example.cookbook.repository.MealRepository
+import com.example.cookbook.viewmodel.FavoriteViewModel
+import com.example.cookbook.viewmodel.GameViewModel
+import com.example.cookbook.viewmodelfactory.FavoriteViewModelFactory
+import com.example.cookbook.viewmodelfactory.GameViewModelFactory
 import com.vungn.luckywheel.OnLuckyWheelReachTheTarget
+import com.vungn.luckywheel.SpinTime
 import com.vungn.luckywheel.WheelItem
 import com.vungn.luckywheel.WheelMode
 import com.vungn.luckywheel.WheelUtils
+import kotlinx.coroutines.launch
 
 class GameFragment : Fragment() {
 
     private var _binding: FragmentGameBinding? = null
     val binding get() = _binding!!
+    private lateinit var viewModel: GameViewModel
+    private lateinit var favoriteViewModel: FavoriteViewModel
+    private lateinit var mealRepository: MealRepository
+    private lateinit var favoriteMealRepository: FavoriteMealRepository
+    private lateinit var api: ApiService
+    private lateinit var dao: FavoriteMealDao
+    private lateinit var adapter: SearchAdapter
+    private var isAutoSpinning = true
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        api = RetrofitInstance.api
+        dao = CookDatabase.createDatabase(requireContext()).favoriteMealDao()
+        mealRepository = MealRepository(api)
+        favoriteMealRepository = FavoriteMealRepository(dao)
+        adapter = SearchAdapter(mutableListOf())
+    }
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -30,8 +66,29 @@ class GameFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        createWheel()
+        favoriteViewModel = ViewModelProvider(requireActivity(), FavoriteViewModelFactory(favoriteMealRepository))[FavoriteViewModel::class.java]
+        viewModel = ViewModelProvider(requireActivity(), GameViewModelFactory(mealRepository))[GameViewModel::class.java]
+        binding.rvLetter.layoutManager = LinearLayoutManager(requireContext())
+        binding.rvLetter.isNestedScrollingEnabled = false
+        binding.rvLetter.adapter = adapter
 
+        binding.back.setOnClickListener {
+            findNavController().popBackStack()
+        }
+
+        createWheel()
+        collectMeal()
+        collectLetter()
+        collectFavorites()
+
+        adapter.onFavClick = { meal ->
+            favoriteViewModel.toggleFavorite(meal)
+        }
+
+        adapter.onItemClick = { id ->
+            val action = GameFragmentDirections.actionGameFragmentToDetailFragment(id)
+            findNavController().navigate(action)
+        }
     }
 
     private fun createWheel(){
@@ -60,12 +117,8 @@ class GameFragment : Fragment() {
             WheelItem(20, Color.rgb(64, 100, 200), Color.WHITE, "U", 1),
             WheelItem(21, Color.rgb(200, 64, 100), Color.WHITE, "V", 1),
             WheelItem(22, Color.rgb(100, 200, 64), Color.WHITE, "W", 1),
-            WheelItem(23, Color.rgb(100, 64, 200), Color.WHITE, "X", 1),
-            WheelItem(24, Color.rgb(200, 100, 64), Color.WHITE, "Y", 1),
-            WheelItem(25, Color.rgb(64, 200, 128), Color.WHITE, "Z", 1),
-            WheelItem(26, Color.rgb(128, 64, 64), Color.WHITE, "A", 1),
-            WheelItem(27, Color.rgb(64, 128, 64), Color.WHITE, "B", 1),
-            WheelItem(28, Color.rgb(64, 64, 128), Color.WHITE, "C", 1)
+            WheelItem(23, Color.rgb(100, 64, 200), Color.WHITE, "Y", 1),
+            WheelItem(24, Color.rgb(200, 100, 64), Color.WHITE, "Z", 1)
         )
 
         lw.setWheelMode(WheelMode.NORMAL)
@@ -73,23 +126,63 @@ class GameFragment : Fragment() {
         lw.addWheelItems(wheelItems)
 
         lw.setLuckyWheelReachTheTarget(object: OnLuckyWheelReachTheTarget{
-            override fun onReachFinalTarget(p0: WheelItem?) {
-               val letter = p0?.text
+
+            override fun onReachFinalTarget(item: WheelItem?) {
+                val selectedItem = item?.text ?: ""
+                viewModel.listByFirstLetter(selectedItem)
+                viewModel.saveLetter(selectedItem)
             }
 
-            override fun onTargetChanged(p0: WheelItem?) {
 
+            override fun onTargetChanged(item: WheelItem?) {
+                binding.chipLetter.text = item?.text ?: ""
             }
 
         })
 
-        binding.spin.setOnClickListener {
+        binding.btnSpin.setOnClickListener {
             val randomNum = WheelUtils.getRandomIndex(wheelItems)
-
             lw.rotateWheelTo(randomNum)
         }
 
-
     }
 
+    private fun collectMeal() {
+        viewLifecycleOwner.lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.list.collect { selectedMeal ->
+                    selectedMeal?.meals?.let {
+                        adapter.updateList(it)
+                        binding.tvCount.text = adapter.itemCount.toString()
+                        binding.linearTitle.visibility = View.VISIBLE
+                        binding.divider.visibility = View.VISIBLE
+                        binding.rvLetter.visibility = View.VISIBLE
+                    }
+                }
+            }
+        }
+    }
+
+    private fun collectLetter(){
+        viewLifecycleOwner.lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.STARTED){
+                viewModel.selectedLetter.collect { letter ->
+                    binding.chipLetter.text = letter
+                    binding.tvSelectedLetter.text = " " + letter
+                }
+            }
+        }
+    }
+
+    private fun collectFavorites(){
+        viewLifecycleOwner.lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.STARTED){
+                favoriteViewModel.favorites.collect { favoriteMeals ->
+                    val favorites = favoriteMeals.map{ it.idMeal }.toSet()
+                    adapter.updateFavorites(favorites)
+                }
+            }
+        }
+    }
+    
 }

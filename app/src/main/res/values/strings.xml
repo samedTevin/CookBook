@@ -147,4 +147,11 @@
     <string name="starter">Starter</string>
     <string name="vegan">Vegan</string>
     <string name="vegetarian">Vegetarian</string>
+    <string name="your_lucky_letter">Your Lucky Letter</string>
+    <string name="lucky_letter_desc">Spin the wheel and see what you’ll discover!</string>
+    <string name="selected_letter">Selected Letter</string>
+    <string name="spin">Spin</string>
+    <string name="recipes_starting_with">Recipes starting with</string>
+    <string name="recipes_found">" Recipes Found"</string>
+    <string name="play_a_game">Want to play a game?</string>
 </resources>

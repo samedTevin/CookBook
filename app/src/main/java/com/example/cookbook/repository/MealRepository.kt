@@ -26,4 +26,8 @@ class MealRepository(private val api: ApiService) {
     suspend fun filterByIngredient(ingredient: String): MealResponse{
         return api.filterByIngredient(ingredient)
     }
+
+    suspend fun listByFirstLetter(letter: String): MealResponse{
+        return api.listByFirstLetter(letter)
+    }
 }

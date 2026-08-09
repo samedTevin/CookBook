@@ -1,79 +1,200 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:LuckyWheel="http://schemas.android.com/apk/res-auto"
     tools:context=".ui.fragments.GameFragment"
-    android:orientation="vertical"
     android:background="@color/background">
 
-    <androidx.appcompat.widget.Toolbar
-
-        android:id="@+id/toolBar"
-
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="20dp">
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolBar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp">
 
-        android:layout_marginTop="20dp">
+            <ImageButton
+                android:id="@+id/back"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@drawable/outline_arrow_left_alt_24"
+                android:backgroundTint="@color/background"
+                android:scaleType="centerCrop"
+                />
 
-        <ImageButton
-            android:id="@+id/back"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:src="@drawable/outline_arrow_left_alt_24"
-            android:backgroundTint="@color/background"
-            android:scaleType="centerCrop"
-            />
 
+            <TextView
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:text="@string/app_name"
+
+                android:textSize="50sp"
+
+                android:textColor="@color/primary"
+
+                android:fontFamily="@font/poppins_semibold"
+
+                android:layout_gravity="center"/>
+
+
+        </androidx.appcompat.widget.Toolbar>
 
         <TextView
-
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-
-            android:text="@string/app_name"
-
-            android:textSize="50sp"
-
-            android:textColor="@color/primary"
-
+            android:text="@string/your_lucky_letter"
+            android:textSize="30sp"
             android:fontFamily="@font/poppins_semibold"
+            android:textColor="@color/text_primary"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"/>
 
-            android:layout_gravity="center"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/lucky_letter_desc"
+            android:textSize="16sp"
+            android:fontFamily="@font/inter"
+            android:layout_gravity="center"
+            android:layout_marginBottom="30dp"/>
+
+        <com.vungn.luckywheel.LuckyWheel
+            android:id="@+id/lwv"
+            android:layout_width="350dp"
+            android:layout_height="350dp"
+            android:layout_gravity="center"
+
+            LuckyWheel:arrow_height="100dp"
+            LuckyWheel:arrow_image="@drawable/ig_arrow"
+            LuckyWheel:arrow_width="100dp"
+
+            LuckyWheel:background_color="@android:color/transparent"
+
+            LuckyWheel:border_src="@drawable/ig_edge_1"
+            LuckyWheel:border_width="30dp"
+
+            LuckyWheel:font_family="@font/poppins_semibold"
+            LuckyWheel:shadow_src="@drawable/ig_shadow_1"
+            LuckyWheel:text_padding="10dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginTop="10dp"
+            android:gravity="center_horizontal">
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chipLetter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="\?"
+                android:textColor="@color/primary"
+                android:fontFamily="@font/poppins_semibold"
+                android:textSize="40sp"
+                LuckyWheel:chipStrokeColor="@color/primary"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/selected_letter"
+                android:textColor="@color/primary"
+                android:fontFamily="@font/poppins_semibold"
+                android:textSize="20sp" />
+        </LinearLayout>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnSpin"
+            android:layout_width="200dp"
+            android:layout_height="55dp"
+            android:text="@string/spin"
+            android:textSize="25sp"
+            android:layout_gravity="center"
+            android:textColor="@color/white"
+            android:fontFamily="@font/poppins_semibold"
+            android:layout_marginTop="15dp"/>
 
 
-    </androidx.appcompat.widget.Toolbar>
+       <LinearLayout
+           android:id="@+id/linearTitle"
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:orientation="vertical"
+           android:layout_marginTop="40dp"
+           android:visibility="gone">
+           <LinearLayout
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:orientation="horizontal">
+               <TextView
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:text="@string/recipes_starting_with"
+                   android:textSize="25sp"
+                   android:fontFamily="@font/poppins_semibold"
+                   android:textColor="@color/text_primary"
+                   android:layout_marginTop="10dp"/>
+               <TextView
+                   android:id="@+id/tvSelectedLetter"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:text=" '?'"
+                   android:textSize="25sp"
+                   android:fontFamily="@font/poppins_semibold"
+                   android:textColor="@color/primary"
+                   android:layout_marginTop="10dp"/>
+           </LinearLayout>
+
+           <LinearLayout
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:orientation="horizontal">
+               <TextView
+                   android:id="@+id/tvCount"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:text="\?"
+                   android:textSize="18sp"
+                   android:fontFamily="@font/poppins_semibold"
+                   android:textColor="@color/primary"
+                   android:layout_marginTop="10dp"/>
+               <TextView
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:text="@string/recipes_found"
+                   android:textSize="18sp"
+                   android:fontFamily="@font/poppins_semibold"
+                   android:textColor="@color/text_primary"
+                   android:layout_marginTop="10dp"/>
+           </LinearLayout>
+       </LinearLayout>
+
+        <com.google.android.material.divider.MaterialDivider
+            android:id="@+id/divider"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            LuckyWheel:dividerThickness="2dp"
+            LuckyWheel:dividerColor="@color/primary"
+            android:layout_marginTop="10dp"
+            android:visibility="gone"/>
 
 
-    <com.vungn.luckywheel.LuckyWheel
-        android:id="@+id/lwv"
-        android:layout_width="400dp"
-        android:layout_height="400dp"
-        android:layout_gravity="center"
-
-        LuckyWheel:arrow_height="100dp"
-        LuckyWheel:arrow_image="@drawable/ig_arrow"
-        LuckyWheel:arrow_width="100dp"
-
-        LuckyWheel:background_color="@android:color/transparent"
-
-        LuckyWheel:border_src="@drawable/ig_edge_1"
-        LuckyWheel:border_width="30dp"
-
-        LuckyWheel:font_family="@font/poppins_semibold"
-        LuckyWheel:shadow_src="@drawable/ig_shadow_1"
-        LuckyWheel:text_padding="10dp" />
-
-    <Button
-        android:id="@+id/spin"
-        android:layout_width="200dp"
-        android:layout_height="50dp"
-        android:text="spin"
-        android:layout_gravity="center"
-        android:layout_marginTop="10dp"/>
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvLetter"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:listitem="@layout/item_favorites"
+            android:layout_marginTop="10dp"
+            android:nestedScrollingEnabled="false"
+            android:visibility="gone"/>
+    </LinearLayout>
 
 
 
 
-</LinearLayout>
+</androidx.core.widget.NestedScrollView>

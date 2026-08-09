@@ -140,4 +140,13 @@
     <string name="starter">Закуска</string>
     <string name="vegan">Веганское</string>
     <string name="vegetarian">Вегетарианское</string>
+    <string name="your_lucky_letter">Ваша счастливая буква</string>
+    <string name="lucky_letter_desc">Крутите колесо и узнайте, что вас ждёт!</string>
+    <string name="selected_letter">Выбранная буква</string>
+    <string name="spin">Крутить</string>
+    <string name="recipes_starting_with">Рецепты на букву</string>
+    <string name="recipes_found">" Рецептов найдено"</string>
+    <string name="play_a_game">Хотите сыграть в игру?</string>
+
+
 </resources>

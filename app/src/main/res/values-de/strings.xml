@@ -140,4 +140,11 @@
     <string name="starter">Vorspeise</string>
     <string name="vegan">Vegan</string>
     <string name="vegetarian">Vegetarisch</string>
+    <string name="your_lucky_letter">Dein Glücksbuchstabe</string>
+    <string name="lucky_letter_desc">Drehe das Rad und entdecke, was dich erwartet!</string>
+    <string name="selected_letter">Ausgewählter Buchstabe</string>
+    <string name="spin">Drehen</string>
+    <string name="recipes_starting_with">Rezepte mit</string>
+    <string name="recipes_found">" Rezepte gefunden"</string>
+    <string name="play_a_game">Lust auf ein Spiel?</string>
 </resources>

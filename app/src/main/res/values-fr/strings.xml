@@ -140,4 +140,11 @@
     <string name="starter">Entrée</string>
     <string name="vegan">Végétalien</string>
     <string name="vegetarian">Végétarien</string>
+    <string name="your_lucky_letter">Votre lettre porte-bonheur</string>
+    <string name="lucky_letter_desc">Faites tourner la roue et découvrez ce qui vous attend !</string>
+    <string name="selected_letter">Lettre sélectionnée</string>
+    <string name="spin">Tourner</string>
+    <string name="recipes_starting_with">Recettes commençant par</string>
+    <string name="recipes_found">" Recettes trouvées"</string>
+    <string name="play_a_game">Envie de jouer à un jeu ?</string>
 </resources>

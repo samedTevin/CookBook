@@ -140,4 +140,11 @@
     <string name="starter">开胃菜</string>
     <string name="vegan">纯素食</string>
     <string name="vegetarian">素食</string>
+    <string name="your_lucky_letter">你的幸运字母</string>
+    <string name="lucky_letter_desc">转动转盘，看看你会发现什么！</string>
+    <string name="selected_letter">选中的字母</string>
+    <string name="spin">旋转</string>
+    <string name="recipes_starting_with">以此字母开头的食谱</string>
+    <string name="recipes_found">" 个食谱已找到"</string>
+    <string name="play_a_game">想玩个游戏吗？</string>
 </resources>

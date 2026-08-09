@@ -140,4 +140,11 @@
     <string name="starter">Başlangıç</string>
     <string name="vegan">Vegan</string>
     <string name="vegetarian">Vejetaryen</string>
+    <string name="your_lucky_letter">Şanslı Harfin</string>
+    <string name="lucky_letter_desc">Çarkı çevir ve neler keşfedeceğini gör!</string>
+    <string name="selected_letter">Seçilen Harf</string>
+    <string name="spin">Çevir</string>
+    <string name="recipes_starting_with">Şununla başlayan tarifler:</string>
+    <string name="recipes_found">" Tarif Bulundu"</string>
+    <string name="play_a_game">Bir oyun oynamak ister misin?</string>
 </resources>
