@@ -24,6 +24,7 @@ import com.example.cookbook.viewmodel.DetailViewModel
 import com.example.cookbook.viewmodelfactory.DetailViewModelFactory
 import kotlinx.coroutines.launch
 import androidx.core.net.toUri
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 
 
@@ -60,6 +61,10 @@ class DetailFragment : Fragment() {
 
         detailViewModel.getDetails(id)
 
+        binding.back.setOnClickListener {
+            findNavController().popBackStack()
+        }
+
         viewLifecycleOwner.lifecycleScope.launch {
             detailViewModel.detail.collect { response ->
 
@@ -86,16 +91,7 @@ class DetailFragment : Fragment() {
                         rvIngredients.layoutManager = LinearLayoutManager(requireContext())
                         ingredientsAdapter.updateList(meal.toIngredients())
 
-                        val formatted = meal.strInstructions
-                            .replace(Regex("""(?m)^\d+\s*$"""), "")
-                            .split("\r\n")
-                            .filter { it.isNotBlank() }
-                            .mapIndexed { index, step ->
-                                "${index + 1}. $step"
-                            }
-                            .joinToString("\n\n")
-
-                        binding.tvInstructions.text = formatted
+                        binding.tvInstructions.text = meal.strInstructions
 
                         buttonYoutube.setOnClickListener {
                             if(!meal.strYoutube.isNullOrBlank()){

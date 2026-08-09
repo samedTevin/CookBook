@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.appcompat.widget.SearchView
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
@@ -90,6 +91,14 @@ class HomeFragment : Fragment() {
                 item, DiscoverType.AREA)
             findNavController().navigate(action)
         }
+
+        binding.searchView.setOnQueryTextFocusChangeListener { _, hasFocus ->
+            if(hasFocus){
+                findNavController().navigate(R.id.action_homeFragment_to_gameFragment)
+            }
+        }
+
+
 
         binding.lottieAnimation.setOnClickListener {
 

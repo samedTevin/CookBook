@@ -31,6 +31,15 @@
 
             android:layout_marginTop="20dp">
 
+            <ImageButton
+                android:id="@+id/back"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@drawable/outline_arrow_left_alt_24"
+                android:backgroundTint="@color/background"
+                android:scaleType="centerCrop"
+                />
+
 
             <TextView
 
