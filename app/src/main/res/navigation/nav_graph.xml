@@ -38,6 +38,9 @@
         <action
             android:id="@+id/action_homeFragment_to_discoverFragment"
             app:destination="@id/discoverFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_gameFragment"
+            app:destination="@id/gameFragment" />
     </fragment>
     <fragment
         android:id="@+id/welcomeFragment"
@@ -196,4 +199,9 @@
         android:id="@+id/editProfile"
         android:name="com.example.cookbook.ui.fragments.detailfragments.EditProfileFragment"
         android:label="EditProfile" />
+    <fragment
+        android:id="@+id/gameFragment"
+        android:name="com.example.cookbook.ui.fragments.GameFragment"
+        android:label="fragment_game"
+        tools:layout="@layout/fragment_game" />
 </navigation>

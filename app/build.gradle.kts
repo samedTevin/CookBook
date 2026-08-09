@@ -83,6 +83,9 @@ dependencies {
     implementation ("com.squareup.retrofit2:retrofit:2.9.0")
     implementation ("com.squareup.retrofit2:converter-gson:2.9.0")
 
+    // Spin Wheel
+    implementation("com.github.VuNgN:SpinTheWheel:1.0.5")
+
 
 
 }
