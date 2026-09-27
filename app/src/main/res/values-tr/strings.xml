@@ -147,4 +147,10 @@
     <string name="recipes_starting_with">Şununla başlayan tarifler:</string>
     <string name="recipes_found">" Tarif Bulundu"</string>
     <string name="play_a_game">Bir oyun oynamak ister misin?</string>
+    <string name="set1">🍳 Tarifleri Keşfet • 🏷️ Kategoriye Göre Filtrele • 🌍 Ülkeye Göre Keşfet • ⭐ Favorilere Ekle</string>
+    <string name="set2">🔎 Malzemeye Göre Ara • 🥘 Yeni Bir Tarif Bul • 🎲 Zarı At • ❤️ Sevdiklerini Kaydet</string>
+    <string name="set3">🌍 Dünya Mutfaklarını Keşfet • 🏷️ Kategorilere Göz At • 🎡 Çarkı Çevir • 🍴 Yeni Bir Şey Keşfet</string>
+    <string name="set4">🔎 Canının Çektiğini Ara • ⭐ Tarifleri Kaydet • 🎲 Zarlara Bırak • 🌶️ Yeni Bir Lezzet Dene</string>
+    <string name="set5">🍴 Tariflere Göz At • 🌍 Dünyanın Lezzetlerini Keşfet • 🎡 Çarkın Seçmesine İzin Ver • 🥗 Yeni Favorini Bul</string>
+    <string name="see_all">Tümünü Gör</string>
 </resources>

@@ -3,6 +3,7 @@ package com.example.cookbook.ui.fragments
 import android.app.Activity
 import android.content.SharedPreferences
 import android.os.Bundle
+import android.util.Patterns
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -20,6 +21,7 @@ import com.example.cookbook.state.LoginState
 import com.example.cookbook.viewmodel.LoginViewModel
 import com.example.cookbook.viewmodelfactory.LoginViewModelFactory
 import kotlinx.coroutines.launch
+import kotlin.math.log
 
 class LoginFragment : Fragment() {
 
@@ -51,8 +53,7 @@ class LoginFragment : Fragment() {
 
 
         binding.buttonSignIn.setOnClickListener {
-            viewModel.login(binding.etMail.text.toString())
-            sessionManager.saveCurrentUserEmail(binding.etMail.text.toString())
+            loginUser()
         }
 
         viewLifecycleOwner.lifecycleScope.launch {
@@ -70,6 +71,20 @@ class LoginFragment : Fragment() {
 
         binding.tvCreateAccount.setOnClickListener {
             findNavController().navigate(R.id.action_loginFragment_to_registerFragment)
+        }
+    }
+
+    private fun loginUser(){
+        if(!binding.etMail.text.isNullOrBlank() && !binding.etPassword.text.isNullOrBlank()){
+            if(Patterns.EMAIL_ADDRESS.matcher(binding.etMail.text.toString()).matches()){
+                viewModel.login(binding.etMail.text.toString(),binding.etPassword.text.toString())
+                sessionManager.saveCurrentUserEmail(binding.etMail.text.toString())
+            }
+            else{
+                Toast.makeText(requireContext(),"Invalid email regex.",Toast.LENGTH_SHORT).show()
+            }
+        }else{
+            Toast.makeText(requireContext(),"All fields must be filled!",Toast.LENGTH_SHORT).show()
         }
     }
 

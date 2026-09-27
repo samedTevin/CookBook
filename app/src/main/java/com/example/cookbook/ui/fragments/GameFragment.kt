@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
@@ -22,6 +23,7 @@ import com.example.cookbook.database.CookDatabase
 import com.example.cookbook.databinding.FragmentGameBinding
 import com.example.cookbook.repository.FavoriteMealRepository
 import com.example.cookbook.repository.MealRepository
+import com.example.cookbook.state.FavState
 import com.example.cookbook.viewmodel.FavoriteViewModel
 import com.example.cookbook.viewmodel.GameViewModel
 import com.example.cookbook.viewmodelfactory.FavoriteViewModelFactory
@@ -80,6 +82,8 @@ class GameFragment : Fragment() {
         collectMeal()
         collectLetter()
         collectFavorites()
+
+        favoriteViewModel.collectFavorites()
 
         adapter.onFavClick = { meal ->
             favoriteViewModel.toggleFavorite(meal)
@@ -177,9 +181,20 @@ class GameFragment : Fragment() {
     private fun collectFavorites(){
         viewLifecycleOwner.lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED){
-                favoriteViewModel.favorites.collect { favoriteMeals ->
-                    val favorites = favoriteMeals.map{ it.idMeal }.toSet()
-                    adapter.updateFavorites(favorites)
+                favoriteViewModel.favState.collect { state ->
+                    when(state){
+                        FavState.Idle -> {
+                        }
+                        FavState.Loading -> {}
+                        is FavState.Success -> {
+                            val favorites = state.meals.map{ it.idMeal }.toSet()
+                            adapter.updateFavorites(favorites)
+                        }
+                        is FavState.Error -> {
+                            Toast.makeText(requireContext(), state.message,Toast.LENGTH_SHORT).show()
+                        }
+
+                    }
                 }
             }
         }

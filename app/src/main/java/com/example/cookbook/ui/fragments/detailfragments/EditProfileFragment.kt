@@ -3,6 +3,7 @@ package com.example.cookbook.ui.fragments.detailfragments
 import android.app.Activity
 import android.net.Uri
 import android.os.Bundle
+import android.util.Patterns
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -10,6 +11,8 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.bumptech.glide.signature.ObjectKey
 import com.example.cookbook.R
@@ -20,6 +23,7 @@ import com.example.cookbook.preferences.SessionManager
 import com.example.cookbook.repository.UserRepository
 import com.example.cookbook.viewmodel.ProfileViewModel
 import com.example.cookbook.viewmodelfactory.ProfileViewModelFactory
+import kotlinx.coroutines.launch
 import java.io.File
 import java.io.FileOutputStream
 
@@ -75,13 +79,19 @@ class EditProfileFragment : Fragment() {
         val email = profileViewModel.getUserEmail()
 
         if(email != null){
-            profileViewModel.getUserByEmail(email).observe(viewLifecycleOwner) {user ->
-                user?.let {
-                    displayUserPhoto(it)
-                    activeUser = it
+            profileViewModel.getUserByEmail(email).observe(viewLifecycleOwner) {
+                it?.let { user ->
+                    displayUserPhoto(user)
+                    loadUserData(user)
+                    activeUser = user
+                    binding.buttonEdit.setOnClickListener {
+                        editChanges(user)
+                    }
                 }
             }
         }
+
+
 
         binding.imgProfilePhoto.setOnClickListener {
             imagePickerLauncher.launch("image/*")
@@ -140,5 +150,49 @@ class EditProfileFragment : Fragment() {
 
         profileViewModel.updateUserPhoto(user.email, null)
         Glide.with(this).load(R.drawable.baseline_person_24).into(binding.imgProfilePhoto)
+    }
+
+    private fun loadUserData(user: User){
+        binding.etFullName.setText(user.fullName)
+        binding.etUsername.setText(user.username)
+        binding.etEmail.setText(user.email)
+        binding.etPassword.setText(user.password)
+        binding.etConfirmPassword.setText(user.password)
+    }
+
+    private fun editChanges(user: User){
+
+        val newFullName = binding.etFullName.text.toString().trim()
+        val newUsername = binding.etUsername.text.toString().trim()
+        val newEmail = binding.etEmail.text.toString().trim()
+        val newPassword = binding.etPassword.text.toString()
+        val confirmPassword = binding.etConfirmPassword.text.toString()
+
+        if(newFullName.isBlank() || newUsername.isBlank() || newEmail.isBlank() || newPassword.isBlank() || confirmPassword.isBlank()){
+            Toast.makeText(requireContext(),"Please fill all required fields",Toast.LENGTH_SHORT).show()
+            return
+        }
+
+        if(!Patterns.EMAIL_ADDRESS.matcher(newEmail).matches()){
+            Toast.makeText(requireContext(),"Invalid email.",Toast.LENGTH_SHORT).show()
+            return
+        }
+
+        val passwordChanged = newPassword != user.password
+
+        if(passwordChanged && newPassword != confirmPassword){
+            Toast.makeText(requireContext(),"Passwords don't match.",Toast.LENGTH_SHORT).show()
+            return
+        }
+
+        val updatedUser = User(newEmail, newFullName, newUsername, newPassword, user.imagePath)
+
+        profileViewModel.updateUser(updatedUser)
+
+        if(newEmail != user.email){
+            sessionManager.saveCurrentUserEmail(newEmail)
+        }
+
+        findNavController().navigate(R.id.action_editProfile_to_profileFragment)
     }
 }

@@ -147,4 +147,10 @@
     <string name="recipes_starting_with">Recettes commençant par</string>
     <string name="recipes_found">" Recettes trouvées"</string>
     <string name="play_a_game">Envie de jouer à un jeu ?</string>
+    <string name="set1">🍳 Découvre des recettes • 🏷️ Filtre par catégorie • 🌍 Découvre par pays • ⭐ Ajoute aux favoris</string>
+    <string name="set2">🔎 Recherche par ingrédient • 🥘 Trouve ta prochaine recette • 🎲 Lance les dés • ❤️ Garde tes recettes préférées</string>
+    <string name="set3">🌍 Découvre les cuisines du monde • 🏷️ Parcours les catégories • 🎡 Fais tourner la roue • 🍴 Découvre quelque chose de nouveau</string>
+    <string name="set4">🔎 Recherche selon tes envies • ⭐ Enregistre tes recettes • 🎲 Laisse les dés décider • 🌶️ Goûte une nouvelle saveur</string>
+    <string name="set5">🍴 Parcours les recettes • 🌍 Découvre les saveurs du monde • 🎡 Laisse la roue choisir • 🥗 Trouve ton nouveau favori</string>
+    <string name="see_all">Voir tout</string>
 </resources>

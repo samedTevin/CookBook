@@ -147,4 +147,10 @@
     <string name="recipes_starting_with">以此字母开头的食谱</string>
     <string name="recipes_found">" 个食谱已找到"</string>
     <string name="play_a_game">想玩个游戏吗？</string>
+    <string name="set1">🍳 探索食谱 • 🏷️ 按类别筛选 • 🌍 按国家探索 • ⭐ 收藏食谱</string>
+    <string name="set2">🔎 按食材搜索 • 🥘 寻找你的下一道美食 • 🎲 掷骰子 • ❤️ 保存你喜欢的食谱</string>
+    <string name="set3">🌍 探索世界各地美食 • 🏷️ 浏览分类 • 🎡 转动幸运转盘 • 🍴 发现新美味</string>
+    <string name="set4">🔎 搜索你想吃的美食 • ⭐ 收藏食谱 • 🎲 让骰子决定 • 🌶️ 尝试新的味道</string>
+    <string name="set5">🍴 浏览食谱 • 🌍 探索世界各地的味道 • 🎡 让转盘为你选择 • 🥗 找到你的新最爱</string>
+    <string name="see_all">查看全部</string>
 </resources>

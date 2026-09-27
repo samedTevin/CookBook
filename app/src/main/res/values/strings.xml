@@ -154,4 +154,12 @@
     <string name="recipes_starting_with">Recipes starting with</string>
     <string name="recipes_found">" Recipes Found"</string>
     <string name="play_a_game">Want to play a game?</string>
+    <string name="set1">🍳 Explore Recipes • 🏷️ Filter by Category • 🌍 Discover by Country • ⭐ Save Favorites</string>
+    <string name="set2">🔎 Search by Ingredient • 🥘 Find Your Next Meal • 🎲 Roll the Dice • ❤️ Keep What You Love</string>
+    <string name="set3">🌍 Explore World Cuisines • 🏷️ Browse Categories • 🎡 Spin the Wheel • 🍴 Discover Something New</string>
+    <string name="set4">🔎 Search Your Cravings • ⭐ Save Recipes • 🎲 Let the Dice Decide • 🌶️ Try a New Flavor</string>
+    <string name="set5">🍴 Browse Recipes • 🌍 Taste Around the World • 🎡 Let the Wheel Choose • 🥗 Find Your Next Favorite</string>
+    <string name="see_all">See All</string>
+    <string name="no_favorite_recipes_yet">No favorite recipes yet</string>
+    <string name="favorites_yet_desc">Tap the heart icon on any recipe or\n explore our kitchen to save your\n favorites here.</string>
 </resources>

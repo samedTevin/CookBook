@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="no_favorite_recipes_yet">No favorite recipes yet</string>
+    <string name="favorites_yet_desc">Tap the heart icon on any recipe or\n explore our kitchen to save your\n favorites here.</string>
+</resources>

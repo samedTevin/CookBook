@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_margin="20dp"
+    app:cardCornerRadius="18dp"
+    app:cardElevation="4dp"
+    app:cardBackgroundColor="@color/surface">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_gravity="center"
+        android:padding="20dp">
+
+        <ImageView
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:src="@drawable/outline_warning_24"
+            android:scaleType="centerInside"
+            android:background="@drawable/bg_warning"
+            android:layout_gravity="center"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Delete Account?"
+            android:fontFamily="@font/poppins_semibold"
+            android:textSize="20sp"
+            android:layout_gravity="center"
+            android:layout_marginTop="15dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Are you sure you want to delete your account?\n All your saved recipes, customized preferences, and collections will be permanently removed."
+            android:textAlignment="center"
+            android:fontFamily="@font/inter"
+            android:textSize="14sp"
+            android:lineHeight="20dp"/>
+
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardElevation="4dp"
+            app:cardCornerRadius="18dp"
+            android:layout_marginTop="20dp"
+            app:strokeColor="@color/warning_text"
+            app:strokeWidth="1dp"
+            android:padding="10dp">
+           <LinearLayout
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:orientation="horizontal"
+               android:gravity="center_horizontal"
+               android:background="@color/warning_text_bg"
+               android:padding="10dp">
+               <TextView
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:text="This action is permanent and cannot be undone."
+                   android:textColor="@color/warning_text"
+                   android:fontFamily="@font/plus_jakarta_sans_semibold"
+                   android:textSize="14sp"
+                   android:drawableStart="@drawable/outline_delete_24"
+                   android:drawablePadding="5dp"
+                   android:drawableTint="@color/warning_text"/>
+           </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnDelete"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="Delete Account"
+            android:textColor="@color/white"
+            android:textSize="18sp"
+            android:fontFamily="@font/poppins_semibold"
+            android:layout_marginTop="30dp"
+            app:icon="@drawable/outline_person_remove_24"
+            app:iconSize="25sp"
+            app:iconGravity="textStart"/>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnCancel"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="Cancel"
+            android:textColor="@color/primary"
+            android:textSize="18sp"
+            android:fontFamily="@font/poppins_semibold"
+            android:layout_marginTop="5dp"
+            android:backgroundTint="@color/surface"
+            app:strokeColor="@color/primary"
+
+            app:strokeWidth="1dp"/>
+
+    </LinearLayout>
+
+</com.google.android.material.card.MaterialCardView>

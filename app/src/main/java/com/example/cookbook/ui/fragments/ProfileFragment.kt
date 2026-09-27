@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.NavOptions
 import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.bumptech.glide.signature.ObjectKey
@@ -169,9 +170,28 @@ class ProfileFragment : Fragment() {
 
         binding.ibLogout.setOnClickListener {
             LogoutBottomSheet{
-                findNavController().navigate(R.id.action_profileFragment_to_loginFragment)
                 profileViewModel.logOut()
+                findNavController().navigate(
+                    R.id.action_profileFragment_to_welcomeFragment
+                )
             }.show(parentFragmentManager,"logout")
+        }
+
+        binding.ibDelete.setOnClickListener {
+            DialogUtil.showDeleteDialog(requireContext(),layoutInflater){
+
+                val currentEmail = sessionManager.getCurrentUserEmail()
+
+                profileViewModel.getUserByEmail(currentEmail!!).observe(viewLifecycleOwner){ user ->
+                    user?.let{
+                        profileViewModel.logOut()
+                        profileViewModel.deleteUser(user)
+                        findNavController().navigate(
+                            R.id.action_profileFragment_to_welcomeFragment
+                        )
+                    }
+                }
+            }
         }
     }
 
@@ -183,6 +203,12 @@ class ProfileFragment : Fragment() {
             profileViewModel.getUserByEmail(currentEmail).observe(viewLifecycleOwner){ user ->
                 user?.let{
                     displayUserPhoto(user)
+                    if(!user.fullName.isNullOrBlank()){
+                        binding.tvFullName.visibility = View.VISIBLE
+                        binding.tvFullName.text = user.fullName
+                    }
+                    binding.tvUsername.text = "@${user.username}" ?: "@johnDoe"
+                    binding.tvEmail.text = user.email ?: "johndoe@gmail.com"
                 }
             }
         }
@@ -199,6 +225,7 @@ class ProfileFragment : Fragment() {
         }
         Glide.with(this).load(R.drawable.baseline_person_24).into(binding.imgProfilePhoto)
     }
+
 
 
 }

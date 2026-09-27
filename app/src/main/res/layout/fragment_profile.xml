@@ -15,6 +15,28 @@
 
     tools:context=".ui.fragments.ProfileFragment">
 
+    <ImageButton
+
+        android:id="@+id/ibDelete"
+
+        android:layout_width="40dp"
+
+        android:layout_height="40dp"
+
+        android:background="@android:color/transparent"
+
+        android:src="@drawable/outline_delete_24"
+
+        android:contentDescription="Delete"
+
+        android:scaleType="centerCrop"
+
+        android:foreground="?attr/selectableItemBackgroundBorderless"
+
+        app:layout_constraintStart_toStartOf="parent"
+
+        app:layout_constraintTop_toTopOf="parent"/>
+
 
     <TextView
 
@@ -53,6 +75,9 @@
         android:src="@drawable/baseline_logout_24"
 
         android:contentDescription="Logout"
+
+        android:scaleType="centerCrop"
+
 
         android:foreground="?attr/selectableItemBackgroundBorderless"
 
@@ -119,28 +144,29 @@
 
 
         <TextView
-
+            android:id="@+id/tvFullName"
             android:layout_width="wrap_content"
 
             android:layout_height="wrap_content"
 
-            android:text=""
+            android:text="aaaa"
 
             android:textColor="@color/text_primary"
 
             android:fontFamily="@font/poppins_semibold"
 
-            android:textSize="20sp"/>
+            android:textSize="20sp"
+            android:visibility="gone"/>
 
 
 
         <TextView
-
+            android:id="@+id/tvUsername"
             android:layout_width="wrap_content"
 
             android:layout_height="wrap_content"
 
-            android:text=""
+            android:text="aaa"
 
             android:textColor="@color/text_secondary"
 
@@ -151,12 +177,12 @@
 
 
         <TextView
-
+            android:id="@+id/tvEmail"
             android:layout_width="wrap_content"
 
             android:layout_height="wrap_content"
 
-            android:text=""
+            android:text="aaa"
 
             android:textColor="@color/text_secondary"
 
@@ -596,16 +622,13 @@
                 android:padding="16dp">
 
 
-
                 <ImageView
 
                     android:layout_width="24dp"
 
                     android:layout_height="24dp"
 
-                    android:src="@drawable/outline_local_dining_24"/>
-
-
+                    android:src="@drawable/outline_local_dining_24" />
 
                 <TextView
 

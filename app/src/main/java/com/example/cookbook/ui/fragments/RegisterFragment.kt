@@ -1,6 +1,7 @@
 package com.example.cookbook.ui.fragments
 
 import android.os.Bundle
+import android.util.Patterns
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -19,6 +20,7 @@ import com.example.cookbook.state.RegisterState
 import com.example.cookbook.viewmodel.RegisterViewModel
 import com.example.cookbook.viewmodelfactory.RegisterViewModelFactory
 import kotlinx.coroutines.launch
+import java.util.regex.Pattern
 
 class RegisterFragment : Fragment() {
 
@@ -45,8 +47,11 @@ class RegisterFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.buttonSignUp.setOnClickListener {
+
             val user = createUser()
-            viewModel.registerUser(user)
+            if(user != null){
+                viewModel.registerUser(user)
+            }
         }
 
         viewLifecycleOwner.lifecycleScope.launch {
@@ -67,8 +72,31 @@ class RegisterFragment : Fragment() {
     }
 
 
-    fun createUser(): User{
-        val user = User(binding.etMail.text.toString(), "", binding.etUsername.text.toString(), binding.etPassword.text.toString())
+    fun createUser(): User?{
+
+        var user: User? = null
+
+        if(!binding.etMail.text.isNullOrBlank() && !binding.etUsername.text.isNullOrBlank() && !binding.etPassword.text.isNullOrBlank() && !binding.etConfirmPassword.text.isNullOrBlank()){
+            if(Patterns.EMAIL_ADDRESS.matcher(binding.etMail.text.toString()).matches()){
+                if(binding.etPassword.text.toString().length < 6 || binding.etPassword.text.toString().length < 6){
+                    Toast.makeText(requireContext(),"Password must be at least 6 characters long.",Toast.LENGTH_SHORT).show()
+                }
+                else{
+                    if(binding.etPassword.text.toString() == binding.etConfirmPassword.text.toString()){
+                        user = User(binding.etMail.text.toString(), "", binding.etUsername.text.toString(), binding.etPassword.text.toString())
+                    }
+                    else{
+                        Toast.makeText(requireContext(),"Passwords don't match.",Toast.LENGTH_SHORT).show()
+                    }
+                }
+            }
+            else{
+                Toast.makeText(requireContext(),"Email regex doesn't match.",Toast.LENGTH_SHORT).show()
+            }
+        }
+        else{
+            Toast.makeText(requireContext(),"All fields must be filled!",Toast.LENGTH_SHORT).show()
+        }
         return user
     }
 

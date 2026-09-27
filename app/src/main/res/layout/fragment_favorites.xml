@@ -126,6 +126,86 @@
 
             app:layout_constraintStart_toEndOf="@id/tvDescription"/>
 
+        <LinearLayout
+            android:id="@+id/layoutBegin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvDescription"
+            android:layout_marginTop="30dp"
+            >
+
+
+            <ImageView
+
+                android:layout_width="100dp"
+
+                android:layout_height="100dp"
+
+                android:src="@drawable/outline_bookmark_heart_24"/>
+
+
+
+
+            <TextView
+
+                android:layout_width="wrap_content"
+
+                android:layout_height="wrap_content"
+
+
+                android:text="@string/no_favorite_recipes_yet"
+
+                android:textSize="30sp"
+
+
+                android:textColor="@color/text_primary"
+
+                android:fontFamily="@font/poppins_semibold"
+
+
+                android:layout_marginTop="10dp"/>
+
+
+
+
+
+            <TextView
+
+                android:layout_width="wrap_content"
+
+                android:layout_height="wrap_content"
+
+
+                android:text="@string/favorites_yet_desc"
+
+
+                android:textSize="18sp"
+
+                android:textAlignment="center"
+
+                android:textColor="@color/text_secondary"
+
+                android:fontFamily="@font/inter"/>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnExplore"
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:text="Explore Recipes"
+                android:fontFamily="@font/poppins_semibold"
+                app:icon="@drawable/outline_local_dining_24"
+                app:iconSize="18sp"
+                app:iconGravity="textStart"
+                android:textColor="@color/white"
+                android:textSize="18sp"
+                android:layout_marginTop="20dp"/>
+
+        </LinearLayout>
+
 
 
 
@@ -150,7 +230,8 @@
 
             app:layout_constraintBottom_toBottomOf="parent"
 
-            tools:listitem="@layout/item_favorites"/>
+            tools:listitem="@layout/item_favorites"
+            android:visibility="gone"/>
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

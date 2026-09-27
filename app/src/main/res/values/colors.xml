@@ -20,4 +20,10 @@
 
     <color name="error">#F44336</color>
 
+    <color name="home_chip_background">#F8E5D8</color>
+    <color name="home_chip_text">#A83F20</color>
+    <color name="warning_bg">#20AB8F1C</color>
+    <color name="warning_text">#C62828</color>
+    <color name="warning_text_bg">#33FF0000</color>
+
 </resources>

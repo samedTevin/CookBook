@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.SearchView
+import android.widget.Toast
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
@@ -22,6 +23,7 @@ import com.example.cookbook.databinding.FragmentSearchBinding
 import com.example.cookbook.model.MealResponse
 import com.example.cookbook.repository.FavoriteMealRepository
 import com.example.cookbook.repository.MealRepository
+import com.example.cookbook.state.FavState
 import com.example.cookbook.state.SearchState
 import com.example.cookbook.viewmodel.FavoriteViewModel
 import com.example.cookbook.viewmodel.SearchViewModel
@@ -90,15 +92,29 @@ class SearchFragment : Fragment() {
             findNavController().navigate(action)
         }
 
+        favoriteViewModel.collectFavorites()
+
         searchAdapter.onFavClick = { meal ->
             favoriteViewModel.toggleFavorite(meal)
         }
 
         viewLifecycleOwner.lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED){
-                favoriteViewModel.favorites.collect { favoriteMeals ->
-                    val favIds = favoriteMeals.map{it.idMeal}.toSet()
-                    searchAdapter.updateFavorites(favIds)
+                favoriteViewModel.favState.collect { state ->
+                    when(state){
+                        FavState.Idle -> {
+                        }
+                        FavState.Loading -> {}
+                        is FavState.Success -> {
+                            val favIds = state.meals.map{it.idMeal}.toSet()
+                            searchAdapter.updateFavorites(favIds)
+                        }
+                        is FavState.Error -> {
+                            Toast.makeText(requireContext(), state.message,Toast.LENGTH_SHORT).show()
+                        }
+
+                    }
+
                 }
             }
         }

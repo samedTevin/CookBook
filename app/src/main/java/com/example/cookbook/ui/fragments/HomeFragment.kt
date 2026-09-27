@@ -27,7 +27,9 @@ import com.example.cookbook.model.Meal
 import com.example.cookbook.preferences.SessionManager
 import com.example.cookbook.repository.FavoriteMealRepository
 import com.example.cookbook.repository.MealRepository
+import com.example.cookbook.state.FavState
 import com.example.cookbook.state.HomeState
+import com.example.cookbook.util.DialogUtil
 import com.example.cookbook.util.DiscoverType
 import com.example.cookbook.viewmodel.FavoriteViewModel
 import com.example.cookbook.viewmodel.HomeViewModel
@@ -98,6 +100,40 @@ class HomeFragment : Fragment() {
             }
         }
 
+        // Marquee
+        loadMarquee()
+
+        // Categories
+        binding.tvSeeAll.setOnClickListener {
+            findNavController().navigate(R.id.action_homeFragment_to_categoriesFragment)
+        }
+
+        binding.apply {
+
+            chipChicken.setOnClickListener {
+                val action = HomeFragmentDirections.actionHomeFragmentToDiscoverFragment("Chicken",
+                    DiscoverType.CATEGORY)
+                findNavController().navigate(action)
+            }
+
+            chipBeef.setOnClickListener {
+                val action = HomeFragmentDirections.actionHomeFragmentToDiscoverFragment("Beef",
+                    DiscoverType.CATEGORY)
+                findNavController().navigate(action)
+            }
+
+            chipDessert.setOnClickListener {
+                val action = HomeFragmentDirections.actionHomeFragmentToDiscoverFragment("Dessert",
+                    DiscoverType.CATEGORY)
+                findNavController().navigate(action)
+            }
+
+            chipVegan.setOnClickListener {
+                val action = HomeFragmentDirections.actionHomeFragmentToDiscoverFragment("Vegan",
+                    DiscoverType.CATEGORY)
+                findNavController().navigate(action)
+            }
+        }
 
 
         binding.lottieAnimation.setOnClickListener {
@@ -125,6 +161,28 @@ class HomeFragment : Fragment() {
             override fun onAnimationStart(p0: Animator) {
             }
         })
+
+
+
+        binding.tvSelectCuisine.setOnClickListener {
+            DialogUtil.showCuisineDialog(requireContext(), layoutInflater, sessionManager.getCuisine() ?: ""){cuisine ->
+                sessionManager.saveCuisine(cuisine)
+                homeViewModel.filterBySelectedCuisine(cuisine)
+                binding.rvMadeForYou.visibility = View.VISIBLE
+                binding.emptyCuisineCard.visibility = View.GONE
+            }
+        }
+
+        binding.tvSelectIngredient.setOnClickListener {
+            DialogUtil.showIngredientsDialog(requireContext(),layoutInflater,sessionManager.getIngredient() ?: ""){ ingredient ->
+                sessionManager.saveIngredient(ingredient)
+                homeViewModel.filterBySelectedIngredient(ingredient)
+                binding.rvFav.visibility = View.VISIBLE
+                binding.emptyIngredientCard.visibility = View.GONE
+            }
+        }
+
+
 
 
         val selectedCuisine = sessionManager.getCuisine()
@@ -183,6 +241,9 @@ class HomeFragment : Fragment() {
             findNavController().navigate(action)
         }
 
+        favoriteViewModel.collectFavorites()
+
+
         ingredientAdapter.onFavClick = { meal ->
             favoriteViewModel.toggleFavorite(meal)
         }
@@ -191,11 +252,23 @@ class HomeFragment : Fragment() {
 
         viewLifecycleOwner.lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED){
-                favoriteViewModel.favorites.collect { favorites ->
-                    val ids = favorites.map { it.idMeal }.toSet()
+                favoriteViewModel.favState.collect { state ->
+                    when(state){
+                        FavState.Idle -> {
+                        }
+                        FavState.Loading -> {}
+                        is FavState.Success -> {
+                            val ids = state.meals.map { it.idMeal }.toSet()
 
-                    cuisineAdapter.updateFavorites(ids)
-                    ingredientAdapter.updateFavorites(ids)
+                            cuisineAdapter.updateFavorites(ids)
+                            ingredientAdapter.updateFavorites(ids)
+                        }
+                        is FavState.Error -> {
+                            Toast.makeText(requireContext(), state.message,Toast.LENGTH_SHORT).show()
+                        }
+
+                    }
+
                 }
             }
         }
@@ -232,13 +305,13 @@ class HomeFragment : Fragment() {
         }
     }
 
-    fun navigateIfReady(){
+    private fun navigateIfReady(){
         if(isFinished && selectedMeal != null){
             findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToDetailFragment(selectedMeal!!.idMeal))
         }
     }
 
-    fun loadCuisineCards(){
+    private fun loadCuisineCards(){
 
         val list = listOf<Country>(Country("Spain",R.string.spain,R.drawable.ic_flag_es),
             Country("Brazil",R.string.brazil,R.drawable.ic_flag_br),
@@ -265,6 +338,12 @@ class HomeFragment : Fragment() {
         binding.rvExplore.adapter = worldAdapter
     }
 
+    private fun loadMarquee(){
+        val marquee = listOf(R.string.set1, R.string.set2, R.string.set3, R.string.set4, R.string.set5)
+        val randomSet = marquee.random()
+        binding.tvMarquee.text = getString(randomSet)
+        binding.tvMarquee.isSelected = true
+    }
 
 }
 

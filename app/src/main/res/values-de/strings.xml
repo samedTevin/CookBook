@@ -147,4 +147,10 @@
     <string name="recipes_starting_with">Rezepte mit</string>
     <string name="recipes_found">" Rezepte gefunden"</string>
     <string name="play_a_game">Lust auf ein Spiel?</string>
+    <string name="set1">🍳 Rezepte entdecken • 🏷️ Nach Kategorie filtern • 🌍 Nach Land entdecken • ⭐ Favoriten speichern</string>
+    <string name="set2">🔎 Nach Zutaten suchen • 🥘 Dein nächstes Rezept finden • 🎲 Würfel rollen • ❤️ Lieblingsrezepte speichern</string>
+    <string name="set3">🌍 Küchen der Welt entdecken • 🏷️ Kategorien durchsuchen • 🎡 Glücksrad drehen • 🍴 Etwas Neues entdecken</string>
+    <string name="set4">🔎 Nach deinen Gelüsten suchen • ⭐ Rezepte speichern • 🎲 Die Würfel entscheiden lassen • 🌶️ Einen neuen Geschmack probieren</string>
+    <string name="set5">🍴 Rezepte durchsuchen • 🌍 Aromen aus aller Welt entdecken • 🎡 Das Glücksrad wählen lassen • 🥗 Deinen neuen Favoriten finden</string>
+    <string name="see_all">Alle anzeigen</string>
 </resources>

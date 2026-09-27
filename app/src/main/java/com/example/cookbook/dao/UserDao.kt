@@ -16,8 +16,8 @@ interface UserDao {
     @Update
     suspend fun updateUser(user: User)
 
-    @Query("SELECT * FROM user WHERE email = :email")
-    suspend fun findUser(email: String) : User?
+    @Query("SELECT * FROM user WHERE email = :email AND password =:password")
+    suspend fun findUser(email: String, password: String) : User?
 
     @Query("SELECT * FROM User WHERE email = :email")
     fun findUserForProfile(email: String): LiveData<User?>

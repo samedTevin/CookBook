@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
@@ -19,6 +20,7 @@ import com.example.cookbook.database.CookDatabase
 import com.example.cookbook.databinding.FragmentDiscoverBinding
 import com.example.cookbook.repository.FavoriteMealRepository
 import com.example.cookbook.repository.MealRepository
+import com.example.cookbook.state.FavState
 import com.example.cookbook.util.DiscoverType
 import com.example.cookbook.viewmodel.DiscoverViewModel
 import com.example.cookbook.viewmodel.FavoriteViewModel
@@ -89,6 +91,9 @@ class DiscoverFragment : Fragment() {
             }
         }
 
+        favoriteViewModel.collectFavorites()
+
+
         // Handle favorites
         searchAdapter.onFavClick = {meal ->
             favoriteViewModel.toggleFavorite(meal)
@@ -96,9 +101,20 @@ class DiscoverFragment : Fragment() {
 
         viewLifecycleOwner.lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED){
-                favoriteViewModel.favorites.collect { favoriteMeals ->
-                    val favIds = favoriteMeals.map{it.idMeal}.toSet()
-                    searchAdapter.updateFavorites(favIds)
+                favoriteViewModel.favState.collect { state ->
+                    when(state){
+                        FavState.Idle -> {
+                        }
+                        FavState.Loading -> {}
+                        is FavState.Success -> {
+                            val favIds = state.meals.map{it.idMeal}.toSet()
+                            searchAdapter.updateFavorites(favIds)
+                        }
+                        is FavState.Error -> {
+                            Toast.makeText(requireContext(), state.message,Toast.LENGTH_SHORT).show()
+                        }
+
+                    }
                 }
             }
         }

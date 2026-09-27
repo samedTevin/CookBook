@@ -15,7 +15,7 @@ class RegisterViewModel(private val userRepository: UserRepository): ViewModel()
 
     fun registerUser(user: User){
         viewModelScope.launch {
-            val existingUser = userRepository.findUser(user.email)
+            val existingUser = userRepository.findUser(user.email,user.password ?: "")
 
             if(existingUser != null){
                 _registerState.value = RegisterState.EmailAlreadyExists

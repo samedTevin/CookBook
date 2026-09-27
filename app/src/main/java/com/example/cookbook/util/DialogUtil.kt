@@ -10,8 +10,10 @@ import android.widget.Toast
 import androidx.core.R
 import com.example.cookbook.databinding.AboutAlertDialogBinding
 import com.example.cookbook.databinding.CuisineAlertDialogBinding
+import com.example.cookbook.databinding.DeleteAccountAlertDialogBinding
 import com.example.cookbook.databinding.IngredientAlertDialogBinding
 import com.example.cookbook.databinding.LanguageAlertDialogBinding
+import com.example.cookbook.model.User
 
 
 object DialogUtil {
@@ -155,6 +157,25 @@ object DialogUtil {
         dialog.show()
 
         binding.buttonOk.setOnClickListener {
+            dialog.dismiss()
+        }
+
+    }
+
+    fun showDeleteDialog(context: Context, layoutInflater: LayoutInflater, onDeleteAccount : () -> Unit){
+        val binding = DeleteAccountAlertDialogBinding.inflate(layoutInflater)
+
+        val dialog = AlertDialog.Builder(context).setView(binding.root).create()
+
+        dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        dialog.show()
+
+        binding.btnDelete.setOnClickListener {
+            onDeleteAccount()
+            dialog.dismiss()
+        }
+
+        binding.btnCancel.setOnClickListener {
             dialog.dismiss()
         }
 

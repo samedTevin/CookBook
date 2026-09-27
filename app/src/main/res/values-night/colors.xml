@@ -20,4 +20,7 @@
 
     <color name="error">#F44336</color>
 
+    <color name="home_chip_background">#3A2923</color>
+    <color name="home_chip_text">#F2A07A</color>
+
 </resources>
