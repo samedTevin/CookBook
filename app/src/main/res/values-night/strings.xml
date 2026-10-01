@@ -2,4 +2,8 @@
 <resources>
     <string name="no_favorite_recipes_yet">No favorite recipes yet</string>
     <string name="favorites_yet_desc">Tap the heart icon on any recipe or\n explore our kitchen to save your\n favorites here.</string>
+    <string name="delete_account">Delete Account?</string>
+    <string name="delete_account_desc">Are you sure you want to delete your account?\n All your saved recipes, customized preferences, and collections will be permanently removed.</string>
+    <string name="delete_account_sub_text">This action is permanent and cannot be undone.</string>
+    <string name="delete_account_btn">Delete Account</string>
 </resources>

@@ -4,7 +4,7 @@
     <string name="save_your_favorites">Enregistrez Vos Favoris</string>
     <string name="save_your_favorites_description">Gardez vos recettes préférées au même endroit pour un accès rapide.</string>
     <string name="button_next">Suivant</string>
-    <string name="welcome">Bienvenue !</string>
+    <string name="welcome">Bienvenue,</string>
     <string name="find_your_next_favorite_recipe">Trouvez votre prochaine recette préférée</string>
     <string name="home_page_query_hint">Rechercher des recettes...</string>
     <string name="roll_the_dice">Lancer le Dé🎲</string>
@@ -153,4 +153,10 @@
     <string name="set4">🔎 Recherche selon tes envies • ⭐ Enregistre tes recettes • 🎲 Laisse les dés décider • 🌶️ Goûte une nouvelle saveur</string>
     <string name="set5">🍴 Parcours les recettes • 🌍 Découvre les saveurs du monde • 🎡 Laisse la roue choisir • 🥗 Trouve ton nouveau favori</string>
     <string name="see_all">Voir tout</string>
+    <string name="no_favorite_recipes_yet">Aucune recette favorite pour le moment</string>
+    <string name="favorites_yet_desc">Appuyez sur l’icône en forme de cœur d’une recette ou\n explorez notre cuisine pour enregistrer vos favoris ici.</string>
+    <string name="delete_account">Supprimer le compte ?</string>
+    <string name="delete_account_desc">Êtes-vous sûr de vouloir supprimer votre compte ?\n Toutes vos recettes enregistrées, vos préférences personnalisées et vos collections seront définitivement supprimées.</string>
+    <string name="delete_account_sub_text">Cette action est définitive et ne peut pas être annulée.</string>
+    <string name="delete_account_btn">Supprimer le compte</string>
 </resources>

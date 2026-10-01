@@ -5,382 +5,421 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
 
+    android:id="@+id/scrollViewDetail"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
 
+    android:fillViewport="true"
     android:background="@color/background"
 
     tools:context=".ui.fragments.detailfragments.DetailFragment">
 
 
-    <LinearLayout
-
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="wrap_content">
 
-        android:orientation="vertical"
-        android:gravity="center">
-
-
-        <androidx.appcompat.widget.Toolbar
-
-            android:id="@+id/toolBar"
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/loadingAnimation"
 
             android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="fitCenter"
+            android:visibility="gone"
+            app:lottie_autoPlay="false"
+            app:lottie_colorFilter="@color/primary"
+            app:lottie_loop="false"
+            app:lottie_rawRes="@raw/food_loading2"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+
+        <LinearLayout
+            android:id="@+id/layoutDetail"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center_horizontal"
+            android:visibility="visible"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
-            android:layout_marginTop="20dp">
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolBar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
 
-            <ImageButton
-                android:id="@+id/back"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:src="@drawable/outline_arrow_left_alt_24"
-                android:backgroundTint="@color/background"
+                android:layout_marginTop="20dp">
+
+                <ImageButton
+                    android:id="@+id/back"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:src="@drawable/outline_arrow_left_alt_24"
+                    android:backgroundTint="@color/background"
+                    android:scaleType="centerCrop"
+                    />
+
+
+                <TextView
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+
+                    android:text="@string/app_name"
+
+                    android:textSize="50sp"
+
+                    android:textColor="@color/primary"
+
+                    android:fontFamily="@font/poppins_semibold"
+
+                    android:layout_gravity="center"/>
+
+
+            </androidx.appcompat.widget.Toolbar>
+
+
+
+
+            <com.google.android.material.imageview.ShapeableImageView
+
+                android:id="@+id/ivDetailPhoto"
+
+                android:layout_width="350dp"
+                android:layout_height="350dp"
+
+                android:layout_marginTop="10dp"
+
                 android:scaleType="centerCrop"
-                />
+
+                android:src="@drawable/hamburger"
+
+                app:shapeAppearance="@style/RoundedSquare"/>
+
+
+
+
+            <TextView
+
+                android:id="@+id/tvTitle"
+
+                android:layout_width="wrap_content"
+
+                android:layout_height="wrap_content"
+
+                android:text="American Hamburger"
+
+                android:textSize="30sp"
+
+                android:textColor="@color/text_primary"
+
+                android:fontFamily="@font/plus_jakarta_sans_semibold"
+
+                android:layout_gravity="start"
+
+                android:layout_marginStart="15dp"
+
+                android:layout_marginTop="12dp"/>
+
+
+
+
+            <com.google.android.material.chip.ChipGroup
+
+                android:layout_width="match_parent"
+
+                android:layout_height="wrap_content"
+
+                android:layout_marginStart="15dp"
+
+                android:layout_marginEnd="15dp"
+
+                android:layout_marginTop="8dp"
+
+                app:chipSpacing="8dp"
+
+                app:singleLine="true">
+
+
+                <com.google.android.material.chip.Chip
+
+                    android:id="@+id/chipCategory"
+
+                    android:layout_width="wrap_content"
+
+                    android:layout_height="wrap_content"
+
+                    android:text="Chicken"
+
+                    android:textColor="@color/text_primary"
+
+                    app:chipIcon="@drawable/outline_restaurant_24"
+
+                    app:chipBackgroundColor="@color/chip_background_color"/>
+
+
+
+                <com.google.android.material.chip.Chip
+
+                    android:id="@+id/chipArea"
+
+                    android:layout_width="wrap_content"
+
+                    android:layout_height="wrap_content"
+
+                    android:text="Japanese"
+
+                    android:textColor="@color/text_primary"
+
+                    app:chipIcon="@drawable/language"
+
+                    app:chipBackgroundColor="@color/chip_background_color"/>
+
+
+
+                <com.google.android.material.chip.Chip
+
+                    android:id="@+id/chipCountry"
+
+                    android:layout_width="wrap_content"
+
+                    android:layout_height="wrap_content"
+
+                    android:text="Japan"
+
+                    android:textColor="@color/text_primary"
+
+                    app:chipIcon="@drawable/outline_globe_location_pin_24"
+
+                    app:chipBackgroundColor="@color/chip_background_color"/>
+
+
+            </com.google.android.material.chip.ChipGroup>
+
+            <TextView
+
+                android:layout_width="wrap_content"
+
+                android:layout_height="wrap_content"
+
+                android:text="@string/tags"
+
+                android:textSize="18sp"
+
+                android:textColor="@color/text_primary"
+
+                android:fontFamily="@font/poppins_semibold"
+
+                android:layout_gravity="start"
+
+                android:layout_marginStart="15dp"
+
+                android:layout_marginTop="10dp"/>
+
+
+
+
+            <com.google.android.material.chip.ChipGroup
+
+                android:layout_width="match_parent"
+
+                android:layout_height="wrap_content"
+
+                android:layout_marginStart="15dp"
+
+                android:layout_marginEnd="15dp"
+
+                android:layout_marginTop="4dp"
+
+                app:chipSpacing="8dp"
+
+                app:singleLine="true">
+
+
+                <com.google.android.material.chip.Chip
+
+                    android:id="@+id/chipTag1"
+
+                    android:layout_width="wrap_content"
+
+                    android:layout_height="wrap_content"
+
+                    android:text="Chicken"
+
+                    android:textColor="@color/background"
+
+                    app:chipBackgroundColor="@color/primary"/>
+
+
+
+                <com.google.android.material.chip.Chip
+
+                    android:id="@+id/chipTag2"
+
+                    android:layout_width="wrap_content"
+
+                    android:layout_height="wrap_content"
+
+                    android:text="Japanese"
+
+                    android:textColor="@color/background"
+
+                    app:chipBackgroundColor="@color/primary"/>
+
+
+            </com.google.android.material.chip.ChipGroup>
+
+
+
 
 
             <TextView
 
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-
-                android:text="@string/app_name"
-
-                android:textSize="50sp"
-
-                android:textColor="@color/primary"
-
-                android:fontFamily="@font/poppins_semibold"
-
-                android:layout_gravity="center"/>
-
-
-        </androidx.appcompat.widget.Toolbar>
-
-
-
-
-        <com.google.android.material.imageview.ShapeableImageView
-
-            android:id="@+id/ivDetailPhoto"
-
-            android:layout_width="350dp"
-            android:layout_height="350dp"
-
-            android:layout_marginTop="10dp"
-
-            android:scaleType="centerCrop"
-
-            android:src="@drawable/hamburger"
-
-            app:shapeAppearance="@style/RoundedSquare"/>
-
-
-
-
-        <TextView
-
-            android:id="@+id/tvTitle"
-
-            android:layout_width="wrap_content"
-
-            android:layout_height="wrap_content"
-
-            android:text="American Hamburger"
-
-            android:textSize="30sp"
-
-            android:textColor="@color/text_primary"
-
-            android:fontFamily="@font/plus_jakarta_sans_semibold"
-
-            android:layout_gravity="start"
-
-            android:layout_marginStart="15dp"/>
-
-
-
-
-        <com.google.android.material.chip.ChipGroup
-
-            android:layout_width="match_parent"
-
-            android:layout_height="wrap_content"
-
-            android:layout_marginStart="10dp"
-
-            app:chipSpacing="8dp"
-
-            app:singleLine="true">
-
-
-            <com.google.android.material.chip.Chip
-
-                android:id="@+id/chipCategory"
-
-                android:layout_width="wrap_content"
 
                 android:layout_height="wrap_content"
 
-                android:text="Chicken"
+                android:text="@string/ingredients"
+
+                android:textSize="20sp"
 
                 android:textColor="@color/text_primary"
 
-                app:chipIcon="@drawable/outline_restaurant_24"
+                android:fontFamily="@font/plus_jakarta_sans_semibold"
 
-                app:chipBackgroundColor="@color/chip_background_color"/>
+                android:layout_gravity="start"
+
+                android:layout_marginStart="15dp"
+
+                android:layout_marginTop="12dp"/>
 
 
 
-            <com.google.android.material.chip.Chip
 
-                android:id="@+id/chipArea"
+
+            <androidx.recyclerview.widget.RecyclerView
+
+                android:id="@+id/rvIngredients"
+
+                android:layout_width="match_parent"
+
+                android:layout_height="wrap_content"
+
+                android:layout_marginStart="10dp"
+
+                android:layout_marginEnd="10dp"
+
+                android:layout_marginTop="8dp"
+
+                android:clipToPadding="false"
+
+                android:nestedScrollingEnabled="false"
+
+                tools:listitem="@layout/item_ingredients"/>
+
+
+
+
+
+            <TextView
 
                 android:layout_width="wrap_content"
 
                 android:layout_height="wrap_content"
 
-                android:text="Japanese"
+                android:text="@string/instructions"
+
+                android:textSize="20sp"
 
                 android:textColor="@color/text_primary"
 
-                app:chipIcon="@drawable/language"
+                android:fontFamily="@font/plus_jakarta_sans_semibold"
 
-                app:chipBackgroundColor="@color/chip_background_color"/>
+                android:layout_gravity="start"
+
+                android:layout_marginStart="15dp"
+
+                android:layout_marginTop="12dp"/>
 
 
 
-            <com.google.android.material.chip.Chip
 
-                android:id="@+id/chipCountry"
 
-                android:layout_width="wrap_content"
+            <com.google.android.material.textview.MaterialTextView
+
+                android:id="@+id/tvInstructions"
+
+                android:layout_width="match_parent"
 
                 android:layout_height="wrap_content"
 
-                android:text="Japan"
+                android:layout_marginHorizontal="16dp"
+
+                android:layout_marginTop="12dp"
+
+                android:layout_marginBottom="10dp"
+
+                android:textSize="16sp"
 
                 android:textColor="@color/text_primary"
 
-                app:chipIcon="@drawable/outline_globe_location_pin_24"
+                android:lineSpacingExtra="8dp"
 
-                app:chipBackgroundColor="@color/chip_background_color"/>
+                android:letterSpacing="0"
 
+                android:fontFamily="@font/inter"
 
-        </com.google.android.material.chip.ChipGroup>
-        <TextView
+                android:textAlignment="viewStart"
 
-            android:layout_width="wrap_content"
+                android:gravity="start"
 
-            android:layout_height="wrap_content"
+                android:breakStrategy="high_quality"
 
-            android:text="@string/tags"
+                android:hyphenationFrequency="normal"/>
 
-            android:textSize="18sp"
 
-            android:textColor="@color/text_primary"
 
-            android:fontFamily="@font/poppins_semibold"
 
-            android:layout_gravity="start"
 
-            android:layout_marginStart="15dp"
+            <com.google.android.material.button.MaterialButton
 
-            android:layout_marginTop="10dp"/>
+                android:id="@+id/buttonYoutube"
 
+                android:layout_width="match_parent"
 
+                android:layout_height="60dp"
 
+                android:layout_marginStart="15dp"
 
-        <com.google.android.material.chip.ChipGroup
+                android:layout_marginEnd="15dp"
 
-            android:layout_width="match_parent"
+                android:layout_marginTop="15dp"
 
-            android:layout_height="wrap_content"
+                android:layout_marginBottom="30dp"
 
-            android:layout_marginStart="10dp"
+                android:text="@string/watch_on_youtube"
 
-            app:chipSpacing="8dp"
+                android:textColor="@android:color/white"
 
-            app:singleLine="true">
+                android:fontFamily="@font/plus_jakarta_sans_semibold"
 
+                android:backgroundTint="@color/primary"
 
-            <com.google.android.material.chip.Chip
+                app:cornerRadius="6dp"
 
-                android:id="@+id/chipTag1"
+                app:icon="@drawable/youtube"
 
-                android:layout_width="wrap_content"
+                app:iconTint="@null"
 
-                android:layout_height="wrap_content"
+                app:iconGravity="textStart"
 
-                android:text="Chicken"
+                app:iconSize="30dp"/>
+        </LinearLayout>
 
-                android:textColor="@color/background"
-
-                app:chipBackgroundColor="@color/primary"/>
-
-
-
-            <com.google.android.material.chip.Chip
-
-                android:id="@+id/chipTag2"
-
-                android:layout_width="wrap_content"
-
-                android:layout_height="wrap_content"
-
-                android:text="Japanese"
-
-                android:textColor="@color/background"
-
-                app:chipBackgroundColor="@color/primary"/>
-
-
-        </com.google.android.material.chip.ChipGroup>
-
-
-
-
-
-        <TextView
-
-            android:layout_width="wrap_content"
-
-            android:layout_height="wrap_content"
-
-            android:text="@string/ingredients"
-
-            android:textSize="20sp"
-
-            android:textColor="@color/text_primary"
-
-            android:fontFamily="@font/plus_jakarta_sans_semibold"
-
-            android:layout_gravity="start"
-
-            android:layout_marginStart="15dp"
-
-            android:layout_marginTop="10dp"/>
-
-
-
-
-
-        <androidx.recyclerview.widget.RecyclerView
-
-            android:id="@+id/rvIngredients"
-
-            android:layout_width="match_parent"
-
-            android:layout_height="wrap_content"
-
-            android:layout_marginStart="10dp"
-
-            android:layout_marginTop="10dp"
-
-            android:clipToPadding="false"
-
-            tools:listitem="@layout/item_ingredients"/>
-
-
-
-
-
-        <TextView
-
-            android:layout_width="wrap_content"
-
-            android:layout_height="wrap_content"
-
-            android:text="@string/instructions"
-
-            android:textSize="20sp"
-
-            android:textColor="@color/text_primary"
-
-            android:fontFamily="@font/plus_jakarta_sans_semibold"
-
-            android:layout_gravity="start"
-
-            android:layout_marginStart="15dp"
-
-            android:layout_marginTop="10dp"/>
-
-
-
-
-
-        <com.google.android.material.textview.MaterialTextView
-
-            android:id="@+id/tvInstructions"
-
-            android:layout_width="match_parent"
-
-            android:layout_height="wrap_content"
-
-            android:layout_marginHorizontal="16dp"
-
-            android:layout_marginTop="12dp"
-
-            android:layout_marginBottom="10dp"
-
-            android:textSize="16sp"
-
-            android:textColor="@color/text_primary"
-
-            android:lineSpacingExtra="8dp"
-
-            android:letterSpacing="0"
-
-            android:fontFamily="@font/inter"
-
-            android:textAlignment="viewStart"
-
-            android:gravity="start"
-
-            android:breakStrategy="high_quality"
-
-            android:hyphenationFrequency="normal"/>
-
-
-
-
-
-        <com.google.android.material.button.MaterialButton
-
-            android:id="@+id/buttonYoutube"
-
-            android:layout_width="match_parent"
-
-            android:layout_height="60dp"
-
-            android:layout_marginStart="15dp"
-
-            android:layout_marginEnd="15dp"
-
-            android:layout_marginBottom="30dp"
-
-            android:text="@string/watch_on_youtube"
-
-            android:textColor="@android:color/white"
-
-            android:fontFamily="@font/plus_jakarta_sans_semibold"
-
-            android:backgroundTint="@color/primary"
-
-            app:cornerRadius="6dp"
-
-            app:icon="@drawable/youtube"
-
-            app:iconTint="@null"
-
-            app:iconGravity="textStart"
-
-            app:iconSize="30dp"/>
-
-
-    </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 
 </androidx.core.widget.NestedScrollView>

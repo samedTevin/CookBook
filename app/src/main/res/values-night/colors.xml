@@ -11,6 +11,7 @@
     <color name="white">#FFFFFF</color>
 
     <color name="card_background">#1E1E1E</color>
+    <color name="card_stroke">#2C2C2C</color>
 
     <color name="text_primary">#FFFFFF</color>
     <color name="text_secondary">#B0B0B0</color>
@@ -22,5 +23,9 @@
 
     <color name="home_chip_background">#3A2923</color>
     <color name="home_chip_text">#F2A07A</color>
+    <color name="warning_bg">#20AB8F1C</color>
+    <color name="warning_text">#C62828</color>
+    <color name="warning_text_bg">#33FF0000</color>
+    <color name="recipe_card_bg">#3A2D28</color>
 
 </resources>

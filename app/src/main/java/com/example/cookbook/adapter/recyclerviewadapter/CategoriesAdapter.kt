@@ -31,7 +31,7 @@ class CategoriesAdapter(private val categoryList: MutableList<Category>): Recycl
                 else -> ""
             }
             binding.chipInfo.text = category.idCategory
-            Glide.with(binding.root).load(category.strCategoryThumb).into(binding.ivFoodPhoto)
+            Glide.with(binding.root).load(category.strCategoryThumb).placeholder(R.drawable.bg_skeleton).error(R.drawable.ic_error_image).into(binding.ivFoodPhoto)
 
             binding.root.setOnClickListener {
                 onItemClick?.invoke(category.strCategory)

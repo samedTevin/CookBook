@@ -15,6 +15,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.airbnb.lottie.LottieDrawable
 import com.example.cookbook.R
 import com.example.cookbook.adapter.recyclerviewadapter.SearchAdapter
 import com.example.cookbook.adapter.recyclerviewadapter.WorldAdapter
@@ -27,6 +28,8 @@ import com.example.cookbook.model.Meal
 import com.example.cookbook.preferences.SessionManager
 import com.example.cookbook.repository.FavoriteMealRepository
 import com.example.cookbook.repository.MealRepository
+import com.example.cookbook.repository.UserRepository
+import com.example.cookbook.state.CardState
 import com.example.cookbook.state.FavState
 import com.example.cookbook.state.HomeState
 import com.example.cookbook.util.DialogUtil
@@ -45,6 +48,7 @@ class HomeFragment : Fragment() {
     private lateinit var favoriteViewModel: FavoriteViewModel
     private lateinit var mealRepository: MealRepository
     private lateinit var favoriteMealRepository: FavoriteMealRepository
+    private lateinit var userRepository: UserRepository
     private lateinit var sessionManager: SessionManager
     private lateinit var worldAdapter: WorldAdapter
     private lateinit var cuisineAdapter: SearchAdapter
@@ -64,15 +68,32 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+
         val api = RetrofitInstance.api
         mealRepository = MealRepository(api)
-        val favDao = CookDatabase.createDatabase(requireContext()).favoriteMealDao()
+        val db = CookDatabase.createDatabase(requireContext().applicationContext)
+        val userDao = db.userDao()
+        val favDao = db.favoriteMealDao()
+
         favoriteMealRepository = FavoriteMealRepository(favDao)
+        userRepository = UserRepository(userDao)
+
         val sharedPreferences = requireContext().getSharedPreferences("session", Activity.MODE_PRIVATE)
         sessionManager = SessionManager(sharedPreferences)
 
-        homeViewModel = ViewModelProvider(requireActivity(), HomeViewModelFactory(mealRepository))[HomeViewModel::class.java]
+        homeViewModel = ViewModelProvider(requireActivity(), HomeViewModelFactory(mealRepository,userRepository))[HomeViewModel::class.java]
         favoriteViewModel = ViewModelProvider(requireActivity(), FavoriteViewModelFactory(favoriteMealRepository))[FavoriteViewModel::class.java]
+
+
+        homeViewModel.findUsername(sessionManager.getCurrentUserEmail()!!)
+
+        viewLifecycleOwner.lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.STARTED){
+                homeViewModel.username.collect { username ->
+                    binding.tvUsername.text = "$username!"
+                }
+            }
+        }
 
         loadCuisineCards()
 
@@ -168,8 +189,6 @@ class HomeFragment : Fragment() {
             DialogUtil.showCuisineDialog(requireContext(), layoutInflater, sessionManager.getCuisine() ?: ""){cuisine ->
                 sessionManager.saveCuisine(cuisine)
                 homeViewModel.filterBySelectedCuisine(cuisine)
-                binding.rvMadeForYou.visibility = View.VISIBLE
-                binding.emptyCuisineCard.visibility = View.GONE
             }
         }
 
@@ -177,8 +196,6 @@ class HomeFragment : Fragment() {
             DialogUtil.showIngredientsDialog(requireContext(),layoutInflater,sessionManager.getIngredient() ?: ""){ ingredient ->
                 sessionManager.saveIngredient(ingredient)
                 homeViewModel.filterBySelectedIngredient(ingredient)
-                binding.rvFav.visibility = View.VISIBLE
-                binding.emptyIngredientCard.visibility = View.GONE
             }
         }
 
@@ -188,40 +205,105 @@ class HomeFragment : Fragment() {
         val selectedCuisine = sessionManager.getCuisine()
         if(selectedCuisine != null){
             homeViewModel.filterBySelectedCuisine(selectedCuisine)
-            binding.rvMadeForYou.visibility = View.VISIBLE
-            binding.emptyCuisineCard.visibility = View.GONE
-        }
-        else{
-            binding.rvMadeForYou.visibility = View.GONE
-            binding.emptyCuisineCard.visibility = View.VISIBLE
-        }
-
-        viewLifecycleOwner.lifecycleScope.launch {
-            repeatOnLifecycle(Lifecycle.State.STARTED){
-                homeViewModel.filter.collect { selectedCuisine ->
-                   selectedCuisine?.meals?.let { meals ->
-                       cuisineAdapter.updateList(meals)
-                   }
-                }
-            }
         }
 
         val selectedIngredient = sessionManager.getIngredient()
         if(selectedIngredient != null){
             homeViewModel.filterBySelectedIngredient(selectedIngredient)
-            binding.rvFav.visibility = View.VISIBLE
-            binding.emptyIngredientCard.visibility = View.GONE
         }
-        else{
-            binding.rvFav.visibility = View.GONE
-            binding.emptyIngredientCard.visibility = View.VISIBLE
+
+
+        viewLifecycleOwner.lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.STARTED){
+                homeViewModel.cuisine.collect { state ->
+                    when(state){
+                        CardState.Idle -> {
+                            binding.cuisineLoading.cancelAnimation()
+                            binding.cuisineLoading.visibility = View.GONE
+                            binding.rvMadeForYou.visibility = View.GONE
+                            binding.emptyCuisineCard.visibility = View.VISIBLE
+                        }
+                        CardState.Loading -> {
+                            binding.cuisineLoading.cancelAnimation()
+                            binding.cuisineLoading.visibility = View.GONE
+
+                            cuisineAdapter.showLoading()
+
+                            binding.rvMadeForYou.visibility = View.VISIBLE
+                            binding.emptyCuisineCard.visibility = View.GONE
+                        }
+                        is CardState.Success -> {
+                            binding.cuisineLoading.cancelAnimation()
+                            binding.cuisineLoading.visibility = View.GONE
+
+                            state.meal.meals?.let {
+                                cuisineAdapter.updateList(it)
+                            }
+
+                            binding.rvMadeForYou.visibility = View.VISIBLE
+                            binding.emptyCuisineCard.visibility = View.GONE
+                        }
+                        is CardState.Error -> {
+                            binding.cuisineLoading.cancelAnimation()
+                            binding.cuisineLoading.visibility = View.GONE
+
+                            binding.rvMadeForYou.visibility = View.GONE
+                            binding.emptyCuisineCard.visibility = View.VISIBLE
+
+                            Toast.makeText(
+                                requireContext(),
+                                state.message,
+                                Toast.LENGTH_SHORT
+                            ).show()
+                        }
+                    }
+                }
+            }
         }
 
         viewLifecycleOwner.lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED){
-                homeViewModel.ingredient.collect { selectedIngredient ->
-                    selectedIngredient?.meals?.let{ meals ->
-                        ingredientAdapter.updateList(meals)
+                homeViewModel.ingredient.collect { state ->
+                    when(state){
+                        CardState.Idle -> {
+                            binding.ingredientLoading.cancelAnimation()
+                            binding.ingredientLoading.visibility = View.GONE
+                            binding.rvFav.visibility = View.GONE
+                            binding.emptyIngredientCard.visibility = View.VISIBLE
+                        }
+                        CardState.Loading -> {
+                            binding.ingredientLoading.cancelAnimation()
+                            binding.ingredientLoading.visibility = View.GONE
+
+                            ingredientAdapter.showLoading()
+
+                            binding.rvFav.visibility = View.VISIBLE
+                            binding.emptyIngredientCard.visibility = View.GONE
+                        }
+                        is CardState.Success -> {
+                            binding.ingredientLoading.cancelAnimation()
+                            binding.ingredientLoading.visibility = View.GONE
+
+                            state.meal.meals?.let {
+                                ingredientAdapter.updateList(it)
+                            }
+
+                            binding.rvFav.visibility = View.VISIBLE
+                            binding.emptyIngredientCard.visibility = View.GONE
+                        }
+                        is CardState.Error -> {
+                            binding.ingredientLoading.cancelAnimation()
+                            binding.ingredientLoading.visibility = View.GONE
+
+                            binding.rvFav.visibility = View.GONE
+                            binding.emptyIngredientCard.visibility = View.VISIBLE
+
+                            Toast.makeText(
+                                requireContext(),
+                                state.message,
+                                Toast.LENGTH_SHORT
+                            ).show()
+                        }
                     }
                 }
             }
@@ -313,7 +395,7 @@ class HomeFragment : Fragment() {
 
     private fun loadCuisineCards(){
 
-        val list = listOf<Country>(Country("Spain",R.string.spain,R.drawable.ic_flag_es),
+        val list = listOf(Country("Spain",R.string.spain,R.drawable.ic_flag_es),
             Country("Brazil",R.string.brazil,R.drawable.ic_flag_br),
             Country("China",R.string.china,R.drawable.ic_flag_cn),
             Country("France",R.string.france,R.drawable.ic_flag_fr),

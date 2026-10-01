@@ -17,6 +17,11 @@ class UserRepository(private val userDao: UserDao) {
         return user
     }
 
+    suspend fun findUsername(email: String): String?{
+        val username = userDao.findUsername(email)
+        return username
+    }
+
     fun findUserForProfilePhoto(email: String): LiveData<User?>{
        return userDao.findUserForProfile(email)
     }

@@ -4,7 +4,7 @@
     <string name="save_your_favorites">Сохраняйте Избранное</string>
     <string name="save_your_favorites_description">Храните любимые рецепты в одном месте для быстрого доступа.</string>
     <string name="button_next">Далее</string>
-    <string name="welcome">Добро пожаловать!</string>
+    <string name="welcome">Добро пожаловать,</string>
     <string name="find_your_next_favorite_recipe">Найдите своё новое любимое блюдо</string>
     <string name="home_page_query_hint">Поиск рецептов...</string>
     <string name="roll_the_dice">Бросить Кубик🎲</string>
@@ -153,4 +153,10 @@
     <string name="set4">🔎 Ищи то, чего хочется • ⭐ Сохраняй рецепты • 🎲 Доверься костям • 🌶️ Попробуй новый вкус</string>
     <string name="set5">🍴 Просматривай рецепты • 🌍 Открывай вкусы со всего мира • 🎡 Пусть колесо выберет • 🥗 Найди своего нового фаворита</string>
     <string name="see_all">Смотреть все</string>
+    <string name="no_favorite_recipes_yet">Пока нет избранных рецептов</string>
+    <string name="favorites_yet_desc">Нажмите на значок сердца у любого рецепта или\n изучите нашу кухню, чтобы сохранить избранное здесь.</string>
+    <string name="delete_account">Удалить аккаунт?</string>
+    <string name="delete_account_desc">Вы уверены, что хотите удалить свой аккаунт?\n Все сохранённые рецепты, персональные настройки и коллекции будут удалены навсегда.</string>
+    <string name="delete_account_sub_text">Это действие необратимо, и его нельзя отменить.</string>
+    <string name="delete_account_btn">Удалить аккаунт</string>
 </resources>

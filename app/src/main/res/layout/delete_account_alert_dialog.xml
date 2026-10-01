@@ -19,14 +19,14 @@
             android:layout_width="120dp"
             android:layout_height="120dp"
             android:src="@drawable/outline_warning_24"
-            android:scaleType="centerInside"
+            android:scaleType="centerCrop"
             android:background="@drawable/bg_warning"
             android:layout_gravity="center"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Delete Account?"
+            android:text="@string/delete_account"
             android:fontFamily="@font/poppins_semibold"
             android:textSize="20sp"
             android:layout_gravity="center"
@@ -35,7 +35,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Are you sure you want to delete your account?\n All your saved recipes, customized preferences, and collections will be permanently removed."
+            android:text="@string/delete_account_desc"
             android:textAlignment="center"
             android:fontFamily="@font/inter"
             android:textSize="14sp"
@@ -60,7 +60,7 @@
                <TextView
                    android:layout_width="wrap_content"
                    android:layout_height="wrap_content"
-                   android:text="This action is permanent and cannot be undone."
+                   android:text="@string/delete_account_sub_text"
                    android:textColor="@color/warning_text"
                    android:fontFamily="@font/plus_jakarta_sans_semibold"
                    android:textSize="14sp"
@@ -74,7 +74,7 @@
             android:id="@+id/btnDelete"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="Delete Account"
+            android:text="@string/delete_account_btn"
             android:textColor="@color/white"
             android:textSize="18sp"
             android:fontFamily="@font/poppins_semibold"
@@ -87,7 +87,7 @@
             android:id="@+id/btnCancel"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="Cancel"
+            android:text="@string/cancel"
             android:textColor="@color/primary"
             android:textSize="18sp"
             android:fontFamily="@font/poppins_semibold"

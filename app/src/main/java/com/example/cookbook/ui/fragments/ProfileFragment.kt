@@ -1,5 +1,6 @@
 package com.example.cookbook.ui.fragments
 
+import android.animation.Animator
 import android.app.Activity
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -8,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatDelegate
+import androidx.core.os.LocaleListCompat
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavOptions
 import androidx.navigation.fragment.findNavController
@@ -18,10 +20,14 @@ import com.example.cookbook.database.CookDatabase
 import com.example.cookbook.databinding.FragmentProfileBinding
 import com.example.cookbook.model.User
 import com.example.cookbook.preferences.SessionManager
+import com.example.cookbook.repository.FavoriteMealRepository
 import com.example.cookbook.repository.UserRepository
 import com.example.cookbook.util.DialogUtil
+import com.example.cookbook.util.LanguageManager
 import com.example.cookbook.util.LogoutBottomSheet
+import com.example.cookbook.viewmodel.FavoriteViewModel
 import com.example.cookbook.viewmodel.ProfileViewModel
+import com.example.cookbook.viewmodelfactory.FavoriteViewModelFactory
 import com.example.cookbook.viewmodelfactory.ProfileViewModelFactory
 import java.io.File
 
@@ -46,11 +52,15 @@ class ProfileFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val dao = CookDatabase.createDatabase(requireContext()).userDao()
+        val db = CookDatabase.createDatabase(requireContext().applicationContext)
+        val dao = db.userDao()
+        val favDao = db.favoriteMealDao()
         userRepository = UserRepository(dao)
+        val favoriteMealRepository = FavoriteMealRepository(favDao)
         val sharedPreferences = requireActivity().getSharedPreferences("session", Activity.MODE_PRIVATE)
         sessionManager = SessionManager(sharedPreferences)
         profileViewModel = ViewModelProvider(this, ProfileViewModelFactory(userRepository,sessionManager))[ProfileViewModel::class.java]
+        val favoriteViewModel = ViewModelProvider(requireActivity(), FavoriteViewModelFactory(favoriteMealRepository))[FavoriteViewModel::class.java]
 
         observeUser()
 
@@ -182,15 +192,52 @@ class ProfileFragment : Fragment() {
 
                 val currentEmail = sessionManager.getCurrentUserEmail()
 
-                profileViewModel.getUserByEmail(currentEmail!!).observe(viewLifecycleOwner){ user ->
-                    user?.let{
-                        profileViewModel.logOut()
-                        profileViewModel.deleteUser(user)
-                        findNavController().navigate(
-                            R.id.action_profileFragment_to_welcomeFragment
-                        )
+                currentEmail?.let { email ->
+                    profileViewModel.getUserByEmail(email).observe(viewLifecycleOwner){ user ->
+                        user?.let{
+                            profileViewModel.deleteUser(user)
+                        }
                     }
                 }
+
+                favoriteViewModel.clearAllFavorites()
+                sessionManager.clearSession()
+
+                binding.ibDelete.visibility = View.GONE
+                binding.ibLogout.visibility = View.GONE
+                binding.tvTitle.visibility = View.GONE
+                binding.imgProfilePhoto.visibility = View.GONE
+                binding.lLayoutInformation.visibility = View.GONE
+                binding.tvOptions.visibility = View.GONE
+                binding.optionsContainer.visibility = View.GONE
+
+                binding.lottieDeleteAnimation.visibility = View.VISIBLE
+                binding.lottieDeleteAnimation.repeatCount = 0
+                binding.lottieDeleteAnimation.playAnimation()
+
+                binding.lottieDeleteAnimation.addAnimatorListener(object : Animator.AnimatorListener {
+                    override fun onAnimationStart(animation: Animator) {}
+
+                    override fun onAnimationEnd(animation: Animator) {
+                        AppCompatDelegate.setApplicationLocales(
+                            LocaleListCompat.forLanguageTags("en")
+                        )
+                        AppCompatDelegate.setDefaultNightMode(
+                            AppCompatDelegate.MODE_NIGHT_NO
+                        )
+
+                        findNavController().navigate(
+                            R.id.action_profileFragment_to_welcomeFragment,
+                            null,
+                            NavOptions.Builder()
+                                .setPopUpTo(R.id.homeFragment, true)
+                                .build()
+                        )
+                    }
+
+                    override fun onAnimationCancel(animation: Animator) {}
+                    override fun onAnimationRepeat(animation: Animator) {}
+                })
             }
         }
     }

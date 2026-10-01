@@ -7,7 +7,7 @@
     <string name="save_your_favorites">Save Your Favorites</string>
     <string name="save_your_favorites_description">Keep your favorite recipes in one place for quick access.</string>
     <string name="button_next">Next</string>
-    <string name="welcome">Welcome!</string>
+    <string name="welcome">Welcome,</string>
     <string name="find_your_next_favorite_recipe">Find your next favorite recipe</string>
     <string name="home_page_query_hint">Search recipes...</string>
     <string name="roll_the_dice">Roll the Dice🎲</string>
@@ -162,4 +162,8 @@
     <string name="see_all">See All</string>
     <string name="no_favorite_recipes_yet">No favorite recipes yet</string>
     <string name="favorites_yet_desc">Tap the heart icon on any recipe or\n explore our kitchen to save your\n favorites here.</string>
+    <string name="delete_account">Delete Account?</string>
+    <string name="delete_account_desc">Are you sure you want to delete your account?\n All your saved recipes, customized preferences, and collections will be permanently removed.</string>
+    <string name="delete_account_sub_text">This action is permanent and cannot be undone.</string>
+    <string name="delete_account_btn">Delete Account</string>
 </resources>

@@ -1,5 +1,6 @@
 package com.example.cookbook.ui.fragments
 
+import android.animation.Animator
 import android.app.Activity
 import android.content.SharedPreferences
 import android.os.Bundle
@@ -56,13 +57,18 @@ class LoginFragment : Fragment() {
             loginUser()
         }
 
+        loadingState()
+
         viewLifecycleOwner.lifecycleScope.launch {
             viewModel.loginState.collect { state ->
                when(state){
                    LoginState.Idle -> {}
+                   LoginState.Loading -> {}
                    LoginState.Success -> {
-                       viewModel.setLoggedIn()
-                       findNavController().navigate(R.id.action_loginFragment_to_homeFragment) }
+                       binding.layoutLogin.visibility = View.GONE
+                       binding.lottieAnimation.visibility = View.VISIBLE
+                       binding.lottieAnimation.playAnimation()
+                       }
                    LoginState.UserNotFound -> {Toast.makeText(requireContext(),"User not found!", Toast.LENGTH_LONG).show()}
                }
             }
@@ -86,6 +92,26 @@ class LoginFragment : Fragment() {
         }else{
             Toast.makeText(requireContext(),"All fields must be filled!",Toast.LENGTH_SHORT).show()
         }
+    }
+
+    private fun loadingState(){
+        binding.lottieAnimation.addAnimatorListener(
+            object : Animator.AnimatorListener {
+
+                override fun onAnimationStart(animation: Animator) {}
+
+                override fun onAnimationEnd(animation: Animator) {
+                    viewModel.setLoggedIn()
+                    findNavController().navigate(
+                        R.id.action_loginFragment_to_homeFragment
+                    )
+                }
+
+                override fun onAnimationCancel(animation: Animator) {}
+
+                override fun onAnimationRepeat(animation: Animator) {}
+            }
+        )
     }
 
 

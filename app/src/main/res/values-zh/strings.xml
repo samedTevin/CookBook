@@ -4,7 +4,7 @@
     <string name="save_your_favorites">保存收藏</string>
     <string name="save_your_favorites_description">将您喜爱的食谱保存在一处，方便快速访问。</string>
     <string name="button_next">下一步</string>
-    <string name="welcome">欢迎！</string>
+    <string name="welcome">欢迎,</string>
     <string name="find_your_next_favorite_recipe">找到你下一个最爱的食谱</string>
     <string name="home_page_query_hint">搜索食谱...</string>
     <string name="roll_the_dice">掷骰子🎲</string>
@@ -153,4 +153,10 @@
     <string name="set4">🔎 搜索你想吃的美食 • ⭐ 收藏食谱 • 🎲 让骰子决定 • 🌶️ 尝试新的味道</string>
     <string name="set5">🍴 浏览食谱 • 🌍 探索世界各地的味道 • 🎡 让转盘为你选择 • 🥗 找到你的新最爱</string>
     <string name="see_all">查看全部</string>
+    <string name="no_favorite_recipes_yet">暂无收藏食谱</string>
+    <string name="favorites_yet_desc">点击任意食谱上的心形图标，或\n 探索我们的厨房，将你喜欢的食谱收藏在这里。</string>
+    <string name="delete_account">删除账户？</string>
+    <string name="delete_account_desc">确定要删除你的账户吗？\n 你保存的所有食谱、个性化偏好和收藏集都将被永久删除。</string>
+    <string name="delete_account_sub_text">此操作为永久操作，无法撤销。</string>
+    <string name="delete_account_btn">删除账户</string>
 </resources>

@@ -1,5 +1,8 @@
 package com.example.cookbook.mapper
 
+import android.text.SpannableString
+import android.text.Spanned
+import androidx.core.text.HtmlCompat
 import com.example.cookbook.model.FavoriteMeal
 import com.example.cookbook.model.Ingredient
 import com.example.cookbook.model.Meal
@@ -75,4 +78,54 @@ fun Meal.toIngredients(): List<Ingredient>{
 fun Meal.toFavoriteMeal(): FavoriteMeal{
 
     return FavoriteMeal(idMeal, strMeal, strCategory, strCountry, strMealThumb)
+}
+
+fun String?.formatInstructionsToHtml(): Spanned {
+    if (this.isNullOrBlank()) return SpannableString("")
+
+    val text = this
+        .replace(Regex("(?i)<br\\s*/?>"), "\n")
+        .replace("\r\n", "\n")
+        .replace("\r", "\n")
+        .trim()
+
+    val stepHeaderRegex = Regex("(?i)^STEP\\s*\\d+[:\\.]?\\s*")
+    val rawLines = text.split("\n").map { it.trim() }.filter { it.isNotBlank() }
+
+    val steps = mutableListOf<String>()
+
+    for (line in rawLines) {
+        val cleanedLine = line
+            .replace(stepHeaderRegex, "")
+            .replace(Regex("^\\d+[\\.\\)]\\s*"), "")
+            .replace(Regex("^[•\\-\\*]\\s*"), "")
+            .trim()
+
+        if (cleanedLine.isNotBlank()) {
+            steps.add(cleanedLine)
+        }
+    }
+
+    if (steps.size <= 1) {
+        val singleText = if (steps.isNotEmpty()) steps[0] else text
+        val sentences = singleText
+            .split(Regex("(?<=\\.)\\s+(?=[A-Z])"))
+            .map { it.trim() }
+            .filter { it.isNotBlank() && it.length > 3 }
+
+        if (sentences.size > 1) {
+            steps.clear()
+            steps.addAll(sentences)
+        }
+    }
+
+    if (steps.isEmpty()) {
+        return HtmlCompat.fromHtml(text, HtmlCompat.FROM_HTML_MODE_LEGACY)
+    }
+
+    val htmlString = steps.mapIndexed { index, step ->
+        "<b>Step ${index + 1}</b><br/>$step"
+    }.joinToString("<br/><br/>")
+
+    return HtmlCompat.fromHtml(htmlString, HtmlCompat.FROM_HTML_MODE_LEGACY)
 }

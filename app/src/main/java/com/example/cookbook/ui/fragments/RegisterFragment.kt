@@ -83,7 +83,7 @@ class RegisterFragment : Fragment() {
                 }
                 else{
                     if(binding.etPassword.text.toString() == binding.etConfirmPassword.text.toString()){
-                        user = User(binding.etMail.text.toString(), "", binding.etUsername.text.toString(), binding.etPassword.text.toString())
+                        user = User(email = binding.etMail.text.toString(), fullName = null, username = binding.etUsername.text.toString(), password = binding.etPassword.text.toString(), imagePath = null)
                     }
                     else{
                         Toast.makeText(requireContext(),"Passwords don't match.",Toast.LENGTH_SHORT).show()

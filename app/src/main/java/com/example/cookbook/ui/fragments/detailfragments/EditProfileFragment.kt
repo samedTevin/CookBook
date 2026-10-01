@@ -37,6 +37,7 @@ class EditProfileFragment : Fragment() {
     private lateinit var profileViewModel: ProfileViewModel
     private lateinit var userRepository: UserRepository
     private var activeUser: User? = null
+    private var isDataLoaded = false
 
 
     private val imagePickerLauncher = registerForActivityResult(ActivityResultContracts.GetContent()){  uri : Uri? ->
@@ -82,7 +83,10 @@ class EditProfileFragment : Fragment() {
             profileViewModel.getUserByEmail(email).observe(viewLifecycleOwner) {
                 it?.let { user ->
                     displayUserPhoto(user)
-                    loadUserData(user)
+                    if (!isDataLoaded) {
+                        loadUserData(user)
+                        isDataLoaded = true
+                    }
                     activeUser = user
                     binding.buttonEdit.setOnClickListener {
                         editChanges(user)
@@ -185,7 +189,7 @@ class EditProfileFragment : Fragment() {
             return
         }
 
-        val updatedUser = User(newEmail, newFullName, newUsername, newPassword, user.imagePath)
+        val updatedUser = user.copy(email = newEmail, fullName = newFullName, username = newUsername, password = newPassword, imagePath = user.imagePath)
 
         profileViewModel.updateUser(updatedUser)
 

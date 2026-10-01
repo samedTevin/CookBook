@@ -1,5 +1,6 @@
 package com.example.cookbook.ui.fragments.detailfragments
 
+import android.animation.Animator
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -13,13 +14,16 @@ import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.airbnb.lottie.LottieDrawable
 import com.example.cookbook.adapter.recyclerviewadapter.FavoritesAdapter
 import com.example.cookbook.adapter.recyclerviewadapter.SearchAdapter
 import com.example.cookbook.api.RetrofitInstance
 import com.example.cookbook.database.CookDatabase
 import com.example.cookbook.databinding.FragmentDiscoverBinding
+import com.example.cookbook.model.Meal
 import com.example.cookbook.repository.FavoriteMealRepository
 import com.example.cookbook.repository.MealRepository
+import com.example.cookbook.state.DiscoverState
 import com.example.cookbook.state.FavState
 import com.example.cookbook.util.DiscoverType
 import com.example.cookbook.viewmodel.DiscoverViewModel
@@ -79,14 +83,42 @@ class DiscoverFragment : Fragment() {
         
 
 
-
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
-                discoverViewModel.filter.collect { filter ->
-                    filter?.meals?.let { meals ->
-                        searchAdapter.updateList(meals)
-                        binding.chipTag2.text = "${meals.size} recipes"
+                discoverViewModel.state.collect { state ->
+                    when(state){
+                        DiscoverState.Idle -> {}
+                        DiscoverState.Loading -> {
+                            binding.loadingAnimation.visibility = View.VISIBLE
+                            binding.layoutDiscover.visibility = View.GONE
+
+                            binding.loadingAnimation.repeatCount = LottieDrawable.INFINITE
+
+                            if (!binding.loadingAnimation.isAnimating) {
+                                binding.loadingAnimation.playAnimation()
+                            }
+                        }
+                        is DiscoverState.Success ->{
+                            state.meal.meals?.let { meals ->
+
+                                searchAdapter.updateList(meals)
+                                binding.chipTag2.text = "${meals.size} recipes"
+
+                                binding.loadingAnimation.cancelAnimation()
+                                binding.loadingAnimation.visibility = View.GONE
+                                binding.layoutDiscover.visibility = View.VISIBLE
+
+                            }
+                        }
+                        is DiscoverState.Error -> {
+                            binding.loadingAnimation.cancelAnimation()
+                            binding.loadingAnimation.visibility = View.GONE
+                            binding.layoutDiscover.visibility = View.VISIBLE
+                            Toast.makeText(requireContext(),state.message,Toast.LENGTH_SHORT).show()
+                        }
+                        else -> {}
                     }
+
                 }
             }
         }
@@ -119,7 +151,7 @@ class DiscoverFragment : Fragment() {
             }
         }
 
-        searchAdapter.onItemClick = {it ->
+        searchAdapter.onItemClick = { it ->
             val action = DiscoverFragmentDirections.actionDiscoverFragmentToDetailFragment(it)
             findNavController().navigate(action)
         }

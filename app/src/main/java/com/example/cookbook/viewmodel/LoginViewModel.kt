@@ -1,5 +1,6 @@
 package com.example.cookbook.viewmodel
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.cookbook.preferences.SessionManager
@@ -14,7 +15,7 @@ class LoginViewModel(private val userRepository: UserRepository, private val ses
     val loginState = _loginState.asStateFlow()
 
     fun login(email: String, password: String){
-
+        _loginState.value = LoginState.Loading
         viewModelScope.launch {
             val user = userRepository.findUser(email,password)
 
@@ -23,6 +24,7 @@ class LoginViewModel(private val userRepository: UserRepository, private val ses
             }
             else{
                 _loginState.value = LoginState.UserNotFound
+                _loginState.value = LoginState.Idle
             }
         }
     }

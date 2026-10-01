@@ -15,6 +15,7 @@
     tools:context=".ui.fragments.detailfragments.DiscoverFragment">
 
 
+
     <androidx.constraintlayout.widget.ConstraintLayout
 
         android:layout_width="match_parent"
@@ -23,167 +24,191 @@
 
         android:padding="20dp">
 
-
-
-        <androidx.appcompat.widget.Toolbar
-
-            android:id="@+id/toolBar"
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/loadingAnimation"
 
             android:layout_width="match_parent"
-
-            android:layout_height="wrap_content"
-
-            app:layout_constraintEnd_toEndOf="parent"
-
+            android:layout_height="match_parent"
+            app:lottie_colorFilter="@color/primary"
+            app:lottie_rawRes="@raw/food_loading2"
+            app:lottie_autoPlay="false"
+            app:lottie_loop="false"
+            android:scaleType="fitCenter"
+            android:visibility="gone"
             app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"/>
 
-            app:layout_constraintTop_toTopOf="parent">
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/layoutDiscover"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="visible">
+            <androidx.appcompat.widget.Toolbar
+
+                android:id="@+id/toolBar"
+
+                android:layout_width="match_parent"
+
+                android:layout_height="wrap_content"
+
+                app:layout_constraintEnd_toEndOf="parent"
+
+                app:layout_constraintStart_toStartOf="parent"
+
+                app:layout_constraintTop_toTopOf="parent">
+
+
+                <TextView
+
+                    android:layout_width="wrap_content"
+
+                    android:layout_height="wrap_content"
+
+                    android:layout_gravity="center"
+
+                    android:fontFamily="@font/poppins_semibold"
+
+                    android:text="@string/app_name"
+
+                    android:textColor="@color/primary"
+
+                    android:textSize="50sp" />
+
+
+            </androidx.appcompat.widget.Toolbar>
+
+
+
 
 
             <TextView
 
+                android:id="@+id/tvTitle"
+
                 android:layout_width="wrap_content"
 
                 android:layout_height="wrap_content"
-
-                android:layout_gravity="center"
 
                 android:fontFamily="@font/poppins_semibold"
 
-                android:text="@string/app_name"
+                android:text="@string/discover_recipes_fragment"
 
-                android:textColor="@color/primary"
+                android:textColor="@color/text_primary"
 
-                android:textSize="50sp" />
+                android:textSize="30sp"
 
+                app:layout_constraintStart_toStartOf="parent"
 
-        </androidx.appcompat.widget.Toolbar>
-
-
-
+                app:layout_constraintTop_toBottomOf="@id/toolBar" />
 
 
-        <TextView
+            <TextView
 
-            android:id="@+id/tvTitle"
-
-            android:layout_width="wrap_content"
-
-            android:layout_height="wrap_content"
-
-            android:fontFamily="@font/poppins_semibold"
-
-            android:text="@string/discover_recipes_fragment"
-
-            android:textColor="@color/text_primary"
-
-            android:textSize="30sp"
-
-            app:layout_constraintStart_toStartOf="parent"
-
-            app:layout_constraintTop_toBottomOf="@id/toolBar" />
-
-
-        <TextView
-
-            android:id="@+id/tvSubTitle"
-
-            android:layout_width="wrap_content"
-
-            android:layout_height="wrap_content"
-
-            android:fontFamily="@font/poppins_semibold"
-
-            android:text=""
-
-            android:textColor="@color/text_primary"
-
-            android:textSize="25sp"
-
-            app:layout_constraintStart_toStartOf="parent"
-
-            app:layout_constraintTop_toBottomOf="@id/tvTitle" />
-
-
-
-
-
-
-        <com.google.android.material.chip.ChipGroup
-
-            android:id="@+id/chipGroup"
-
-            android:layout_width="match_parent"
-
-            android:layout_height="wrap_content"
-
-            app:chipSpacing="8dp"
-
-            app:layout_constraintStart_toStartOf="parent"
-
-            app:layout_constraintTop_toBottomOf="@id/tvSubTitle"
-
-            app:singleLine="true">
-
-
-            <com.google.android.material.chip.Chip
-
-                android:id="@+id/chipTag1"
+                android:id="@+id/tvSubTitle"
 
                 android:layout_width="wrap_content"
 
                 android:layout_height="wrap_content"
 
+                android:fontFamily="@font/poppins_semibold"
+
                 android:text=""
 
-                android:textColor="@color/background"
+                android:textColor="@color/text_primary"
 
-                app:chipBackgroundColor="@color/primary" />
+                android:textSize="25sp"
+
+                app:layout_constraintStart_toStartOf="parent"
+
+                app:layout_constraintTop_toBottomOf="@id/tvTitle" />
 
 
 
 
-            <com.google.android.material.chip.Chip
 
-                android:id="@+id/chipTag2"
 
-                android:layout_width="wrap_content"
+            <com.google.android.material.chip.ChipGroup
+
+                android:id="@+id/chipGroup"
+
+                android:layout_width="match_parent"
 
                 android:layout_height="wrap_content"
 
-                android:text=""
+                app:chipSpacing="8dp"
 
-                android:textColor="@color/background"
+                app:layout_constraintStart_toStartOf="parent"
 
-                app:chipBackgroundColor="@color/primary" />
+                app:layout_constraintTop_toBottomOf="@id/tvSubTitle"
 
-
-        </com.google.android.material.chip.ChipGroup>
-
+                app:singleLine="true">
 
 
+                <com.google.android.material.chip.Chip
+
+                    android:id="@+id/chipTag1"
+
+                    android:layout_width="wrap_content"
+
+                    android:layout_height="wrap_content"
+
+                    android:text=""
+
+                    android:textColor="@color/background"
+
+                    app:chipBackgroundColor="@color/primary" />
 
 
 
-        <androidx.recyclerview.widget.RecyclerView
 
-            android:id="@+id/rvFilter"
+                <com.google.android.material.chip.Chip
 
-            android:layout_width="0dp"
+                    android:id="@+id/chipTag2"
 
-            android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
 
-            android:layout_marginTop="20dp"
+                    android:layout_height="wrap_content"
 
-            android:nestedScrollingEnabled="false"
+                    android:text=""
 
-            app:layout_constraintBottom_toBottomOf="parent"
+                    android:textColor="@color/background"
 
-            app:layout_constraintEnd_toEndOf="parent"
+                    app:chipBackgroundColor="@color/primary" />
 
-            app:layout_constraintStart_toStartOf="parent"
 
-            app:layout_constraintTop_toBottomOf="@id/chipGroup" />
+            </com.google.android.material.chip.ChipGroup>
+
+
+
+
+
+
+            <androidx.recyclerview.widget.RecyclerView
+
+                android:id="@+id/rvFilter"
+
+                android:layout_width="0dp"
+
+                android:layout_height="wrap_content"
+
+                android:layout_marginTop="20dp"
+
+                android:nestedScrollingEnabled="false"
+
+                app:layout_constraintBottom_toBottomOf="parent"
+
+                app:layout_constraintEnd_toEndOf="parent"
+
+                app:layout_constraintStart_toStartOf="parent"
+
+                app:layout_constraintTop_toBottomOf="@id/chipGroup" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

@@ -4,7 +4,7 @@
     <string name="save_your_favorites">Favorilerinizi Kaydedin</string>
     <string name="save_your_favorites_description">Favori tariflerinizi hızlı erişim için tek bir yerde saklayın.</string>
     <string name="button_next">İleri</string>
-    <string name="welcome">Hoş Geldiniz!</string>
+    <string name="welcome">Hoş Geldiniz,</string>
     <string name="find_your_next_favorite_recipe">Bir sonraki favori tarifinizi bulun</string>
     <string name="home_page_query_hint">Tarif ara...</string>
     <string name="roll_the_dice">Zar At🎲</string>
@@ -153,4 +153,10 @@
     <string name="set4">🔎 Canının Çektiğini Ara • ⭐ Tarifleri Kaydet • 🎲 Zarlara Bırak • 🌶️ Yeni Bir Lezzet Dene</string>
     <string name="set5">🍴 Tariflere Göz At • 🌍 Dünyanın Lezzetlerini Keşfet • 🎡 Çarkın Seçmesine İzin Ver • 🥗 Yeni Favorini Bul</string>
     <string name="see_all">Tümünü Gör</string>
+    <string name="no_favorite_recipes_yet">Henüz favori tarif yok</string>
+    <string name="favorites_yet_desc">Herhangi bir tarifteki kalp simgesine dokunun veya\n favorilerinizi buraya kaydetmek için mutfağımızı keşfedin.</string>
+    <string name="delete_account">Hesap Silinsin mi?</string>
+    <string name="delete_account_desc">Hesabınızı silmek istediğinizden emin misiniz?\n Kaydettiğiniz tüm tarifler, kişiselleştirilmiş tercihleriniz ve koleksiyonlarınız kalıcı olarak silinecektir.</string>
+    <string name="delete_account_sub_text">Bu işlem kalıcıdır ve geri alınamaz.</string>
+    <string name="delete_account_btn">Hesabı Sil</string>
 </resources>

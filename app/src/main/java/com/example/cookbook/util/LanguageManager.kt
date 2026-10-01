@@ -10,4 +10,5 @@ object LanguageManager {
 
         AppCompatDelegate.setApplicationLocales(locale)
     }
+
 }

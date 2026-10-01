@@ -5,15 +5,18 @@ import android.content.SharedPreferences
 class SessionManager(private val sharedPreferences: SharedPreferences) {
 
     fun logIn(){
-        sharedPreferences.edit().putBoolean("isLoggedIn",true).apply()
+        sharedPreferences.edit().putBoolean("isLoggedIn", true).apply()
     }
 
     fun logOut(){
-        sharedPreferences.edit().putBoolean("isLoggedIn",false).apply()
+        sharedPreferences.edit()
+            .putBoolean("isLoggedIn", false)
+            .remove("currentUserEmail")
+            .apply()
     }
 
-    fun isLoggedIn() : Boolean{
-        return sharedPreferences.getBoolean("isLoggedIn",false)
+    fun isLoggedIn(): Boolean {
+        return sharedPreferences.getBoolean("isLoggedIn", false)
     }
 
     fun saveCurrentUserEmail(userEmail: String){
@@ -33,15 +36,15 @@ class SessionManager(private val sharedPreferences: SharedPreferences) {
     }
 
     fun saveCuisine(cuisine: String){
-        sharedPreferences.edit().putString("selectedCuisine",cuisine).apply()
+        sharedPreferences.edit().putString("selectedCuisine", cuisine).apply()
     }
 
     fun getCuisine(): String?{
-        return sharedPreferences.getString("selectedCuisine",null)
+        return sharedPreferences.getString("selectedCuisine", null)
     }
 
     fun saveDarkMode(isEnabled: Boolean){
-        sharedPreferences.edit().putBoolean("isDarkModeEnabled",isEnabled).apply()
+        sharedPreferences.edit().putBoolean("isDarkModeEnabled", isEnabled).apply()
     }
 
     fun getDarkMode(): Boolean{
@@ -56,6 +59,7 @@ class SessionManager(private val sharedPreferences: SharedPreferences) {
         return sharedPreferences.getString("selectedIngredient", null)
     }
 
-
-
+    fun clearSession(){
+        sharedPreferences.edit().clear().apply()
+    }
 }

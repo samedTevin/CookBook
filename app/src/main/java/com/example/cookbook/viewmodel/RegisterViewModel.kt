@@ -19,6 +19,7 @@ class RegisterViewModel(private val userRepository: UserRepository): ViewModel()
 
             if(existingUser != null){
                 _registerState.value = RegisterState.EmailAlreadyExists
+                _registerState.value = RegisterState.Idle
             }else{
                 userRepository.insertUser(user)
                 _registerState.value = RegisterState.Success

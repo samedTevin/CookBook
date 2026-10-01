@@ -86,6 +86,11 @@ dependencies {
     // Spin Wheel
     implementation("com.github.VuNgN:SpinTheWheel:1.0.5")
 
+    // Shimmer
+    implementation("com.facebook.shimmer:shimmer:0.5.0")
+
+
+
 
 
 }

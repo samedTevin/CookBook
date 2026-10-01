@@ -33,4 +33,8 @@ class FavoriteMealRepository(private val favoriteMealDao: FavoriteMealDao) {
     fun isFavorite(id: String): Flow<Boolean> {
         return favoriteMealDao.isFavorite(id)
     }
+
+    suspend fun clearAllFavorites() {
+        favoriteMealDao.clearAllFavorites()
+    }
 }

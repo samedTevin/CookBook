@@ -4,7 +4,7 @@
     <string name="save_your_favorites">Favoriten Speichern</string>
     <string name="save_your_favorites_description">Bewahre deine Lieblingsrezepte an einem Ort für schnellen Zugriff auf.</string>
     <string name="button_next">Weiter</string>
-    <string name="welcome">Willkommen!</string>
+    <string name="welcome">Willkommen,</string>
     <string name="find_your_next_favorite_recipe">Finde dein nächstes Lieblingsrezept</string>
     <string name="home_page_query_hint">Rezepte suchen...</string>
     <string name="roll_the_dice">Würfeln🎲</string>
@@ -153,4 +153,10 @@
     <string name="set4">🔎 Nach deinen Gelüsten suchen • ⭐ Rezepte speichern • 🎲 Die Würfel entscheiden lassen • 🌶️ Einen neuen Geschmack probieren</string>
     <string name="set5">🍴 Rezepte durchsuchen • 🌍 Aromen aus aller Welt entdecken • 🎡 Das Glücksrad wählen lassen • 🥗 Deinen neuen Favoriten finden</string>
     <string name="see_all">Alle anzeigen</string>
+    <string name="no_favorite_recipes_yet">Noch keine Lieblingsrezepte</string>
+    <string name="favorites_yet_desc">Tippe bei einem beliebigen Rezept auf das Herzsymbol oder\n entdecke unsere Küche, um deine Favoriten hier zu speichern.</string>
+    <string name="delete_account">Konto löschen?</string>
+    <string name="delete_account_desc">Möchtest du dein Konto wirklich löschen?\n Alle deine gespeicherten Rezepte, persönlichen Einstellungen und Sammlungen werden dauerhaft entfernt.</string>
+    <string name="delete_account_sub_text">Diese Aktion ist dauerhaft und kann nicht rückgängig gemacht werden.</string>
+    <string name="delete_account_btn">Konto löschen</string>
 </resources>

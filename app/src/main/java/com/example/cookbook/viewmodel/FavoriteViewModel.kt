@@ -49,4 +49,10 @@ class FavoriteViewModel(private val favoriteMealRepository: FavoriteMealReposito
         return favoriteMealRepository.isFavorite(id)
     }
 
+    fun clearAllFavorites(){
+        viewModelScope.launch {
+            favoriteMealRepository.clearAllFavorites()
+        }
+    }
+
 }

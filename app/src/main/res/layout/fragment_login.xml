@@ -22,203 +22,199 @@
 
     tools:context=".ui.fragments.LoginFragment">
 
-
-
-    <TextView
-
-        android:layout_width="wrap_content"
-
-        android:layout_height="wrap_content"
-
-        android:text="@string/login_here"
-
-        android:textColor="@color/primary"
-
-        android:textSize="40sp"
-
-        android:fontFamily="@font/poppins_semibold"
-
-        android:layout_marginTop="40dp"
-
-        android:layout_marginBottom="10dp"/>
-
-
-
-
-
-    <TextView
-
-        android:layout_width="wrap_content"
-
-        android:layout_height="wrap_content"
-
-        android:text="@string/login_description"
-
-        android:textAlignment="center"
-
-        android:textSize="20sp"
-
-        android:textColor="@color/text_primary"
-
-        android:fontFamily="@font/plus_jakarta_sans_semibold"
-
-        android:layout_marginBottom="50dp"
-
-        android:lineHeight="25dp"/>
-
-
-
-
-
-    <com.google.android.material.textfield.TextInputLayout
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/lottieAnimation"
 
         android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="fitCenter"
+        android:visibility="gone"
+        app:lottie_autoPlay="false"
+        app:lottie_colorFilter="@color/primary"
+        app:lottie_loop="false"
+        app:lottie_rawRes="@raw/food_loading2"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"/>
 
-        android:layout_height="wrap_content"
+    <LinearLayout
+        android:id="@+id/layoutLogin"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center_horizontal">
+        <TextView
 
-        android:hint="@string/email"
+            android:layout_width="wrap_content"
 
-        app:boxBackgroundMode="outline"
+            android:layout_height="wrap_content"
 
-        app:boxStrokeColor="@color/text_input_color"
+            android:text="@string/login_here"
 
-        app:boxStrokeWidth="3dp"
+            android:textColor="@color/primary"
 
-        app:hintTextColor="@color/text_secondary"
+            android:textSize="40sp"
 
-        android:layout_marginBottom="20dp">
+            android:fontFamily="@font/poppins_semibold"
+
+            android:layout_marginTop="40dp"
+
+            android:layout_marginBottom="10dp"/>
 
 
-        <com.google.android.material.textfield.TextInputEditText
 
-            android:id="@+id/etMail"
+
+
+        <TextView
+
+            android:layout_width="wrap_content"
+
+            android:layout_height="wrap_content"
+
+            android:text="@string/login_description"
+
+            android:textAlignment="center"
+
+            android:textSize="20sp"
+
+            android:textColor="@color/text_primary"
+
+            android:fontFamily="@font/plus_jakarta_sans_semibold"
+
+            android:layout_marginBottom="50dp"
+
+            android:lineHeight="25dp"/>
+
+
+
+
+
+        <com.google.android.material.textfield.TextInputLayout
 
             android:layout_width="match_parent"
 
             android:layout_height="wrap_content"
 
-            android:textColor="@color/text_primary"
+            android:hint="@string/email"
 
-            android:textColorHint="@color/text_secondary"
+            app:boxBackgroundMode="outline"
 
-            android:inputType="text"/>
+            app:boxStrokeColor="@color/text_input_color"
 
+            app:boxStrokeWidth="3dp"
 
-    </com.google.android.material.textfield.TextInputLayout>
+            app:hintTextColor="@color/text_secondary"
 
-
-
-
-
-    <com.google.android.material.textfield.TextInputLayout
-
-        android:layout_width="match_parent"
-
-        android:layout_height="wrap_content"
-
-        android:hint="@string/password"
-
-        app:boxBackgroundMode="outline"
-
-        app:boxStrokeColor="@color/text_input_color"
-
-        app:boxStrokeWidth="3dp"
-
-        app:hintTextColor="@color/text_secondary"
-
-        app:endIconMode="password_toggle"
-
-        android:layout_marginBottom="15dp">
+            android:layout_marginBottom="20dp">
 
 
-        <com.google.android.material.textfield.TextInputEditText
+            <com.google.android.material.textfield.TextInputEditText
 
-            android:id="@+id/etPassword"
+                android:id="@+id/etMail"
+
+                android:layout_width="match_parent"
+
+                android:layout_height="wrap_content"
+
+                android:textColor="@color/text_primary"
+
+                android:textColorHint="@color/text_secondary"
+
+                android:inputType="text"/>
+
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+
+
+
+        <com.google.android.material.textfield.TextInputLayout
 
             android:layout_width="match_parent"
 
             android:layout_height="wrap_content"
 
+            android:hint="@string/password"
+
+            app:boxBackgroundMode="outline"
+
+            app:boxStrokeColor="@color/text_input_color"
+
+            app:boxStrokeWidth="3dp"
+
+            app:hintTextColor="@color/text_secondary"
+
+            app:endIconMode="password_toggle"
+
+            android:layout_marginBottom="15dp">
+
+
+            <com.google.android.material.textfield.TextInputEditText
+
+                android:id="@+id/etPassword"
+
+                android:layout_width="match_parent"
+
+                android:layout_height="wrap_content"
+
+                android:textColor="@color/text_primary"
+
+                android:inputType="textPassword"/>
+
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+        <com.google.android.material.button.MaterialButton
+
+            android:id="@+id/buttonSignIn"
+
+            android:layout_width="match_parent"
+
+            android:layout_height="wrap_content"
+
+            android:text="@string/sign_in"
+
+            android:textColor="@color/white"
+
+            android:textSize="25sp"
+
+            android:fontFamily="@font/poppins_semibold"
+
+            android:backgroundTint="@color/primary"
+
+            android:layout_marginTop="25dp"
+
+            app:cornerRadius="5dp"/>
+
+
+
+
+
+        <TextView
+
+            android:id="@+id/tvCreateAccount"
+
+            android:layout_width="match_parent"
+
+            android:layout_height="wrap_content"
+
+            android:text="@string/create_a_new_account"
+
+            android:textAlignment="center"
+
+            android:textSize="15sp"
+
+            android:textStyle="bold"
+
             android:textColor="@color/text_primary"
 
-            android:inputType="textPassword"/>
+            android:fontFamily="@font/inter"
 
-
-    </com.google.android.material.textfield.TextInputLayout>
-
-
-
-
-
-    <TextView
-
-        android:id="@+id/tvForgotPassword"
-
-        android:layout_width="wrap_content"
-
-        android:layout_height="wrap_content"
-
-        android:text="@string/forgot_your_password"
-
-        android:textColor="@color/primary"
-
-        android:textSize="15sp"
-
-        android:fontFamily="@font/plus_jakarta_sans_semibold"
-
-        android:layout_gravity="end"/>
-
-
-
-
-
-    <com.google.android.material.button.MaterialButton
-
-        android:id="@+id/buttonSignIn"
-
-        android:layout_width="match_parent"
-
-        android:layout_height="wrap_content"
-
-        android:text="@string/sign_in"
-
-        android:textColor="@color/white"
-
-        android:textSize="25sp"
-
-        android:fontFamily="@font/poppins_semibold"
-
-        android:backgroundTint="@color/primary"
-
-        android:layout_marginTop="25dp"
-
-        app:cornerRadius="5dp"/>
-
-
-
-
-
-    <TextView
-
-        android:id="@+id/tvCreateAccount"
-
-        android:layout_width="match_parent"
-
-        android:layout_height="wrap_content"
-
-        android:text="@string/create_a_new_account"
-
-        android:textAlignment="center"
-
-        android:textSize="15sp"
-
-        android:textStyle="bold"
-
-        android:textColor="@color/text_primary"
-
-        android:fontFamily="@font/inter"
-
-        android:layout_marginTop="30dp"/>
+            android:layout_marginTop="30dp"/>
+    </LinearLayout>
 
 
 </LinearLayout>

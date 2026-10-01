@@ -69,20 +69,28 @@ class MainActivity : AppCompatActivity() {
         bottomNav.setupWithNavController(navController)
 
         navController.addOnDestinationChangedListener{_, destination, _ ->
-            if(destination.id == R.id.viewPagerFragment){
-                bottomNav.visibility = View.GONE
-            }
-            else if(destination.id == R.id.welcomeFragment){
-                bottomNav.visibility = View.GONE
-            }
-            else if(destination.id == R.id.loginFragment){
-                bottomNav.visibility = View.GONE
-            }
-            else if(destination.id == R.id.registerFragment){
-                bottomNav.visibility = View.GONE
-            }
-            else{
-                bottomNav.visibility = View.VISIBLE
+            when (destination.id) {
+                R.id.viewPagerFragment -> {
+                    bottomNav.visibility = View.GONE
+                }
+                R.id.welcomeFragment -> {
+                    bottomNav.visibility = View.GONE
+                }
+                R.id.loginFragment -> {
+                    bottomNav.visibility = View.GONE
+                }
+                R.id.registerFragment -> {
+                    bottomNav.visibility = View.GONE
+                }
+                R.id.discoverFragment -> {
+                    bottomNav.visibility = View.GONE
+                }
+                R.id.detailFragment -> {
+                    bottomNav.visibility = View.GONE
+                }
+                else -> {
+                    bottomNav.visibility = View.VISIBLE
+                }
             }
 
         }

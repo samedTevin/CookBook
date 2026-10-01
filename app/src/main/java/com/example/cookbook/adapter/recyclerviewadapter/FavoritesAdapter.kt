@@ -4,11 +4,9 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.example.cookbook.model.Meal
+import com.example.cookbook.R
 import com.example.cookbook.databinding.ItemFavoritesBinding
 import com.example.cookbook.model.FavoriteMeal
-import com.example.cookbook.repository.FavoriteMealRepository
-import kotlinx.coroutines.delay
 
 class FavoritesAdapter(val favoriteList: MutableList<FavoriteMeal>): RecyclerView.Adapter<FavoritesAdapter.ViewHolder>(){
 
@@ -23,7 +21,12 @@ class FavoritesAdapter(val favoriteList: MutableList<FavoriteMeal>): RecyclerVie
             binding.tvFoodName.text = meal.strMeal
             binding.tvCountry.text = meal.strCountry
             binding.tvCategory.text = meal.strCategory
-            Glide.with(binding.root).load(meal.strMealThumb).into(binding.ivFoodPhoto)
+            Glide.with(binding.root)
+                .load(meal.strMealThumb)
+                .placeholder(R.drawable.bg_skeleton)
+                .error(R.drawable.ic_error_image)
+                .centerCrop()
+                .into(binding.ivFoodPhoto)
 
             binding.root.setOnClickListener {
                 onItemClick?.invoke(meal.idMeal)
@@ -36,6 +39,7 @@ class FavoritesAdapter(val favoriteList: MutableList<FavoriteMeal>): RecyclerVie
             }
 
         }
+
     }
 
 
